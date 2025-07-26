@@ -1594,8 +1594,31 @@
     </footer>
 
     <script>
-        // Navigation functionality
-        function showPage(pageId) {
+        // URL hash management
+        function updateHash(pageId, tabId = null) {
+            const hashParts = [pageId];
+            if (tabId) {
+                hashParts.push(tabId);
+            }
+            const newHash = '#' + hashParts.join('/');
+            if (window.location.hash !== newHash) {
+                history.pushState(null, null, newHash);
+            }
+        }
+
+        function parseHash() {
+            const hash = window.location.hash.substring(1); // Remove #
+            if (!hash) return { pageId: 'home', tabId: null };
+            
+            const parts = hash.split('/');
+            return {
+                pageId: parts[0] || 'home',
+                tabId: parts[1] || null
+            };
+        }
+
+        // Navigation functionality with URL hash support
+        function showPage(pageId, updateUrl = true) {
             // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => {
@@ -1619,6 +1642,18 @@
                 targetNav.classList.add('active');
             }
 
+            // Update URL hash if requested
+            if (updateUrl) {
+                updateHash(pageId);
+            }
+
+            // Reset tabs to default when switching pages
+            if (pageId === 'project') {
+                showProjectTab('overview', false);
+            } else if (pageId === 'ssem') {
+                showSSEMTab('overview', false);
+            }
+
             // Scroll to top
             window.scrollTo(0, 0);
         }
@@ -1629,8 +1664,8 @@
             mobileMenu.classList.toggle('open');
         }
 
-        // Project tab functionality
-        function showProjectTab(tabId) {
+        // Project tab functionality with URL hash support
+        function showProjectTab(tabId, updateUrl = true) {
             // Hide all project tab contents
             const projectTabContents = document.querySelectorAll('[id^="project-tab-content-"]');
             projectTabContents.forEach(content => {
@@ -1653,10 +1688,15 @@
             if (targetButton) {
                 targetButton.classList.add('active');
             }
+
+            // Update URL hash if requested
+            if (updateUrl) {
+                updateHash('project', tabId);
+            }
         }
 
-        // SSEM tab functionality
-        function showSSEMTab(tabId) {
+        // SSEM tab functionality with URL hash support
+        function showSSEMTab(tabId, updateUrl = true) {
             // Hide all SSEM tab contents
             const ssemTabContents = document.querySelectorAll('[id^="ssem-tab-content-"]');
             ssemTabContents.forEach(content => {
@@ -1678,6 +1718,39 @@
             const targetButton = document.getElementById(`ssem-tab-${tabId}`);
             if (targetButton) {
                 targetButton.classList.add('active');
+            }
+
+            // Update URL hash if requested
+            if (updateUrl) {
+                updateHash('ssem', tabId);
+            }
+        }
+
+        // Handle browser back/forward buttons
+        function handlePopState() {
+            const { pageId, tabId } = parseHash();
+            showPage(pageId, false);
+            
+            if (tabId) {
+                if (pageId === 'project') {
+                    showProjectTab(tabId, false);
+                } else if (pageId === 'ssem') {
+                    showSSEMTab(tabId, false);
+                }
+            }
+        }
+
+        // Initialize from URL hash on page load
+        function initializeFromHash() {
+            const { pageId, tabId } = parseHash();
+            showPage(pageId, false);
+            
+            if (tabId) {
+                if (pageId === 'project') {
+                    showProjectTab(tabId, false);
+                } else if (pageId === 'ssem') {
+                    showSSEMTab(tabId, false);
+                }
             }
         }
 
@@ -1742,9 +1815,16 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize from URL hash first
+            initializeFromHash();
+            
+            // Then start other effects
             startGlitchEffect();
             generateParticles();
         });
+
+        // Handle browser navigation (back/forward buttons)
+        window.addEventListener('popstate', handlePopState);
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {

@@ -1595,13 +1595,19 @@
             <div class="border-t border-slate-800 mt-8 pt-8 text-center">
                 <p class="text-slate-400 text-sm">
                     &copy; 2025 OWASP FIASSE Project. Licensed under CC BY-SA 4.0. 
-                    <span class="text-cyan-400 ml-2">Relentlessly Practical. Relentlessly Securable.</span>
+                    <span id="footer_description" class="text-cyan-400 ml-2">Relentlessly Practical. Relentlessly Securable.</span>
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
+
+        (async function() {
+            const { text } = await( await fetch(`/api/message`)).json();
+            document.querySelector('#footer_description').textContent = text;
+        }());
+        
         // URL hash management
         function updateHash(pageId, tabId = null) {
             const hashParts = [pageId];

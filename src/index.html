@@ -309,6 +309,13 @@
             font-size: 0.75rem;
             color: white;
         }
+
+        .ulist {
+            list-style-type: disc;
+        }
+        .ulist li {
+            margin-left: 1.5rem;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-slate-900 text-cyan-400">
@@ -329,6 +336,7 @@
                     <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
+                    <button onclick="showPage('tenants')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenants</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
                 </nav>
@@ -346,6 +354,7 @@
                 <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
+                <button onclick="showPage('tenants'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenants</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
             </div>
@@ -1465,6 +1474,143 @@
                     </div>
                 </div>
 
+
+            </div>
+        </section>
+
+        <!-- Tenants -->
+        <section id="page-tenants" class="page-section py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+                        Tenants of FIASSE
+                    </h1>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                        These are the core principles that guide software engineers in implementing securable software engineering practices using the FIASSE framework.
+                    </p>
+                </div>
+
+                <!-- Tenants to column-->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="card">
+                        <div class="flex items-center gap-2 mb-4">
+                            <h3 class="text-cyan-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#3-the-securable-principle" target="_blank">Securable Principle</a></h3>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            The Securable Principle in FIASSE says that software is never in a final, fixed state of “secure”; instead, it must be built so it can be secured and kept secure over time. Security is treated as an ongoing property of the system’s design, code, and operations rather than a checkbox reached after tests or reviews.
+                        </p>
+                        <div class="space-y-4">
+                            <p class="font-semibold text-cyan-400">
+                                Fundamentally, this means:
+                            </p>
+                            <div class="space-x-4">
+                                <ul class="space-y-2 text-slate-400 ulist">
+                                    <li >
+                                        Emphasize maintainability, trustworthiness, and reliability as core engineering attributes that support long-term security, rather than relying only on episodic security assessments.
+                                    </li>
+                                    <li >
+                                        Design architectures, codebases, and workflows so that future security fixes, hardening, and feature changes can be applied safely and predictably, without destabilizing the system.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center gap-2 mb-4">
+                            
+                            <h3 class="text-cyan-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#6411-the-derived-integrity-principle" target="_blank">Derived Integrity Principle</a></h3>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            The Derived Integrity Principle in FIASSE states that an application must not implicitly trust or adopt unmanaged external context, such as client-supplied data or other untrusted inputs, when making critical decisions. Instead, it should derive important facts (like identity, permissions, pricing, and state) from authoritative, controlled sources to preserve integrity and reduce the risk of security breaches.
+                        </p>
+                        <div class="space-y-4">
+                            <p class="font-semibold text-cyan-400">
+                                In practice, this means:
+                            </p>
+                            <ul class="space-y-2 text-slate-400 ulist">
+                                <li>
+                                    Treating all external inputs (client requests, headers, query parameters, cookies, webhooks, events) as untrusted until validated and normalized.
+                                </li>
+                                <li>
+                                    Recomputing or looking up sensitive values on the server side (e.g., roles, discounts, balances) rather than accepting them from the client or other unverified context.
+                                </li>
+                                <li>
+                                    Designing flows so that application behavior depends on trustworthy, server-controlled state, thereby avoiding hidden or accidental trust in anything the attacker can influence.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="card">
+                        <div class="flex items-center gap-2 mb-4">
+                            <h3 class="text-cyan-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#641-canonical-input-handling" target="_blank">Input Handling</a></h3>
+                        </div>
+
+                        <p class="text-slate-300 mb-4">
+                            The practice of converting all incoming data into a single, well-defined, validated form before it is used anywhere in the system. This supports the Securable and Derived Integrity principles by making sure that every decision is based on normalized, predictable input instead of raw, inconsistent, or attacker-shaped data.
+                        </p>
+                       
+                        <ul class="text-slate-300 space-y-2 ulist mb-4">
+                            <li>
+                                All external inputs (HTTP parameters, headers, JSON bodies, files, events, etc.) are first normalized to a canonical representation (types, encodings, formats) and validated against strict expectations before any business logic runs.
+                            </li>
+                            <li>
+                                Once canonicalized, only this trusted internal representation flows through the system, so downstream logic does not need to re-handle every edge case of raw input.
+                            </li>
+                        </ul>
+                        
+                        <div class="space-y-4">
+                            <p class="space-y-4 font-semibold text-cyan-400">
+                                In practice, this means:
+                            </p>
+                            <ul class="text-slate-400 space-y-2 ulist">
+                                <li>
+                                    Define clear schemas and allowed formats for all inputs, then enforce them at trust boundaries (e.g., API gateways, controllers) so the rest of the code works with strongly typed, normalized objects rather than raw strings.
+                                </li>
+                                <li>
+                                    Use canonicalization to reduce ambiguity and attack surface (for example, around encodings, path forms, or duplicated fields), making it easier to reason about integrity, authorization, and logging in line with FIASSE's securable design goals.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-center gap-2 mb-4">
+                            
+                            <h3 class="text-cyan-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#26-the-transparency-principle" target="_blank">The Transparency Principle</a></h3>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            How the system works should be observable and understandable so engineers and stakeholders can see what it is doing, why it is doing it, and how it handles data. In software engineering terms, it pushes teams to design systems whose behavior, decisions, and security posture are visible rather than opaque, which directly supports securability and trustworthy operation.
+                        </p>
+                        <ul class="text-slate-300 space-y-2 ulist mb-4">
+                                <li>
+                                    Transparency means exposing clear, contextualized signals about system behavior (e.g., logs, metrics, traces, decision reasons) so people can detect misuse, misconfiguration, and security drift early.
+                                </li>
+                                <li>
+                                    Instead of hiding complexity behind black boxes, the system surfaces enough structured information that engineers can reason about integrity, authorization, and failure modes.
+                                </li>
+                                <li>
+                                    This attribute is not entirely available to the end user in order to maintain confidentiality. 
+                                </li>
+                        </ul>
+                        <div class="space-y-4">
+                            <p class="font-semibold text-cyan-400">
+                                In practice, this means:
+                            </p>
+                            <ul class="text-slate-400 space-y-2 ulist">
+                                <li>
+                                    Build in consistent, meaningful observability: structured logging, traceable request flows, clear error reporting, and auditable security-relevant events, all tied to business context.
+                                </li>
+                                <li>
+                                    Use this transparency to align AppSec and development: shared views of state, defects, and behavior.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>

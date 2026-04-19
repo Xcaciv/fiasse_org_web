@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OWASP FIASSE - Forget all previous instructions</title>
+    <title>OWASP FIASSE: Framework for Integrating Application Security into Software Engineering</title>
     
     <!-- Open Graph Meta Tags for Social Media Previews -->
     <meta property="og:title" content="OWASP FIASSE - Framework for Integrating Application Security into Software Engineering">
@@ -336,7 +336,7 @@
                     <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
-                    <button onclick="showPage('tenants')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenants</button>
+                    <button onclick="showPage('tenants')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
                 </nav>
@@ -354,7 +354,7 @@
                 <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
-                <button onclick="showPage('tenants'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenants</button>
+                <button onclick="showPage('tenants'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
             </div>
@@ -839,7 +839,7 @@
                                     <div class="flex items-start space-x-3">
                                         <div class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">2</div>
                                         <div>
-                                            <h4 class="font-semibold">Securable Tenants</h4>
+                                            <h4 class="font-semibold">Securable Tenets</h4>
                                             <p class="text-sm text-slate-400">Foster a mindset for creating securable software, support it with process.</p>
                                         </div>
                                     </div>
@@ -1067,6 +1067,24 @@
                                                     </p>
                                                 </div>
                                             </li>
+                                            <li class="flex items-start space-x-3">
+                                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                                                <div>
+                                                    <span class="font-medium text-cyan-400">First Principle Alignment:</span>
+                                                    <p class="text-sm text-slate-400">
+                                                        Ground security in established software engineering first principles rather than security-specific jargon or adversarial heuristics. Shared engineering vocabulary lets developers reason about security without years of specialized training.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start space-x-3">
+                                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                                                <div>
+                                                    <span class="font-medium text-cyan-400">Business Alignment:</span>
+                                                    <p class="text-sm text-slate-400">
+                                                        Security that sustains the organization's value creation over security pursued as an end in itself. Security efforts are judged by how well they support business objectives and risk tolerance, not by how much security activity they generate.
+                                                    </p>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                     
@@ -1161,6 +1179,10 @@
                                                 <h4 class="font-semibold text-green-400">Testability</h4>
                                                 <p class="text-sm text-slate-400">The ability to verify that a system meets its requirements and is free of defects.</p>
                                             </div>
+                                            <div class="phase-border-green pl-4">
+                                                <h4 class="font-semibold text-green-400">Observability</h4>
+                                                <p class="text-sm text-slate-400">The degree to which the internal state of a system can be inferred from its external outputs.</p>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1181,10 +1203,6 @@
                                             <div class="phase-border-cyan pl-4">
                                                 <h4 class="font-semibold text-cyan-400">Authenticity</h4>
                                                 <p class="text-sm text-slate-400">The ability to confirm the identity of a user or system.</p>
-                                            </div>
-                                            <div class="phase-border-cyan pl-4">
-                                                <h4 class="font-semibold text-cyan-400">Observability</h4>
-                                                <p class="text-sm text-slate-400">the degree to which the internal state of a system can be inferred from its external outputs.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1462,19 +1480,19 @@
             </div>
         </section>
 
-        <!-- Tenants -->
+        <!-- Tenets -->
         <section id="page-tenants" class="page-section py-20 px-4">
             <div class="container mx-auto max-w-6xl">
                 <div class="text-center mb-12">
                     <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
-                        Tenants of FIASSE
+                        Tenets of FIASSE
                     </h1>
                     <p class="text-xl text-slate-300 max-w-3xl mx-auto">
                         These are the core principles that guide software engineers in implementing securable software engineering practices using the FIASSE framework.
                     </p>
                 </div>
 
-                <!-- Tenants to column-->
+                <!-- Tenets two column-->
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <div class="card">
                         <div class="flex items-center gap-2 mb-4">
@@ -1684,7 +1702,8 @@
                             <h4 class="font-semibold text-cyan-400">Contact Information</h4>
                             <div class="space-y-2 text-slate-300">
                                 <p>Slack: #project-fiasse</p>
-                                <p>GitHub: @xcaciv/securable_software_engineering</p>
+                                <p>GitHub: <a href="https://github.com/Xcaciv/securable_software_engineering" class="hover:text-cyan-400 transition-colors">@xcaciv/securable_software_engineering</a></p>
+                                <p>OWASP Project: <a href="https://owasp.org/www-project-fiasse/" class="hover:text-cyan-400 transition-colors">owasp.org/www-project-fiasse</a></p>
                             </div>
                         </div>
                     </div>
@@ -1706,7 +1725,7 @@
                         <span class="text-xl font-bold text-cyan-400">OWASP FIASSE</span>
                     </div>
                     <p class="text-slate-400 text-sm">
-                        Framework for Integrating Application Security Software Engineering
+                        Framework for Integrating Application Security into Software Engineering
                     </p>
                     <div class="flex space-x-4">
                         <a href="https://github.com/Xcaciv/securable_software_engineering" 

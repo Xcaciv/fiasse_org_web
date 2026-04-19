@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem('fiasse-theme');
+                if (stored === 'light' || stored === 'dark') {
+                    document.documentElement.setAttribute('data-theme', stored);
+                    return;
+                }
+            } catch (e) {}
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+        })();
+    </script>
     <title>OWASP FIASSE: Framework for Integrating Application Security into Software Engineering</title>
     
     <!-- Open Graph Meta Tags for Social Media Previews -->
@@ -28,24 +41,98 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
     <style>
         /* Custom Tailwind Configuration */
         :root {
             --font-size: 14px;
-            --background: #0f172a;
-            --foreground: #06b6d4;
-            --card: #1e293b;
-            --card-foreground: #f1f5f9;
-            --border: rgba(6, 182, 212, 0.2);
             --radius: 0.625rem;
+
+            /* Theme tokens (dark defaults preserve existing cyberpunk look) */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            --bg-base: #0f172a;
+            --bg-elev: rgba(30, 41, 59, 0.5);
+            --bg-elev-solid: #1e293b;
+            --bg-header: rgba(30, 41, 59, 0.5);
+            --bg-mobile-menu: rgba(30, 41, 59, 0.95);
+            --text-base: #06b6d4;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+            --accent: #06b6d4;
+            --accent-hover: #67e8f9;
+            --accent-contrast: #0f172a;
+            --border-accent: rgba(6, 182, 212, 0.2);
+            --border-accent-soft: rgba(6, 182, 212, 0.1);
+            --tab-button-text: #94a3b8;
+
+            /* Legacy aliases retained for any inline references */
+            --background: var(--bg-base);
+            --foreground: var(--accent);
+            --card: var(--bg-elev-solid);
+            --card-foreground: #f1f5f9;
+            --border: var(--border-accent);
         }
 
-        /* Cyberpunk Color Scheme */
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: #06b6d4;
-            min-height: 100vh;
+        /* Light mode — same cyan family, remapped for light surfaces */
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2f6 50%, #f8fafc 100%);
+            --bg-base: #f8fafc;
+            --bg-elev: rgba(255, 255, 255, 0.75);
+            --bg-elev-solid: #ffffff;
+            --bg-header: rgba(255, 255, 255, 0.8);
+            --bg-mobile-menu: rgba(255, 255, 255, 0.97);
+            --text-base: #0f172a;
+            --text-body: #334155;
+            --text-muted: #475569;
+            --text-subtle: #64748b;
+            --accent: #0891b2;
+            --accent-hover: #0e7490;
+            --accent-contrast: #ffffff;
+            --border-accent: rgba(8, 145, 178, 0.3);
+            --border-accent-soft: rgba(8, 145, 178, 0.12);
+            --tab-button-text: #64748b;
         }
+
+        /* Typography: Space Mono for display, Inter for body */
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-base);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-feature-settings: 'cv11', 'ss01';
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Mono', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+        }
+
+        h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+        }
+
+        /* Retarget Tailwind utility classes used heavily in markup to theme tokens */
+        .bg-slate-900 { background-color: var(--bg-base) !important; }
+        .bg-slate-800\/50 { background-color: var(--bg-header) !important; }
+
+        [data-theme="light"] .text-cyan-400 { color: var(--accent) !important; }
+        [data-theme="light"] .text-green-400 { color: #047857 !important; }
+        [data-theme="light"] .text-pink-400 { color: #be185d !important; }
+        [data-theme="light"] .text-white-400 { color: var(--text-base) !important; }
+        [data-theme="light"] .text-slate-300 { color: var(--text-body) !important; }
+        [data-theme="light"] .text-slate-400 { color: var(--text-muted) !important; }
+        [data-theme="light"] .bg-slate-900 { background-color: #ffffff !important; }
+        [data-theme="light"] .bg-cyan-400 { background-color: var(--accent) !important; }
+        [data-theme="light"] .border-cyan-400\/20 { border-color: var(--border-accent) !important; }
+        [data-theme="light"] .hover\:text-cyan-400:hover { color: var(--accent-hover) !important; }
 
         /* Custom Animations */
         @keyframes glitch {
@@ -91,63 +178,78 @@
 
         /* Button Styles */
         .btn-primary {
-            background: #06b6d4;
-            color: #0f172a;
-            border: 1px solid #06b6d4;
+            background: var(--accent);
+            color: var(--accent-contrast);
+            border: 1px solid var(--accent);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
         .btn-primary:hover {
-            background: #67e8f9;
-            border-color: #67e8f9;
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #06b6d4;
-            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
         .btn-secondary:hover {
-            background: rgba(6, 182, 212, 0.1);
-            border-color: rgba(6, 182, 212, 0.4);
+            background: var(--border-accent-soft);
+            border-color: var(--border-accent);
         }
 
         .btn-ghost {
             background: transparent;
-            color: #06b6d4;
+            color: var(--accent);
             border: 1px solid transparent;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
         .btn-ghost:hover {
-            background: rgba(6, 182, 212, 0.1);
+            background: var(--border-accent-soft);
         }
 
         .btn-ghost.active {
-            background: #06b6d4;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--accent-contrast);
         }
 
         /* Card Styles */
         .card {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(6, 182, 212, 0.2);
+            background: var(--bg-elev);
+            border: 1px solid var(--border-accent);
             border-radius: var(--radius);
             padding: 1.5rem;
         }
 
         /* Badge Styles */
         .badge {
-            background: rgba(6, 182, 212, 0.1);
-            color: #06b6d4;
-            border: 1px solid rgba(6, 182, 212, 0.2);
+            background: var(--border-accent-soft);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
             padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         /* Tab Styles */
         .tab-list {
-            background: rgba(30, 41, 59, 0.5);
+            background: var(--bg-elev);
             border-radius: var(--radius);
             padding: 0.25rem;
             display: flex;
@@ -159,31 +261,35 @@
             padding: 0.5rem 1rem;
             border-radius: calc(var(--radius) - 0.25rem);
             background: transparent;
-            color: #94a3b8;
+            color: var(--tab-button-text);
             border: none;
             cursor: pointer;
             transition: all 0.2s;
             flex: 1;
             min-width: 120px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
         .tab-button.active {
-            background: #06b6d4;
-            color: #0f172a;
+            background: var(--accent);
+            color: var(--accent-contrast);
         }
 
         /* Progress Bar */
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: rgba(30, 41, 59, 0.5);
+            background: var(--bg-elev);
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #06b6d4, #67e8f9);
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
             border-radius: 4px;
             transition: width 0.3s ease;
         }
@@ -195,7 +301,7 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: rgba(30, 41, 59, 0.95);
+            background: var(--bg-mobile-menu);
             backdrop-filter: blur(12px);
             padding: 1rem;
             z-index: 50;
@@ -240,9 +346,12 @@
         /* Separator */
         .separator {
             height: 1px;
-            background: rgba(6, 182, 212, 0.2);
+            background: var(--border-accent);
             margin: 2rem 0;
         }
+
+        /* Metric cards */
+        /* (redefined below with theme token — kept original position for any existing cascade) */
 
         /* Status indicators */
         .status-complete {
@@ -286,7 +395,8 @@
 
         /* Metric cards */
         .metric-card {
-            background: rgba(55, 65, 81, 0.3);
+            background: var(--bg-elev);
+            border: 1px solid var(--border-accent-soft);
             border-radius: var(--radius);
             padding: 1rem;
         }
@@ -316,6 +426,52 @@
         .ulist li {
             margin-left: 1.5rem;
         }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-accent);
+            color: var(--accent);
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+        }
+        .theme-toggle:hover {
+            background: var(--border-accent-soft);
+            border-color: var(--accent);
+        }
+        .theme-toggle svg { width: 1rem; height: 1rem; stroke: currentColor; fill: none; stroke-width: 2; }
+        [data-theme="light"] .theme-toggle-moon,
+        .theme-toggle-sun { display: none; }
+        [data-theme="light"] .theme-toggle-sun { display: block; }
+
+        /* Light-mode specific tweaks for patterns used in markup */
+        [data-theme="light"] .cyber-grid {
+            background-image:
+                linear-gradient(90deg, transparent 24%, rgba(8,145,178,0.08) 25%, rgba(8,145,178,0.08) 26%, transparent 27%, transparent 74%, rgba(8,145,178,0.08) 75%, rgba(8,145,178,0.08) 76%, transparent 77%, transparent),
+                linear-gradient(rgba(8,145,178,0.08) 50%, transparent 50%);
+        }
+        [data-theme="light"] .bee-placeholder {
+            background: radial-gradient(circle, rgba(8,145,178,0.08) 0%, transparent 70%);
+        }
+        [data-theme="light"] footer {
+            background: #ffffff !important;
+            color: var(--text-body);
+        }
+        [data-theme="light"] header {
+            background: rgba(255,255,255,0.85) !important;
+        }
+
+        /* Headline scale: keep Tailwind sizing but ensure display weight/family wins */
+        .text-3xl, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+            font-family: 'Space Mono', ui-monospace, monospace;
+            letter-spacing: -0.03em;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-slate-900 text-cyan-400">
@@ -340,6 +496,10 @@
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
                     <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
+                    <button onclick="toggleTheme()" class="theme-toggle ml-2" aria-label="Toggle color theme" title="Toggle theme">
+                        <svg class="theme-toggle-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        <svg class="theme-toggle-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    </button>
                 </nav>
                 
                 <div class="md:hidden">
@@ -359,6 +519,10 @@
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
                 <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
+                <button onclick="toggleTheme()" class="theme-toggle mt-2 self-start" aria-label="Toggle color theme" title="Toggle theme">
+                    <svg class="theme-toggle-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-toggle-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </button>
             </div>
         </div>
     </header>
@@ -1026,7 +1190,7 @@
                         A model that identifies fundamental and universal attributes that are the building blocks of securable software.
                     </p>
                     <div class="flex justify-center">
-                        <span class="badge text-lg px-4 py-2">SSEM v1.0.1</span>
+                        <span class="badge text-lg px-4 py-2">SSEM v2.1.0</span>
                     </div>
                 </div>
 
@@ -2355,11 +2519,40 @@
             }
         }
 
+        // Theme (dark / light) with localStorage + system preference
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        function getStoredTheme() {
+            try { return localStorage.getItem('fiasse-theme'); } catch (e) { return null; }
+        }
+        function setStoredTheme(theme) {
+            try { localStorage.setItem('fiasse-theme', theme); } catch (e) {}
+        }
+        function initTheme() {
+            const stored = getStoredTheme();
+            if (stored === 'light' || stored === 'dark') {
+                applyTheme(stored);
+                return;
+            }
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            applyTheme(prefersLight ? 'light' : 'dark');
+        }
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            setStoredTheme(next);
+        }
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
+            // Theme before anything else so there's no flash of wrong colors
+            initTheme();
+
             // Initialize from URL hash first
             initializeFromHash();
-            
+
             // Then start other effects
             startGlitchEffect();
             generateParticles();

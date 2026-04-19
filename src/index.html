@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
     <style>
         /* Custom Tailwind Configuration */
         :root {
@@ -96,27 +96,28 @@
             --tab-button-text: #64748b;
         }
 
-        /* Typography: Space Mono for display, Inter for body */
+        /* Typography: Plus Jakarta Sans throughout, humanist sans in the GitBook style */
         body {
             background: var(--bg-gradient);
             color: var(--text-base);
             min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-feature-settings: 'cv11', 'ss01';
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            line-height: 1.55;
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         h1, h2, h3 {
-            font-family: 'Space Mono', 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
         }
 
         h4, h5, h6 {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 600;
-            letter-spacing: -0.005em;
+            letter-spacing: -0.01em;
         }
 
         /* Retarget Tailwind utility classes used heavily in markup to theme tokens */
@@ -176,15 +177,15 @@
             display: block;
         }
 
-        /* Button Styles */
+        /* Button Styles — GitBook-style: title case, no aggressive tracking */
         .btn-primary {
             background: var(--accent);
             color: var(--accent-contrast);
             border: 1px solid var(--accent);
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+            font-size: 0.9rem;
         }
 
         .btn-primary:hover {
@@ -196,10 +197,10 @@
             background: transparent;
             color: var(--accent);
             border: 1px solid var(--border-accent);
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+            font-size: 0.9rem;
         }
 
         .btn-secondary:hover {
@@ -211,10 +212,10 @@
             background: transparent;
             color: var(--accent);
             border: 1px solid transparent;
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+            font-size: 0.9rem;
         }
 
         .btn-ghost:hover {
@@ -242,7 +243,7 @@
             padding: 0.25rem 0.75rem;
             border-radius: 0.25rem;
             font-size: 0.75rem;
-            font-family: 'Space Mono', monospace;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
@@ -267,10 +268,10 @@
             transition: all 0.2s;
             flex: 1;
             min-width: 120px;
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.005em;
+            font-size: 0.9rem;
         }
 
         .tab-button.active {
@@ -467,10 +468,11 @@
             background: rgba(255,255,255,0.85) !important;
         }
 
-        /* Headline scale: keep Tailwind sizing but ensure display weight/family wins */
+        /* Headline scale: keep Tailwind sizing, but give display headings the tighter tracking */
         .text-3xl, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
-            font-family: 'Space Mono', ui-monospace, monospace;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             letter-spacing: -0.03em;
+            line-height: 1.1;
         }
     </style>
 </head>

@@ -331,14 +331,15 @@
                     <a href="https://owasp.org/donate/?reponame=www-project-fiasse&title=OWASP%20FIASSE" target="_blank" class="btn-ghost px-4 py-2 rounded-lg font-medium">[Donate]</a>
                 </div>
                 
-                <nav class="hidden md:flex space-x-1">
+                <nav class="hidden md:flex space-x-1 ml-auto">
                     <button onclick="showPage('home')" id="nav-home" class="btn-ghost px-4 py-2 rounded-lg font-medium active">Home</button>
-                    <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
                     <button onclick="showPage('tenants')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
+                    <button onclick="showPage('adoption')" id="nav-adoption" class="btn-ghost px-4 py-2 rounded-lg font-medium">Adoption</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
+                    <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
                 </nav>
                 
                 <div class="md:hidden">
@@ -351,12 +352,13 @@
         <div id="mobile-menu" class="mobile-menu">
             <div class="flex flex-col space-y-2">
                 <button onclick="showPage('home'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Home</button>
-                <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
                 <button onclick="showPage('tenants'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
+                <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
+                <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
             </div>
         </div>
     </header>
@@ -662,10 +664,41 @@
 
                 <!-- Tab Content -->
                 <div id="project-tab-content-overview" class="tab-content">
+                    <div class="mb-12">
+                        <p class="text-slate-300 mb-8 text-center max-w-4xl mx-auto">
+                            FIASSE activity can be understood as three pillars: Expectations, Implementation, and Assurance. These are not domains in the sense of OWASP SAMM or similar maturity frameworks; they are a way to locate where a given FIASSE practice applies across the development process, so teams can start with the pillar that matches where they want the biggest immediate impact.
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="card">
+                                <h3 class="text-green-400 text-xl font-semibold mb-3">Expectations</h3>
+                                <p class="text-slate-300 text-sm mb-4">
+                                    Set security expectations before code is written. Reference architectures, threat scenarios, acceptance criteria, and explicit security requirements.
+                                </p>
+                                <button onclick="showProjectTab('expectations')" class="btn-secondary px-4 py-2 text-sm rounded-lg transition-colors">
+                                    Explore Expectations
+                                </button>
+                            </div>
+                            <div class="card">
+                                <h3 class="text-cyan-400 text-xl font-semibold mb-3">Implementation</h3>
+                                <p class="text-slate-300 text-sm mb-4">
+                                    Securable code driven by software engineering principles, with SSEM as the design language. Merge reviews, dependency stewardship, strategic remediation.
+                                </p>
+                                <button onclick="showProjectTab('implementation')" class="btn-secondary px-4 py-2 text-sm rounded-lg transition-colors">
+                                    Explore Implementation
+                                </button>
+                            </div>
+                            <div class="card">
+                                <h3 class="text-pink-400 text-xl font-semibold mb-3">Assurance</h3>
+                                <p class="text-slate-300 text-sm mb-4">
+                                    Testing, review, and remediation applied strategically to reduce recurrence rather than to generate finding lists. Root cause over raw counts.
+                                </p>
+                                <button onclick="showProjectTab('assurance')" class="btn-secondary px-4 py-2 text-sm rounded-lg transition-colors">
+                                    Explore Assurance
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div>
-                        <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">
-                            Project Overview
-                        </h2>
                         <p class="text-slate-300 mb-6 text-center">
                             FIASSE is designed to align people, process and technology with the business of making software. It is meant to address the issues of perceived conflicting goals and the "shovel-left" anti-pattern.
                             It was developed under the premise that software engineers can create securable code without also learning to be hackers.
@@ -727,37 +760,6 @@
                         </div>
                     </div>
 
-                    <div class="gap-8 mt-12">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-6">
-                            Pillars of FIASSE:
-                        </h3>
-                        <p class="text-slate-300 mb-6">
-                            FIASSE can be classified into three pillars or activity classes:
-                        </p>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="card">
-                                <h4 class="text-cyan-400 text-lg font-semibold mb-3">Expectations</h4>
-                                <p class="text-slate-300">
-                                    Define security expectations clearly through requirements methods.
-                                </p>
-                            </div>
-                            <div class="card">
-                                <h4 class="text-cyan-400 text-lg font-semibold mb-3">Implementation</h4>
-                                <p class="text-slate-300">
-                                    Securable code driven by software engineering principles.
-                                </p>
-                            </div>
-                            <div class="card">
-                                <h4 class="text-cyan-400 text-lg font-semibold mb-3">Assurance</h4>
-                                <p class="text-slate-300">
-                                    Testing and feedback is applied strategically to reduce reoccurrence.
-                                </p>
-                            </div>
-                        </div>
-                        <p class="text-slate-300 mb-6 text-slate-400">
-                            * Note that these pillars are not meant to replace or map directly to the domains of OWASP SAMM or any other framework. They are simply meant to provide a structure for organizing FIASSE.
-                        </p>
-                    </div>
                 </div>
 
                 <div id="project-tab-content-expectations" class="tab-content" style="display: none;">
@@ -859,12 +861,19 @@
                                     <div class="flex items-start space-x-3">
                                         <div class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">4</div>
                                         <div>
-                                            <h4 class="font-semibold">Securable Tenant Support</h4>
+                                            <h4 class="font-semibold">Securable Tenet Support</h4>
                                             <p class="text-sm text-slate-400">Support the Securable Mindset in development activities like Merge Reviews and Dependency Management.</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start space-x-3">
                                         <div class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">5</div>
+                                        <div>
+                                            <h4 class="font-semibold">Dependency Stewardship</h4>
+                                            <p class="text-sm text-slate-400">Treat third-party dependencies as an ongoing engineering responsibility: selection, monitoring, update cadence, and removal, rather than a one-time choice.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">6</div>
                                         <div>
                                             <h4 class="font-semibold">Strategic Remediation</h4>
                                             <p class="text-sm text-slate-400">Higher quality security assurance data allows for systemic remediation and empirical process change.</p>
@@ -1492,6 +1501,14 @@
                     </p>
                 </div>
 
+                <!-- Tenets Sub-Tabs -->
+                <div class="tab-list mb-8">
+                    <button onclick="showTenetsTab('core')" id="tenets-tab-core" class="tab-button active">Core Tenets</button>
+                    <button onclick="showTenetsTab('principles')" id="tenets-tab-principles" class="tab-button">Engineering Principles</button>
+                </div>
+
+                <!-- Core Tenets Tab Content -->
+                <div id="tenets-tab-content-core" class="tab-content">
                 <!-- Tenets two column-->
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <div class="card">
@@ -1613,6 +1630,82 @@
                         </div>
                     </div>
                 </div>
+                </div> <!-- end Core Tenets tab content -->
+
+                <!-- Engineering Principles Tab Content -->
+                <div id="tenets-tab-content-principles" class="tab-content" style="display: none;">
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="card">
+                            <div class="flex items-center gap-2 mb-4">
+                                <h3 class="text-pink-400 text-xl font-semibold">Boundary Control Principle</h3>
+                            </div>
+                            <p class="text-slate-300 mb-4">
+                                Flexibility within a system's interior is an engineering asset to be preserved; control at every trust boundary is a security requirement to be enforced. These objectives are complementary, not competing.
+                            </p>
+                            <div class="space-y-4">
+                                <p class="font-semibold text-pink-400">In practice, this means:</p>
+                                <ul class="space-y-2 text-slate-400 ulist">
+                                    <li>Identify trust boundaries where data crosses between differently-trusted entities (user to application, application to database, service to service).</li>
+                                    <li>Locate control precisely at those boundaries; preserve interior flexibility for maintainability.</li>
+                                    <li>Think of trust boundaries as the hard shell of a turtle: flexible interior, controlled perimeter.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex items-center gap-2 mb-4">
+                                <h3 class="text-cyan-400 text-xl font-semibold">Request Surface Minimization</h3>
+                            </div>
+                            <p class="text-slate-300 mb-4">
+                                The smaller and more intentional the surface that accepts external input, the fewer assumptions the rest of the system has to defend. Accept only what the operation needs, and reject everything else explicitly.
+                            </p>
+                            <div class="space-y-4">
+                                <p class="font-semibold text-cyan-400">In practice, this means:</p>
+                                <ul class="space-y-2 text-slate-400 ulist">
+                                    <li>Define endpoint contracts that enumerate allowed fields, types, and ranges; reject unknown or out-of-range inputs rather than ignoring them.</li>
+                                    <li>Avoid generic pass-through parameters and catch-all endpoints that accept arbitrary data.</li>
+                                    <li>Minimize headers, query parameters, and body fields the endpoint inspects; each one is surface an attacker can probe.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-12">
+                        <div class="card">
+                            <div class="flex items-center gap-2 mb-4">
+                                <h3 class="text-green-400 text-xl font-semibold">Principle of Least Astonishment</h3>
+                            </div>
+                            <p class="text-slate-300 mb-4">
+                                A system should behave the way a reasonable user, operator, or developer expects. Surprise is a source of defects, including security defects, because behavior that diverges from expectation is behavior that is not being reviewed or defended.
+                            </p>
+                            <div class="space-y-4">
+                                <p class="font-semibold text-green-400">In practice, this means:</p>
+                                <ul class="space-y-2 text-slate-400 ulist">
+                                    <li>Choose defaults, naming, and behavior that match the local convention of the codebase and the expectations of its users.</li>
+                                    <li>Flag and document any deviation from expected behavior, especially at trust boundaries or in authorization flows.</li>
+                                    <li>Treat unexpected state as a signal worth investigating, not a condition to work around silently.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="flex items-center gap-2 mb-4">
+                                <h3 class="text-white-400 text-xl font-semibold">Actionable Security Intelligence Principle</h3>
+                            </div>
+                            <p class="text-slate-300 mb-4">
+                                Security output becomes valuable only once it has been translated into prioritized, engineering-grounded direction calibrated to the developer's context. Raw tool output, exploit-centric narratives, and unfiltered vulnerability lists are information, not yet intelligence.
+                            </p>
+                            <div class="space-y-4">
+                                <p class="font-semibold text-white-400">In practice, this means:</p>
+                                <ul class="space-y-2 text-slate-400 ulist">
+                                    <li>Security teams collaborate with development on systemic flaw reductions, not one-off finding hand-offs.</li>
+                                    <li>Findings arrive through the engineering channels developers already use, tied to requirements and acceptance criteria.</li>
+                                    <li>Reports explain root cause and suggest an engineering direction, not just enumerate vulnerabilities. This is the corrective discipline that opposes the "Shoveling Left" anti-pattern.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end Engineering Principles tab content -->
 
             </div>
         </section>
@@ -1705,6 +1798,197 @@
                                 <p>GitHub: <a href="https://github.com/Xcaciv/securable_software_engineering" class="hover:text-cyan-400 transition-colors">@xcaciv/securable_software_engineering</a></p>
                                 <p>OWASP Project: <a href="https://owasp.org/www-project-fiasse/" class="hover:text-cyan-400 transition-colors">owasp.org/www-project-fiasse</a></p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Adoption Section -->
+        <section id="page-adoption" class="page-section py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+                        Adoption
+                    </h1>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                        How to introduce FIASSE into an organization, assign responsibilities across roles, and avoid the AppSec anti-patterns that undermine developer engagement.
+                    </p>
+                </div>
+
+                <!-- Adoption Sub-Tabs -->
+                <div class="tab-list mb-8">
+                    <button onclick="showAdoptionTab('plan')" id="adoption-tab-plan" class="tab-button active">Adoption Plan</button>
+                    <button onclick="showAdoptionTab('roles')" id="adoption-tab-roles" class="tab-button">Roles</button>
+                    <button onclick="showAdoptionTab('anti-patterns')" id="adoption-tab-anti-patterns" class="tab-button">Anti-Patterns</button>
+                </div>
+
+                <!-- Adoption Plan Tab -->
+                <div id="adoption-tab-content-plan" class="tab-content">
+                    <div class="card mb-8">
+                        <h3 class="text-cyan-400 text-xl font-semibold mb-4">A Practical Path to Integration</h3>
+                        <p class="text-slate-300 mb-4">
+                            FIASSE does not require a rigid adoption sequence, but organizations benefit from a deliberate implementation plan. The following six steps represent a practical path toward successful integration.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">1</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Assess current practices</h4>
+                                    <p class="text-sm text-slate-400">Evaluate organizational readiness through stakeholder discussions and a review of existing security and development workflows. Identify where current practices align with SSEM attributes and where misalignment exists.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">2</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Integrate SSEM terminology</h4>
+                                    <p class="text-sm text-slate-400">Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into developer documentation, coding standards, and training. Build the common language that makes the rest possible.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">3</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Identify key influencers</h4>
+                                    <p class="text-sm text-slate-400">Find senior engineers and stakeholders grounded in software engineering who can internalize the framework and champion FIASSE adoption from within the engineering culture.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">4</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Educate and train teams</h4>
+                                    <p class="text-sm text-slate-400">Role-specific training on FIASSE and SSEM, delivered inside onboarding, merge reviews, architecture discussions, and requirements sessions rather than as a standalone security program.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">5</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Foster collaboration</h4>
+                                    <p class="text-sm text-slate-400">Promote regular engagement between AppSec and Development. Discourage isolated reviews. Encourage AppSec participation in requirements gathering and early design.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold mt-1">6</div>
+                                <div>
+                                    <h4 class="text-cyan-400 font-semibold mb-2">Monitor and improve continuously</h4>
+                                    <p class="text-sm text-slate-400">Use real-time security observability to gather insights that refine FIASSE implementation over time. Treat adoption as ongoing discipline, not a one-time rollout.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roles Tab -->
+                <div id="adoption-tab-content-roles" class="tab-content" style="display: none;">
+                    <div class="card mb-8">
+                        <h3 class="text-cyan-400 text-xl font-semibold mb-4">Roles and Responsibilities</h3>
+                        <p class="text-slate-300">
+                            FIASSE only works when responsibilities are distributed across the roles that shape software. Each role has a distinct contribution.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="card">
+                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">Security Team</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Engage early and often. Shape requirements, design, and architecture rather than arriving at the end with a finding list.
+                            </p>
+                            <ul class="text-slate-400 text-sm space-y-2 ulist">
+                                <li>Translate security objectives into SSEM-grounded acceptance criteria developers can act on.</li>
+                                <li>Apply the Actionable Security Intelligence Principle: deliver prioritized, engineering-grounded direction, not raw tool output.</li>
+                                <li>Measure the partnership through implementation completeness, not vulnerability counts alone.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-green-400 text-lg font-semibold mb-3">Senior Software Engineers</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Carry SSEM vocabulary and securable design patterns into merge reviews, architecture decisions, and mentorship.
+                            </p>
+                            <ul class="text-slate-400 text-sm space-y-2 ulist">
+                                <li>Model Boundary Control, Derived Integrity, and Canonical Input Handling in day-to-day code.</li>
+                                <li>Make securable design visible in reviews so junior engineers learn the vocabulary in context.</li>
+                                <li>Champion adoption from inside the engineering culture, not as a security mandate.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">Developing Software Engineers</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Apply SSEM attributes to the code you write and the code you review. Securable engineering is an extension of good engineering, not a second discipline.
+                            </p>
+                            <ul class="text-slate-400 text-sm space-y-2 ulist">
+                                <li>Use the SSEM attribute language in commit messages, code comments, and review feedback.</li>
+                                <li>Treat trust boundaries as first-class design concerns; minimize request surface; derive integrity.</li>
+                                <li>Ask for SSEM-grounded acceptance criteria when requirements are vague. Clarity is a security feature.</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">Product Owners and Managers</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                The security posture of a product is a product decision. Every scope cut, deferred maintenance, or story accepted without security criteria has a consequence.
+                            </p>
+                            <ul class="text-slate-400 text-sm space-y-2 ulist">
+                                <li>Include SSEM-grounded security acceptance criteria in user stories and definitions of done.</li>
+                                <li>Protect time for dependency stewardship, threat modeling, and requirements refinement.</li>
+                                <li>Treat securable engineering as a product investment, not an externality paid by the security team.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anti-Patterns Tab -->
+                <div id="adoption-tab-content-anti-patterns" class="tab-content" style="display: none;">
+                    <div class="card mb-8">
+                        <h3 class="text-pink-400 text-xl font-semibold mb-4">Common AppSec Anti-Patterns</h3>
+                        <p class="text-slate-300">
+                            These patterns undermine AppSec credibility and cause developer disengagement. Each one has a corrective discipline grounded in the Actionable Security Intelligence Principle.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">"Shoveling Left"</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Supplying impractical information to developers and leaving the burden on them to make sense of it. Manifests in how vulnerabilities are reported, how training is conducted, and how test results are delivered.
+                            </p>
+                            <p class="text-slate-400 text-sm">
+                                <strong class="text-pink-400">Corrective:</strong> Apply the Actionable Security Intelligence Principle. Translate raw information into prioritized, engineering-grounded direction calibrated to the developer's context before handing it over.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">Ineffective Vulnerability Reporting</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Long finding lists with CVSS scores but no engineering direction. Developers are expected to prioritize, triage, and remediate without the security context.
+                            </p>
+                            <p class="text-slate-400 text-sm">
+                                <strong class="text-pink-400">Corrective:</strong> Report root cause, class of flaw, and suggested engineering change. Tie findings to requirements and acceptance criteria so remediation becomes ordinary engineering work.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">Exploit-First Training</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Training that teaches developers to think like attackers rather than to build securable software. Understanding how a system can be broken is not the same as knowing how to engineer it to remain defensible.
+                            </p>
+                            <p class="text-slate-400 text-sm">
+                                <strong class="text-pink-400">Corrective:</strong> Train on SSEM attributes and securable engineering patterns. Adversarial understanding is supplementary, not foundational.
+                            </p>
+                        </div>
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">Bypassing Engineering Workflows</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                Fix requests that circumvent the processes software engineers rely on. Disrupting the workflow degrades software quality and produces the conditions AppSec seeks to prevent.
+                            </p>
+                            <p class="text-slate-400 text-sm">
+                                <strong class="text-pink-400">Corrective:</strong> Strategic Use of Security Output. Route findings through normal engineering channels with clear, actionable information and time for the team's standard processes.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1852,6 +2136,10 @@
                 showProjectTab('overview', false);
             } else if (pageId === 'ssem') {
                 showSSEMTab('overview', false);
+            } else if (pageId === 'tenants') {
+                showTenetsTab('core', false);
+            } else if (pageId === 'adoption') {
+                showAdoptionTab('plan', false);
             }
 
             // Scroll to top
@@ -1926,16 +2214,66 @@
             }
         }
 
+        // Tenets tab functionality with URL hash support
+        function showTenetsTab(tabId, updateUrl = true) {
+            const contents = document.querySelectorAll('[id^="tenets-tab-content-"]');
+            contents.forEach(content => { content.style.display = 'none'; });
+
+            const targetContent = document.getElementById(`tenets-tab-content-${tabId}`);
+            if (targetContent) {
+                targetContent.style.display = 'block';
+            }
+
+            const buttons = document.querySelectorAll('[id^="tenets-tab-"]');
+            buttons.forEach(btn => { btn.classList.remove('active'); });
+
+            const targetButton = document.getElementById(`tenets-tab-${tabId}`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+
+            if (updateUrl) {
+                updateHash('tenants', tabId);
+            }
+        }
+
+        // Adoption tab functionality with URL hash support
+        function showAdoptionTab(tabId, updateUrl = true) {
+            const contents = document.querySelectorAll('[id^="adoption-tab-content-"]');
+            contents.forEach(content => { content.style.display = 'none'; });
+
+            const targetContent = document.getElementById(`adoption-tab-content-${tabId}`);
+            if (targetContent) {
+                targetContent.style.display = 'block';
+            }
+
+            const buttons = document.querySelectorAll('[id^="adoption-tab-"]');
+            buttons.forEach(btn => { btn.classList.remove('active'); });
+
+            const targetButton = document.getElementById(`adoption-tab-${tabId}`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+
+            if (updateUrl) {
+                updateHash('adoption', tabId);
+            }
+        }
+
         // Handle browser back/forward buttons
         function handlePopState() {
             const { pageId, tabId } = parseHash();
             showPage(pageId, false);
-            
+
             if (tabId) {
                 if (pageId === 'project') {
                     showProjectTab(tabId, false);
                 } else if (pageId === 'ssem') {
                     showSSEMTab(tabId, false);
+                } else if (pageId === 'tenants') {
+                    showTenetsTab(tabId, false);
+                } else if (pageId === 'adoption') {
+                    showAdoptionTab(tabId, false);
                 }
             }
         }
@@ -1944,12 +2282,16 @@
         function initializeFromHash() {
             const { pageId, tabId } = parseHash();
             showPage(pageId, false);
-            
+
             if (tabId) {
                 if (pageId === 'project') {
                     showProjectTab(tabId, false);
                 } else if (pageId === 'ssem') {
                     showSSEMTab(tabId, false);
+                } else if (pageId === 'tenants') {
+                    showTenetsTab(tabId, false);
+                } else if (pageId === 'adoption') {
+                    showAdoptionTab(tabId, false);
                 }
             }
         }

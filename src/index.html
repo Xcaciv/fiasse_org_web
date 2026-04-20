@@ -599,7 +599,7 @@
                         *CONTRIBUTE!
                     </button>
                     
-                    <button onclick="showPage('ssem')" class="btn-secondary px-8 py-3 font-bold rounded-lg transition-colors">
+                    <button onclick="showPage('ssem', 'model')" class="btn-secondary px-8 py-3 font-bold rounded-lg transition-colors">
                         Explore SSEM Model
                     </button>
                     <button onclick="showPage('project')" class="btn-secondary px-8 py-3 font-bold rounded-lg transition-colors">
@@ -2274,7 +2274,7 @@
                     <ul class="space-y-2 text-sm">
                         <li><a href="#" onclick="showPage('about'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Documentation</a></li>
                         <li><a href="#" onclick="showPage('project'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Getting Started</a></li>
-                        <li><a href="#" onclick="showPage('ssem'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">SSEM Model</a></li>
+                        <li><a href="#ssem/model" onclick="showPage('ssem', 'model'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">SSEM Model</a></li>
                         <li><a href="https://github.com/Xcaciv/securable_software_engineering/tree/main/examples" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Examples</a></li>
                         <li><a href="#" onclick="showPage('resources'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Community</a></li>
                     </ul>
@@ -2331,19 +2331,59 @@
             }
         }
 
+        // Whitelist of valid pages and (where applicable) their tabs.
+        // Anything not listed here is treated as untrusted and falls back to 'home'.
+        const PAGES = {
+            home:         { tabs: null, default: null },
+            about:        { tabs: null, default: null },
+            contributing: { tabs: null, default: null },
+            resources:    { tabs: null, default: null },
+            project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
+            ssem:         { tabs: ['overview', 'model', 'metrics'],                              default: 'overview' },
+            tenants:      { tabs: ['core', 'principles'],                                        default: 'core' },
+            adoption:     { tabs: ['plan', 'roles'],                                             default: 'plan' }
+        };
+
+        function isValidPage(pageId) {
+            return typeof pageId === 'string' && Object.prototype.hasOwnProperty.call(PAGES, pageId);
+        }
+
+        function isValidTab(pageId, tabId) {
+            if (!tabId || !isValidPage(pageId)) return false;
+            const tabs = PAGES[pageId].tabs;
+            return Array.isArray(tabs) && tabs.includes(tabId);
+        }
+
         function parseHash() {
             const hash = window.location.hash.substring(1); // Remove #
             if (!hash) return { pageId: 'home', tabId: null };
-            
+
             const parts = hash.split('/');
+            const rawPage = parts[0] || 'home';
+            const rawTab = parts[1] || null;
+
+            // Reject anything not in the whitelist — fall back to home
+            if (!isValidPage(rawPage)) return { pageId: 'home', tabId: null };
+
             return {
-                pageId: parts[0] || 'home',
-                tabId: parts[1] || null
+                pageId: rawPage,
+                tabId: isValidTab(rawPage, rawTab) ? rawTab : null
             };
         }
 
         // Navigation functionality with URL hash support
-        function showPage(pageId, updateUrl = true) {
+        // tabId is optional; pages with tabs fall back to their default when omitted
+        function showPage(pageId, tabId = null, updateUrl = true) {
+            // Back-compat: callers used to pass updateUrl as the 2nd arg
+            if (typeof tabId === 'boolean') {
+                updateUrl = tabId;
+                tabId = null;
+            }
+
+            // Whitelist enforcement (defense in depth — parseHash also validates)
+            if (!isValidPage(pageId)) pageId = 'home';
+            if (!isValidTab(pageId, tabId)) tabId = null;
+
             // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => {
@@ -2367,20 +2407,23 @@
                 targetNav.classList.add('active');
             }
 
-            // Update URL hash if requested
+            // Resolve effective tab (use explicit tabId, else page default)
+            const effectiveTab = tabId || PAGES[pageId].default;
+
+            // Update URL hash if requested — include tab only when explicitly provided
             if (updateUrl) {
-                updateHash(pageId);
+                updateHash(pageId, tabId);
             }
 
-            // Reset tabs to default when switching pages
+            // Activate tab on pages that have them
             if (pageId === 'project') {
-                showProjectTab('overview', false);
+                showProjectTab(effectiveTab, false);
             } else if (pageId === 'ssem') {
-                showSSEMTab('overview', false);
+                showSSEMTab(effectiveTab, false);
             } else if (pageId === 'tenants') {
-                showTenetsTab('core', false);
+                showTenetsTab(effectiveTab, false);
             } else if (pageId === 'adoption') {
-                showAdoptionTab('plan', false);
+                showAdoptionTab(effectiveTab, false);
             }
 
             // Scroll to top
@@ -2504,37 +2547,13 @@
         // Handle browser back/forward buttons
         function handlePopState() {
             const { pageId, tabId } = parseHash();
-            showPage(pageId, false);
-
-            if (tabId) {
-                if (pageId === 'project') {
-                    showProjectTab(tabId, false);
-                } else if (pageId === 'ssem') {
-                    showSSEMTab(tabId, false);
-                } else if (pageId === 'tenants') {
-                    showTenetsTab(tabId, false);
-                } else if (pageId === 'adoption') {
-                    showAdoptionTab(tabId, false);
-                }
-            }
+            showPage(pageId, tabId, false);
         }
 
         // Initialize from URL hash on page load
         function initializeFromHash() {
             const { pageId, tabId } = parseHash();
-            showPage(pageId, false);
-
-            if (tabId) {
-                if (pageId === 'project') {
-                    showProjectTab(tabId, false);
-                } else if (pageId === 'ssem') {
-                    showSSEMTab(tabId, false);
-                } else if (pageId === 'tenants') {
-                    showTenetsTab(tabId, false);
-                } else if (pageId === 'adoption') {
-                    showAdoptionTab(tabId, false);
-                }
-            }
+            showPage(pageId, tabId, false);
         }
 
         // Glitch effect for hero section

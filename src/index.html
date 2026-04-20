@@ -497,7 +497,7 @@
                     <button onclick="showPage('adoption')" id="nav-adoption" class="btn-ghost px-4 py-2 rounded-lg font-medium">Adoption</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
-                    <button onclick="showPage('about')" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
+                    <button onclick="showAbout()" id="nav-about" class="btn-ghost px-4 py-2 rounded-lg font-medium">About</button>
                     <button onclick="toggleTheme()" class="theme-toggle ml-2" aria-label="Toggle color theme" title="Toggle theme">
                         <svg class="theme-toggle-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                         <svg class="theme-toggle-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -520,7 +520,7 @@
                 <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
-                <button onclick="showPage('about'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
+                <button onclick="showAbout(); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">About</button>
                 <button onclick="toggleTheme()" class="theme-toggle mt-2 self-start" aria-label="Toggle color theme" title="Toggle theme">
                     <svg class="theme-toggle-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     <svg class="theme-toggle-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -621,7 +621,7 @@
             </div>
 
             <!-- About FIASSE (appended from About page) -->
-            <div class="relative z-10 container mx-auto max-w-4xl mt-20">
+            <div id="about-section" class="relative z-10 container mx-auto max-w-4xl mt-20 scroll-mt-24">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
                         About OWASP FIASSE
@@ -797,92 +797,6 @@
         </section>
 
         <!-- About Section -->
-        <section id="page-about" class="page-section py-20 px-4">
-            <div class="container mx-auto max-w-4xl">
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
-                        About OWASP FIASSE
-                    </h1>
-                    <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-                        Framework for Integrating Application Security into Software Engineering
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="card">
-                        <h3 class="text-cyan-400 text-xl font-semibold mb-4">What is FIASSE?</h3>
-                        <div class="text-slate-300">
-                            <p class="mb-4">
-                                FIASSE (/feiz/) is an <a href="https://owasp.org/www-project-fiasse/">OWASP project</a> that provides a software-engineering-centric approach to building securable software.
-                            </p>
-                            <p>
-                                It combines practical software engineering methodologies with modern security practices to create a framework that is effective and scalable.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="text-cyan-400 text-xl font-semibold mb-4">Our Mission</h3>
-                        <div class="text-slate-300">
-                            <p class="mb-4">
-                                To provide developers and security professionals with a practical, actionable framework to reduce friction and increase developer velocity.
-                            </p>
-                            <p>
-                                We believe security should be relentlessly practical for software engineers. We also believe security teams have more to offer than secret test suites.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">
-                        Key Concepts
-                    </h2>
-                    
-                    <div class="grid md:grid-cols-3 gap-6">
-                        
-                        <div class="card">
-                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">The Securable Principle</h4>
-                            <p class="text-slate-300">
-                                There is no static state of "secure". Software engineers need to understand what is needed to create securable code without the years of extra training and experience it would take to understand the security practice.
-                            </p>
-
-                        </div>
-
-                        <div class="card">
-                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">Business Alignment</h4>
-                            <p class="text-slate-300">
-                                Security must align with development's reason for existing to engage with them. This means abandoning the "shovel-left" anti-pattern in favor of clearer communication and earlier collaboration.
-                            </p>
-
-                        </div>
-                        
-                        <div class="card">
-                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">Participation over Assessment</h4>
-                            <p class="text-slate-300">
-                                Structured participation by the security team in the development process yields better results than security assessment alone, which tends to be late and expensive.
-                            </p>
-                            
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-cyan-400 mb-6 text-center">
-                        Key Features
-                    </h2>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span class="badge">Conceptual Model</span>
-                        <span class="badge">Principles</span>
-                        <span class="badge">Guidance</span>
-                        <span class="badge">Metrics</span>
-                        <span class="badge">...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Project Section -->
         <section id="page-project" class="page-section py-20 px-4">
             <div class="container mx-auto max-w-6xl">
@@ -2272,7 +2186,7 @@
                 <div class="space-y-4">
                     <h4 class="font-semibold text-cyan-400">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" onclick="showPage('about'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Documentation</a></li>
+                        <li><a href="#" onclick="showAbout(); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Documentation</a></li>
                         <li><a href="#" onclick="showPage('project'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">Getting Started</a></li>
                         <li><a href="#ssem/model" onclick="showPage('ssem', 'model'); return false;" class="text-slate-400 hover:text-cyan-400 transition-colors">SSEM Model</a></li>
                         <li><a href="https://github.com/Xcaciv/securable_software_engineering/tree/main/examples" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Examples</a></li>
@@ -2284,10 +2198,10 @@
                 <div class="space-y-4">
                     <h4 class="font-semibold text-cyan-400">Resources</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="https://owasp.org/www-project-fiasse/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">OWASP Project</a></li>
+                        <li><a href="https://owasp.org/www-project-fiasse/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">OWASP Project Page</a></li>
                         <li><a href="https://github.com/Xcaciv/securable_software_engineering" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">GitHub Repository</a></li>
-                        <li><a href="https://owasp.org/projects/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Security Tools</a></li>
-                        <li><a href="https://cheatsheetseries.owasp.org/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Best Practices</a></li>
+                        <li><a href="https://owasp.org/projects/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Other OWASP Projects</a></li>
+                        <li><a href="https://cheatsheetseries.owasp.org/" target="_blank" rel="noopener" class="text-slate-400 hover:text-cyan-400 transition-colors">Cheat Sheets</a></li>
                     </ul>
                 </div>
 
@@ -2335,7 +2249,6 @@
         // Anything not listed here is treated as untrusted and falls back to 'home'.
         const PAGES = {
             home:         { tabs: null, default: null },
-            about:        { tabs: null, default: null },
             contributing: { tabs: null, default: null },
             resources:    { tabs: null, default: null },
             project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
@@ -2428,6 +2341,15 @@
 
             // Scroll to top
             window.scrollTo(0, 0);
+        }
+
+        // Navigate to home and scroll to the embedded About section
+        function showAbout() {
+            showPage('home');
+            requestAnimationFrame(() => {
+                const el = document.getElementById('about-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         }
 
         // Mobile menu toggle

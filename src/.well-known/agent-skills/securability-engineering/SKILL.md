@@ -23,7 +23,7 @@ for that). Instead, it ensures that **generated code embodies securable qualitie
 > S3.2.1–S3.2.3 (SSEM Attributes, including Observability under Maintainability), S4.3 (Boundary
 > Control Principle), S4.4.1–S4.4.1.2 (Canonical Input Handling, Request Surface Minimization,
 > Derived Integrity), S6.1 (Actionable Security Intelligence).
-> Use `data/asvs/` as the feature-requirements reference set for security controls and implementation
+> Use `https://github.com/OWASP/ASVS/blob/v5.0.0/5.0/docs_en/OWASP_Application_Security_Verification_Standard_5.0.0_en.flat.json` as the feature-requirements reference set for security controls and implementation
 > expectations.
 
 ## When to Use
@@ -107,7 +107,7 @@ When generating code, apply this sequence:
 
 1. **Identify Context** — Determine language/framework, system type, data sensitivity, exposure level, trust boundaries, and feature category relevant to the generation request.
 
-2. **Map Feature Requirements to ASVS** — Use `data/asvs/README.md` and the relevant `data/asvs/V*.md` chapters to identify the security requirements that apply to the feature being generated. Match the request to ASVS sections using chapter topic and `when_to_use` guidance, then use the applicable ASVS requirements as implementation constraints.
+2. **Map Feature Requirements to ASVS** — Use the relevant `https://github.com/OWASP/ASVS/blob/v5.0.0/5.0/docs_en/OWASP_Application_Security_Verification_Standard_5.0.0_en.flat.json` requirements to identify the security requirements that apply to the feature being generated. Use the applicable ASVS requirements as implementation constraints.
 
 3. **Apply SSEM Constraints** — For each piece of generated code, enforce the ten attribute rules above. Consult `data/fiasse/S3.2.1.md`, `S3.2.2.md`, `S3.2.3.md` for definitions when needed. Observability is a first-class Maintainability sub-attribute in v1.0.4 — treat it accordingly.
 

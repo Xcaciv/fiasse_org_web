@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "securability-engineering-review",
+      "type": "skill-md",
+      "description": "Analyze a software project using the official SSEM scoring and reporting model from FIASSE v1.0.4. Use when assessing code securability, producing an SSEM scorecard, generating a structured SSEM evaluation report, reviewing merge requests through a securable engineering lens, or establishing a security posture baseline. Complements vulnerability-centric reviews by focusing on whether code is engineered to remain analyzable, modifiable, observable, trustworthy, and reliable over time.",
+      "url": "/.well-known/agent-skills/securability-engineering-review/SKILL.md",
+      "digest": "sha256:091f5fb687a3b113aca41131533dea920067ddf7f1dc38675130b523f022c1fb"
+    },
+    {
+      "name": "securability-engineering",
+      "type": "skill-md",
+      "description": "Meta-skill that wraps code generation to enforce FIASSE v1.0.4 securable coding attributes and principles. Use when generating, scaffolding, or refactoring code so that the output is engineered to be inherently securable by default. Applies the ten SSEM attributes (Analyzability, Modifiability, Testability, Observability, Confidentiality, Accountability, Authenticity, Availability, Integrity, Resilience), the Transparency Principle, Boundary Control Principle, Canonical Input Handling, Request Surface Minimization, Derived Integrity, and Principle of Least Astonishment to every code generation task. Invoke this skill alongside or instead of raw code generation when the user asks for secure code, securable code, FIASSE-compliant code, or when generating security-sensitive components (auth, input handling, data access, API endpoints, trust boundaries).",
+      "url": "/.well-known/agent-skills/securability-engineering/SKILL.md",
+      "digest": "sha256:12b75b87377536cd2415f925808361c4fd56a7583b8f7cf17a1ba374249ece01"
+    },
+    {
+      "name": "prd-securability-enhancement",
+      "type": "skill-md",
+      "description": "Enhance product requirement documents (PRDs) with FIASSE v1.0.4 / SSEM implementation guidance and OWASP ASVS requirement coverage. Use when users ask to improve PRD security requirements, select an ASVS level, map feature requirements to ASVS controls, annotate features with the ten SSEM attributes (Analyzability, Modifiability, Testability, Observability, Confidentiality, Accountability, Authenticity, Availability, Integrity, Resilience), and apply FIASSE v1.0.4 principles (Transparency, Boundary Control, Canonical Input Handling, Request Surface Minimization, Derived Integrity, Principle of Least Astonishment) across each feature.",
+      "url": "/.well-known/agent-skills/prd-securability-enhancement/SKILL.md",
+      "digest": "sha256:6b806150eff8201ef2a19e9faf0a929447e822fe6f52328ef144f1a6fd325102"
+    }
+  ]
+}

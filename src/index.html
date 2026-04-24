@@ -493,7 +493,7 @@
                     <button onclick="showPage('home')" id="nav-home" class="btn-ghost px-4 py-2 rounded-lg font-medium active">Home</button>
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
-                    <button onclick="showPage('tenants')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
+                    <button onclick="showPage('tenets')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
                     <button onclick="showPage('adoption')" id="nav-adoption" class="btn-ghost px-4 py-2 rounded-lg font-medium">Adoption</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
@@ -516,7 +516,7 @@
                 <button onclick="showPage('home'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Home</button>
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
-                <button onclick="showPage('tenants'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
+                <button onclick="showPage('tenets'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
                 <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
@@ -1656,7 +1656,7 @@
         </section>
 
         <!-- Tenets -->
-        <section id="page-tenants" class="page-section py-20 px-4">
+        <section id="page-tenets" class="page-section py-20 px-4">
             <div class="container mx-auto max-w-6xl">
                 <div class="text-center mb-12">
                     <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
@@ -2264,7 +2264,7 @@
             resources:    { tabs: null, default: null },
             project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
             ssem:         { tabs: ['overview', 'model', 'metrics'],                              default: 'overview' },
-            tenants:      { tabs: ['core', 'principles'],                                        default: 'core' },
+            tenets:       { tabs: ['core', 'principles'],                                        default: 'core' },
             adoption:     { tabs: ['plan', 'roles'],                                             default: 'plan' }
         };
 
@@ -2344,7 +2344,7 @@
                 showProjectTab(effectiveTab, false);
             } else if (pageId === 'ssem') {
                 showSSEMTab(effectiveTab, false);
-            } else if (pageId === 'tenants') {
+            } else if (pageId === 'tenets') {
                 showTenetsTab(effectiveTab, false);
             } else if (pageId === 'adoption') {
                 showAdoptionTab(effectiveTab, false);
@@ -2450,7 +2450,7 @@
             }
 
             if (updateUrl) {
-                updateHash('tenants', tabId);
+                updateHash('tenets', tabId);
             }
         }
 

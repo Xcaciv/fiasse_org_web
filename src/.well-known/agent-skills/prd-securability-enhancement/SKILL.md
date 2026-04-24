@@ -24,7 +24,7 @@ Follow the complete workflow in `plays/requirements-analysis/prd-fiasse-asvs-enh
 
 2. **Choose ASVS Level First** — Select baseline ASVS assurance level (1/2/3) and record rationale.
 
-3. **Map Features to ASVS** — For each feature, identify applicable ASVS sections and requirements from `data/asvs/V*.md`, filtered by chosen level.
+3. **Map Features to ASVS** — For each feature, identify applicable ASVS sections and requirements from the [OWASP ASVS v5.0.0 requiremnets](https://github.com/OWASP/ASVS/blob/v5.0.0/5.0/docs_en/OWASP_Application_Security_Verification_Standard_5.0.0_en.flat.json), filtered by chosen level.
 
 4. **Close Requirement Gaps** — Mark coverage as Covered/Partial/Missing/Not Applicable, then add missing requirement statements to feature requirements.
 
@@ -52,9 +52,8 @@ Deliver a concise enhanced PRD that includes:
 ## References
 
 - [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — pin requirement annotations to this version for stable scoping
+- [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — ASVS 5.0 feature-aligned security requirements by chapter (pin to this tag for stable requirement IDs)
 - `plays/requirements-analysis/prd-fiasse-asvs-enhancement.md`
-- `data/asvs/README.md`
-- `data/asvs/V*.md`
 - `data/fiasse/S2.1.md`–`S2.6.md` — Foundational Principles (Securable Paradigm, Resiliently Add Computing Value, Security Mission, First Principle Alignment, Transparency, Principle of Least Astonishment)
 - `data/fiasse/S3.2.1.md`–`S3.2.3.md` — SSEM Pillars and sub-attributes (Maintainability now includes Observability)
 - `data/fiasse/S4.3.md` — Boundary Control Principle

@@ -1682,7 +1682,7 @@
                             <h3 class="text-pink-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#3-the-securable-principle" target="_blank">Securable Principle</a></h3>
                         </div>
                         <p class="text-slate-300 mb-4">
-                            The Securable Principle in FIASSE says that software is never in a final, fixed state of “secure”; instead, it must be built so it can be secured and kept secure over time. Security is treated as an ongoing property of the system’s design, code, and operations rather than a checkbox reached after tests or reviews.
+                            The Securable Principle says that software is never in a final, fixed state of “secure”; instead, it must be built so it can be secured and kept secure over time. Security is treated as an ongoing property of the system's design, code, and operations.
                         </p>
                         <div class="space-y-4">
                             <p class="font-semibold text-pink-400">
@@ -1691,10 +1691,10 @@
                             <div class="space-x-4">
                                 <ul class="space-y-2 text-slate-400 ulist">
                                     <li >
-                                        Emphasize maintainability, trustworthiness, and reliability as core engineering attributes that support long-term security, rather than relying only on episodic security assessments.
+                                        Emphasize maintainability, trustworthiness, and reliability as core engineering attributes to support long-term security.
                                     </li>
                                     <li >
-                                        Design architectures, codebases, and workflows so that future security fixes, hardening, and feature changes can be applied safely and predictably, without destabilizing the system.
+                                        Design the system so that changes can be applied safely and predictably, without destabilizing the system.
                                     </li>
                                 </ul>
                             </div>
@@ -1707,7 +1707,7 @@
                             <h3 class="text-cyan-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#6411-the-derived-integrity-principle" target="_blank">Derived Integrity Principle</a></h3>
                         </div>
                         <p class="text-slate-300 mb-4">
-                            The Derived Integrity Principle states that an application must not implicitly trust or adopt unmanaged external context, such as client-supplied data or other untrusted inputs, when making critical decisions. Instead, it should derive important facts (like identity, permissions, pricing, and state) from authoritative, controlled sources to preserve integrity and reduce the risk of security breaches.
+                            The Derived Integrity Principle states that an application must not implicitly trust or adopt unmanaged external context, such as client-supplied data or other untrusted inputs, when making critical decisions. Instead, it should derive important facts (like identity, permissions, pricing, and state) from authoritative, controlled sources to preserve integrity.
                         </p>
                         <div class="space-y-4">
                             <p class="font-semibold text-cyan-400">
@@ -1735,7 +1735,7 @@
                         </div>
 
                         <p class="text-slate-300 mb-4">
-                            The practice of converting all incoming data into a well-defined, validated form before it is used anywhere in the system. This supports the Securable and Derived Integrity principles by making sure that every decision is based on normalized, predictable input instead of raw, inconsistent, or attacker-shaped data.
+                            The practice of converting all incoming data into a validated and well-defined state before it is used anywhere in the system. This supports the Securable and Derived Integrity principles by making sure that every decision is based on normalized, predictable input instead of raw, inconsistent, or attacker-shaped data.
                         </p>
                        
                         <ul class="text-slate-300 space-y-2 ulist mb-4">
@@ -1756,7 +1756,7 @@
                                     Define clear schemas and allowed formats for all inputs, then enforce them at trust boundaries (e.g., API gateways, controllers) so the rest of the code works with strongly typed, normalized objects rather than raw strings.
                                 </li>
                                 <li>
-                                    Use canonicalization to reduce ambiguity and attack surface (for example, around encodings, path forms, or duplicated fields), making it easier to reason about integrity, authorization, and logging in line with FIASSE's securable design goals.
+                                    Use canonicalization to reduce ambiguity and attack surface (for example, around encodings, path forms, or duplicated fields), making it easier to reason about integrity, authorization, and logging in line with securable design goals.
                                 </li>
                             </ul>
                         </div>
@@ -1768,11 +1768,11 @@
                             <h3 class="text-white-400 text-xl font-semibold"><a href="https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#26-the-transparency-principle" target="_blank">The Transparency Principle</a></h3>
                         </div>
                         <p class="text-slate-300 mb-4">
-                            How the system works should be observable and understandable so engineers and stakeholders can see what it is doing, why it is doing it, and how it handles data. In software engineering terms, it pushes teams to design systems whose behavior, decisions, and security posture are visible rather than opaque, which directly supports securability and trustworthy operation.
+                            How the system works should be perceptible so engineers and stakeholders can see what it is doing, why it is doing it, and how. In software engineering terms, it pushes teams to design systems whose behavior is visible..
                         </p>
                         <ul class="text-slate-300 space-y-2 ulist mb-4">
                                 <li>
-                                    Transparency means exposing clear, contextualized signals about system behavior (e.g., logs, metrics, traces, decision reasons) so people can detect misuse, misconfiguration, and security drift early.
+                                    Transparency means exposing clear, contextualized signals about system behavior (e.g., logs, metrics, traces, decision reasons) so people can detect misuse, misconfiguration, and drift early.
                                 </li>
                                 <li>
                                     Instead of hiding complexity behind black boxes, the system surfaces enough structured information that engineers can reason about integrity, authorization, and failure modes.
@@ -1828,7 +1828,7 @@
                             <div class="space-y-4">
                                 <p class="font-semibold text-cyan-400">In practice, this means:</p>
                                 <ul class="space-y-2 text-slate-400 ulist">
-                                    <li>Define endpoint contracts that enumerate allowed fields, types, and ranges; reject unknown or out-of-range inputs rather than ignoring them.</li>
+                                    <li>Define endpoint contracts that enumerate allowed fields, types, and ranges.</li>
                                     <li>Avoid generic pass-through parameters and catch-all endpoints that accept arbitrary data.</li>
                                     <li>Minimize headers, query parameters, and body fields the endpoint inspects; each one is surface an attacker can probe.</li>
                                 </ul>
@@ -1847,8 +1847,8 @@
                             <div class="space-y-4">
                                 <p class="font-semibold text-green-400">In practice, this means:</p>
                                 <ul class="space-y-2 text-slate-400 ulist">
-                                    <li>Choose defaults, naming, and behavior that match the local convention of the codebase and the expectations of its users.</li>
-                                    <li>Flag and document any deviation from expected behavior, especially at trust boundaries or in authorization flows.</li>
+                                    <li>Choose defaults, naming, and behavior that are consistent throughout the codebase and the expectations of its users.</li>
+                                    <li>Flag and document any deviation from expected behavior, especially at trust boundaries.</li>
                                     <li>Treat unexpected state as a signal worth investigating, not a condition to work around silently.</li>
                                 </ul>
                             </div>
@@ -1866,7 +1866,7 @@
                                 <ul class="space-y-2 text-slate-400 ulist">
                                     <li>Security teams collaborate with development on systemic flaw reductions, not one-off finding hand-offs.</li>
                                     <li>Findings arrive through the engineering channels developers already use, tied to requirements and acceptance criteria.</li>
-                                    <li>Reports explain root cause and suggest an engineering direction, not just enumerate vulnerabilities. This is the corrective discipline that opposes the "Shoveling Left" anti-pattern.</li>
+                                    <li>Reports explain observed effects and how they violate requirements or user expectations. This is skillful communication that opposes the "Shoveling Left" anti-pattern.</li>
                                 </ul>
                             </div>
                         </div>

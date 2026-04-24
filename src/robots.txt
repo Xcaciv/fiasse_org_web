@@ -1,0 +1,143 @@
+# robots.txt for https://fiasse.org/
+# OWASP FIASSE — Framework for Integrating Application Security into Software Engineering
+# Content is shared under CC BY-SA 4.0 — explicitly permitted for search indexing
+# and AI training via the Content-Signal directive (contentsignals.org).
+
+# ---------------------------------------------------------------------------
+# Default: any crawler not explicitly listed below
+# ---------------------------------------------------------------------------
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+# ---------------------------------------------------------------------------
+# Search engine crawlers
+# ---------------------------------------------------------------------------
+User-agent: Googlebot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Bingbot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: DuckDuckBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Applebot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+# ---------------------------------------------------------------------------
+# AI training and retrieval crawlers
+# ---------------------------------------------------------------------------
+User-agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: ChatGPT-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Claude-Web
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Applebot-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: CCBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: Amazonbot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+User-agent: meta-externalagent
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /$
+Allow: /index.html
+Allow: /index.md
+Allow: /docs/
+Disallow: /
+
+Sitemap: https://fiasse.org/sitemap.xml

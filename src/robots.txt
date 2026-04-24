@@ -11,7 +11,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 # ---------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Bingbot
@@ -30,7 +30,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: DuckDuckBot
@@ -38,7 +38,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Applebot
@@ -46,7 +46,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 # ---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: ChatGPT-User
@@ -65,7 +65,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: OAI-SearchBot
@@ -73,7 +73,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: ClaudeBot
@@ -81,7 +81,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Claude-Web
@@ -89,7 +89,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Google-Extended
@@ -97,7 +97,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Applebot-Extended
@@ -105,7 +105,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: PerplexityBot
@@ -113,7 +113,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: CCBot
@@ -121,7 +121,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: Amazonbot
@@ -129,7 +129,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 User-agent: meta-externalagent
@@ -137,7 +137,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /$
 Allow: /index.html
 Allow: /index.md
-Allow: /docs/
+Allow: /docs/llms.txt
 Disallow: /
 
 Sitemap: https://fiasse.org/sitemap.xml

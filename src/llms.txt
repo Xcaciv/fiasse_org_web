@@ -1,0 +1,42 @@
+# OWASP FIASSE
+
+> Framework for Integrating Application Security into Software Engineering. A framework for Securable Software Engineering providing practical guidance for Software Engineers to build securable applications and for Security to impact securable outcomes.
+
+FIASSE (pronounced /feiz/, like "the phases of the moon") is an OWASP project. It combines practical software engineering methodologies with modern security practices to create a framework that is effective and scalable. FIASSE is relentlessly practical and relentlessly securable — it is a framework for building securable software, not an assurance framework. The current framework release is v1.0.4. Licensed under CC BY-SA 4.0.
+
+Core concepts:
+- The **Securable Principle** — there is no static state of "secure"; software must be engineered to be secured and kept secure over time.
+- **SSEM** (Securable Software Engineering Model) — ten sub-attributes across three pillars: Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), Reliability (Availability, Integrity, Resilience).
+- **Core Tenets** — Securable Principle, Derived Integrity, Canonical Input Handling, Transparency.
+- **Engineering Principles** — Boundary Control, Request Surface Minimization, Principle of Least Astonishment, Actionable Security Intelligence.
+
+## Core content
+
+- [Site content (markdown)](https://fiasse.org/index.md): Clean markdown rendering of the site — About, The Project, SSEM (model + metrics), Tenets (core + engineering principles), Adoption (plan, roles, anti-patterns), Resources, Contributing.
+- [docs/ llms.txt](https://fiasse.org/docs/llms.txt): LLM-friendly index of framework documentation files served from /docs/ (fetched from the upstream repository tag).
+
+## Framework documentation
+
+- [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md): The canonical v1.0.4 framework specification.
+- [FIASSE RFC (main)](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md): Evolving normative text; pin to v1.0.4 for stable references.
+- [OWASP ASVS v5.0.0 chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en): Feature-aligned security requirements used alongside FIASSE for concrete controls.
+
+## Agent skills
+
+- [Skills discovery index](https://fiasse.org/.well-known/agent-skills/index.json): Agent Skills Discovery RFC v0.2.0 index listing FIASSE-aligned skills published under /.well-known/agent-skills/.
+- [securability-engineering-review](https://fiasse.org/.well-known/agent-skills/securability-engineering-review/SKILL.md): SSEM scoring and report-generation skill (0-10 rubric, three-part report, 50-item checklist) aligned to v1.0.4.
+- [securability-engineering](https://fiasse.org/.well-known/agent-skills/securability-engineering/SKILL.md): Code-generation wrapper that enforces the ten SSEM attributes and v1.0.4 principles.
+- [prd-securability-enhancement](https://fiasse.org/.well-known/agent-skills/prd-securability-enhancement/SKILL.md): PRD enhancer that adds SSEM annotations and maps features to ASVS v5.0.0.
+
+## Project
+
+- [OWASP project page](https://owasp.org/www-project-fiasse/): Official OWASP project landing page.
+- [GitHub repository](https://github.com/Xcaciv/securable_software_engineering): Source for the framework, RFC, examples, and supplements.
+- [GitHub Discussions](https://github.com/Xcaciv/securable_software_engineering/discussions): Feedback, questions, and discussion.
+
+## Optional
+
+- [Examples](https://github.com/Xcaciv/securable_software_engineering/tree/main/examples): Prompts and templates (includes the SSEM-analysis prompt used by the review skill).
+- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/): Tactical references complementary to FIASSE's engineering-first approach.
+- [ISO/IEC 25010:2011](https://www.iso.org/standard/35733.html): Source definitions for Maintainability and Reliability used by SSEM.
+- [RFC 4949 — Internet Security Glossary](https://www.rfc-editor.org/rfc/rfc4949): Source definitions for Confidentiality, Availability used by SSEM.

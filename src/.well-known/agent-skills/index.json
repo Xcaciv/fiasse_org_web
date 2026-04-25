@@ -4,9 +4,9 @@
     {
       "name": "securability-engineering-review",
       "type": "skill-md",
-      "description": "Analyze a software project using the official SSEM scoring and reporting model from FIASSE v1.0.4. Use when assessing code securability, producing an SSEM scorecard, generating a structured SSEM evaluation report, reviewing merge requests through a securable engineering lens, or establishing a security posture baseline. Complements vulnerability-centric reviews by focusing on whether code is engineered to remain analyzable, modifiable, observable, trustworthy, and reliable over time.",
+      "description": "Review and score an existing codebase, repository, pull request, or merge request against the FIASSE v1.0.4 Securable Software Engineering Model (SSEM). Use when a user asks to review, audit, assess, score, grade, or evaluate code for securable engineering qualities; produce an SSEM scorecard or evaluation report; perform a FIASSE-aligned code or PR review; or establish a security posture baseline for a project. Scores the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience). This is the review/analysis counterpart to the `securability-engineering` code-generation skill — use this skill for evaluating existing code, not for generating new code.",
       "url": "/.well-known/agent-skills/securability-engineering-review/SKILL.md",
-      "digest": "sha256:9abdf0283b7c63fb70847cc7efdc63c03b38ced332aedad3ceb216be61883007"
+      "digest": "sha256:56b9e7d011f769203c61a30412c6b71f80826643db60700f44698e0f726d92a0"
     },
     {
       "name": "securability-engineering",

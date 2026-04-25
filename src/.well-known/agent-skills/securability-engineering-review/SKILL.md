@@ -1,19 +1,18 @@
 ---
 name: securability-engineering-review
-description: Analyze a software project using the official SSEM scoring and reporting model from FIASSE v1.0.4. Use when assessing code securability, producing an SSEM scorecard, generating a structured SSEM evaluation report, reviewing merge requests through a securable engineering lens, or establishing a security posture baseline. Complements vulnerability-centric reviews by focusing on whether code is engineered to remain analyzable, modifiable, observable, trustworthy, and reliable over time.
+description: Review and score an existing codebase, repository, pull request, or merge request against the FIASSE v1.0.4 Securable Software Engineering Model (SSEM). Use when a user asks to review, audit, assess, score, grade, or evaluate code for securable engineering qualities; produce an SSEM scorecard or evaluation report; perform a FIASSE-aligned code or PR review; or establish a security posture baseline for a project. Scores the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience). This is the review/analysis counterpart to the `securability-engineering` code-generation skill — use this skill for evaluating existing code, not for generating new code.
 license: CC-BY-SA-4.0
 ---
 
-# SSEM Evaluation (Scoring and Reporting)
+# Securability Engineering Review (FIASSE v1.0.4 / SSEM Scoring)
 
-Analyze code for securable engineering qualities aligned with the FIASSE v1.0.4 Securable Software Engineering Model (SSEM).
+Review and score code, repositories, and pull/merge requests against the FIASSE v1.0.4 Securable Software Engineering Model (SSEM). This is the review counterpart to `securability-engineering` (which generates new code) — use this skill for evaluating existing code.
 
 For scoring and reporting, this skill is authoritative. If other repository materials use older FIASSE/SSEM attribute groupings (e.g. merged "Authenticity & Accountability", no Observability sub-attribute, or Integrity under Trustworthiness), follow the v1.0.4-aligned model in this file.
 
 Source of truth for alignment:
-- Framework: [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md)
-- Reference prompt: `https://raw.githubusercontent.com/Securability-Engineering/securable-framework-supplement/refs/heads/main/examples/SSEM-analysis/SSEM-analysis.prompt.md`
-- Model version: SSEM v2.1.0 (as published in FIASSE v1.0.4)
+- Framework: [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) (pinned)
+- Informative companion prompt: [SSEM-analysis.prompt.md on `main`](https://raw.githubusercontent.com/Securability-Engineering/securable-framework-supplement/refs/heads/main/examples/SSEM-analysis/SSEM-analysis.prompt.md) — moving target; use this SKILL.md as the authoritative scoring contract.
 
 ## SSEM v1.0.4 Structure
 
@@ -53,8 +52,8 @@ Each sub-attribute is scored **0-10**. Pillar scores are calculated using weight
 | Pillar | Weight | Sub-Attributes (Weight) |
 |--------|--------|------------------------|
 | **Maintainability** | 33% | Analyzability (30%), Modifiability (25%), Testability (25%), Observability (20%) |
-| **Trustworthiness** | 34% | Confidentiality (35%), Authenticity (35%), Accountability (30%) |
-| **Reliability** | 33% | Integrity (35%), Resilience (35%), Availability (30%) |
+| **Trustworthiness** | 34% | Confidentiality (35%), Accountability (30%), Authenticity (35%) |
+| **Reliability** | 33% | Availability (30%), Integrity (35%), Resilience (35%) |
 
 **Overall SSEM Score** = (Maintainability + Trustworthiness + Reliability) / 3
 
@@ -80,7 +79,7 @@ Interpolation between anchor points is allowed when justified by evidence, but s
 
 ## Required Inputs
 
-If the repository context is incomplete, ask the user for the following before scoring:
+If the working directory is itself the project under review, infer what you can from the codebase and only ask for context the repository does not reveal. Otherwise, ask the user for the following before scoring:
 - Project name and short description
 - Programming language(s) and framework(s)
 - Architecture overview
@@ -102,7 +101,7 @@ If the repository context is incomplete, ask the user for the following before s
 4. **Evaluate Trustworthiness**:
    - **Confidentiality** — "Property that information is not made available or disclosed to unauthorized individuals." Look at data protection, secrets management, encryption at rest/in transit, and access control enforcement.
    - **Accountability** — Property that every action can be attributed to a specific, identified entity. Look at principal management, audit logging coverage, traceability, non-repudiation strength.
-   - **Authenticity** — "The property that an entity is what it claims to be." Look at authentication strength (prefer "defendable authentication"), credential handling, MFA coverage, and integrity of authentication mechanisms.
+   - **Authenticity** — "The property that an entity is what it claims to be." Score against the FIASSE-preferred standard of **defendable authentication**: established mechanisms (no rolled-from-scratch auth), integrity-protected tokens/sessions, MFA at appropriate points, and verified identity flows. Look at credential handling, MFA coverage, signed-token usage, and resilience of registration/recovery flows.
 
 5. **Evaluate Reliability**:
    - **Availability** — "Property of being accessible and usable on demand by an authorized entity." Look at uptime posture, thread safety, deadlock prevention, redundancy, and scalability.
@@ -130,8 +129,8 @@ Use an ASCII report block that includes:
 - Overall SSEM score, grade, and brief status assessment
 - Pillar summary table with Maintainability, Trustworthiness, and Reliability
 - Maintainability breakdown table (Analyzability, Modifiability, Testability, Observability) with weights, scores, and short assessments
-- Trustworthiness breakdown table (Confidentiality, Authenticity, Accountability) with weights, scores, and short assessments
-- Reliability breakdown table (Integrity, Resilience, Availability) with weights, scores, and short assessments
+- Trustworthiness breakdown table (Confidentiality, Accountability, Authenticity) with weights, scores, and short assessments
+- Reliability breakdown table (Availability, Integrity, Resilience) with weights, scores, and short assessments
 - Top strengths section with three concrete strengths
 - Top improvement opportunities section with three concrete weaknesses/recommendations
 
@@ -151,22 +150,12 @@ For each pillar, provide:
 
 ### Part 3: Appendix A — Evaluation Checklist
 
-Include the 50-item checklist with checkbox markers and a pass-rate summary.
+Use the canonical 50-item checklist from [`./references/checklist.md`](./references/checklist.md). Render every item with a checkbox marker (`[x]` pass, `[ ]` fail/unverified) and preserve the stable item IDs (e.g. `M-AN-1`, `T-CO-3`, `R-IN-5`) so results are comparable across runs and projects.
 
-The checklist must cover:
-- **Maintainability: 20 items total**
-  - Analyzability: 5 items
-  - Modifiability: 5 items
-  - Testability: 5 items
-  - Observability: 5 items
-- **Trustworthiness: 15 items total**
-  - Confidentiality: 5 items
-  - Authenticity: 5 items
-  - Accountability: 5 items
-- **Reliability: 15 items total**
-  - Integrity: 5 items
-  - Resilience: 5 items
-  - Availability: 5 items
+The checklist groups 50 items as:
+- **Maintainability** — 20 items (Analyzability, Modifiability, Testability, Observability — 5 each)
+- **Trustworthiness** — 15 items (Confidentiality, Accountability, Authenticity — 5 each)
+- **Reliability** — 15 items (Availability, Integrity, Resilience — 5 each)
 
 Include a checklist summary with:
 - Maintainability pass count and percentage
@@ -192,8 +181,8 @@ If evidence is insufficient, state the limitation explicitly and score conservat
 - [FIASSE RFC on main](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md) — evolving normative text (pin to v1.0.4 for scoring stability)
 - ISO/IEC 25010:2011 — Software quality models (Maintainability, Reliability definitions)
 - RFC 4949 — Internet Security Glossary (Confidentiality, Availability definitions)
+- [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements for cross-referencing Trustworthiness and Reliability evidence
 - OWASP Code Review Guide
-- OWASP ASVS v5.0
 
 ## Invocation Behavior
 

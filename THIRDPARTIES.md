@@ -18,10 +18,10 @@ Generated on: 2026-04-24
 | Package | Version | Dependency Type | License |
 | --- | --- | --- | --- |
 | @azure/functions | 4.7.2 | direct (production) | MIT |
+| @fastify/busboy | 2.1.1 | transitive (production) | MIT |
 | cookie | 0.7.2 | transitive (production) | MIT |
 | long | 4.0.0 | transitive (production) | Apache-2.0 |
 | undici | 5.29.0 | transitive (production) | MIT |
-| @fastify/busboy | 2.1.1 | transitive (production) | MIT |
 
 ## Root Project (`./`) Development Dependencies
 

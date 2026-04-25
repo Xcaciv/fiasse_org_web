@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "CC-BY-SA-4.0",
   "scripts": {
-    "start": "sirv ./src public --cors --single --no-clear --port 8000"
+    "start": "sirv ./src public --cors --single --no-clear --port 8000",
+    "thirdparties": "node scripts/generate-thirdparties.js"
   }
 }

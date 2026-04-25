@@ -1,7 +1,7 @@
 ---
 name: prd-securability-enhancement
 description: Enhance product requirement documents (PRDs) with FIASSE v1.0.4 / SSEM implementation guidance and OWASP ASVS requirement coverage. Use when users ask to improve PRD security requirements, select an ASVS level, map feature requirements to ASVS controls, annotate features with the ten SSEM attributes (Analyzability, Modifiability, Testability, Observability, Confidentiality, Accountability, Authenticity, Availability, Integrity, Resilience), and apply FIASSE v1.0.4 principles (Transparency, Boundary Control, Canonical Input Handling, Request Surface Minimization, Derived Integrity, Principle of Least Astonishment) across each feature.
-license: CC-BY-4.0
+license: CC-BY-SA-4.0
 ---
 
 # PRD Securability Enhancement (FIASSE v1.0.4 / SSEM + ASVS)

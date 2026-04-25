@@ -10,7 +10,7 @@ description: >
   generation task. Invoke this skill alongside or instead of raw code generation when the user asks
   for secure code, securable code, FIASSE-compliant code, or when generating security-sensitive
   components (auth, input handling, data access, API endpoints, trust boundaries).
-license: CC-BY-4.0
+license: CC-BY-SA-4.0
 ---
 
 # Securability Engineering — Code Generation Wrapper

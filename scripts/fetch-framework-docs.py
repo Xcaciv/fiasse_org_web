@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: CC-BY-SA-4.0
 """Download the docs/framework subdirectory from a tagged release of
 https://github.com/Xcaciv/securable_software_engineering.
 

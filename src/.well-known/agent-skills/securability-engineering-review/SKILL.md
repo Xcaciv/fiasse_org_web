@@ -1,7 +1,7 @@
 ---
 name: securability-engineering-review
 description: Analyze a software project using the official SSEM scoring and reporting model from FIASSE v1.0.4. Use when assessing code securability, producing an SSEM scorecard, generating a structured SSEM evaluation report, reviewing merge requests through a securable engineering lens, or establishing a security posture baseline. Complements vulnerability-centric reviews by focusing on whether code is engineered to remain analyzable, modifiable, observable, trustworthy, and reliable over time.
-license: CC-BY-4.0
+license: CC-BY-SA-4.0
 ---
 
 # SSEM Evaluation (Scoring and Reporting)

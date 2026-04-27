@@ -1,6 +1,7 @@
 # Third-Party Dependencies and Notices
 
 This file lists third-party packages currently present in this repository based on lockfiles:
+
 - `package-lock.json` (root)
 - `api/package-lock.json`
 
@@ -34,6 +35,7 @@ Generated on: 2026-04-27
 ## Project License
 
 This repository declares `CC-BY-SA-4.0` for project content/code in:
+
 - `licence.txt`
 - `package.json`
 - `api/package.json`

@@ -4,7 +4,7 @@ This file lists third-party packages currently present in this repository based 
 - `package-lock.json` (root)
 - `api/package-lock.json`
 
-Generated on: 2026-04-24
+Generated on: 2026-04-27
 
 ## Scope
 

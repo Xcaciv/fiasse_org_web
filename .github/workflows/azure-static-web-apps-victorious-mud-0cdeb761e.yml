@@ -19,6 +19,23 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Resolve latest securable-claude-plugin v* tag
+        id: resolve_claude_tag
+        shell: bash
+        run: |
+          tag=$(git ls-remote --tags --sort=-v:refname \
+            https://github.com/Securability-Engineering/securable-claude-plugin.git \
+            'refs/tags/v*' \
+            | grep -v '\^{}' \
+            | head -n1 \
+            | sed 's|.*refs/tags/||')
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - name: Checkout securable-claude-plugin
+        uses: actions/checkout@v3
+        with:
+          repository: Securability-Engineering/securable-claude-plugin
+          ref: ${{ steps.resolve_claude_tag.outputs.tag }}
+          path: src/claude
       - name: Check THIRDPARTIES.md freshness
         shell: bash
         run: |

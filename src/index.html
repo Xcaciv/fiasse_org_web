@@ -1894,12 +1894,26 @@
                             Install the Claude Code extension to get real-time securability as you code, directly in your IDE. This tool provides actionable insights based on the FIASSE framework to help you write more secure code from the start.
                         </p>
                         <div class="relative group flex items-center gap-2 bg-slate-800 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-cyan-300 mb-4">
-                            <code id="claude-plugin-cmd" class="flex-1 select-all">/plugin marketplace add https://owaspfiasse.org/claude/marketplace.json</code>
+                            <code id="claude-plugin-cmd" class="flex-1 select-all">/plugin marketplace add Securability-Engineering/securable-claude-plugin</code>
                             <button
                                 onclick="(function(btn){var cmd=document.getElementById('claude-plugin-cmd').textContent;navigator.clipboard.writeText(cmd).then(function(){btn.textContent='Copied!';btn.classList.add('text-green-400');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('text-green-400');},2000)});})(this)"
                                 class="shrink-0 text-xs text-slate-400 hover:text-cyan-400 transition-colors border border-slate-600 hover:border-cyan-400/40 rounded px-2 py-1"
                                 title="Copy to clipboard">Copy</button>
+                                
                         </div>
+                        <p class="text-slate-300 mb-4">
+                            Then install the plugin with the following command:
+                        </p>
+                        <div class="relative group flex items-center gap-2 bg-slate-800 border border-cyan-400/20 rounded-lg px-4 py-3 font-mono text-sm text-cyan-300 mb-4">
+                            <code id="claude-plugin-install-cmd" class="flex-1 select-all">/plugin install securable-claude-plugin@securable-claude-plugin-marketplace</code>
+                            <button
+                                onclick="(function(btn){var cmd=document.getElementById('claude-plugin-install-cmd').textContent;navigator.clipboard.writeText(cmd).then(function(){btn.textContent='Copied!';btn.classList.add('text-green-400');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('text-green-400');},2000)});})(this)"
+                                class="shrink-0 text-xs text-slate-400 hover:text-cyan-400 transition-colors border border-slate-600 hover:border-cyan-400/40 rounded px-2 py-1"
+                                title="Copy to clipboard">Copy</button>
+                        </div>
+                        <p class="text-slate-300 mb-4">
+                            Then run <code> /reload-plugins </code> to start using the plugin.
+                        </p>
                     </div>
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <div class="card">

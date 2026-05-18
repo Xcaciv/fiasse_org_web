@@ -671,6 +671,13 @@
                         </div>
 
                         <div class="card">
+                            <h4 class="text-cyan-400 text-lg font-semibold mb-3">Securable Attributes over Security Controls</h4>
+                            <p class="text-slate-300">
+                                Engineering qualities that let a system be built and kept defensible matter more than external catalogs of controls evaluated against the system from outside the code creation process. Security controls remain valid where they do their work — in risk management and assurance. Building defensible software is a different job, and it needs different vocabulary.
+                            </p>
+                        </div>
+
+                        <div class="card">
                             <h4 class="text-cyan-400 text-lg font-semibold mb-3">Business Alignment</h4>
                             <p class="text-slate-300">
                                 Security must align with development's reason for existing to engage with them. This means abandoning the "shovel-left" anti-pattern in favor of clearer communication and earlier collaboration.
@@ -968,7 +975,7 @@
                                         <div class="w-6 h-6 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">5</div>
                                         <div>
                                             <h4 class="font-semibold">Security Requirements</h4>
-                                            <p class="text-sm text-slate-400">Features that include sensitive data or delicate operations need to include explicit security requiremnts. (see OWASP ASVS)</p>
+                                            <p class="text-sm text-slate-400">Features that handle sensitive data or perform delicate operations require explicit security requirements.</p>
                                         </div>
                                     </div>
                                            
@@ -976,7 +983,7 @@
                                         <div class="w-6 h-6 bg-cyan-400 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm mt-1">6</div>
                                         <div>
                                             <h4 class="font-semibold">Security Features</h4>
-                                            <p class="text-sm text-slate-400">Matching the existing style, include explicit security requirements. (see OWASP ASVS)</p>
+                                            <p class="text-sm text-slate-400">Specific capabilities whose purpose is security (eg. Defendable Authentication, encryption at rest, authorization checks, audit logging).</p>
                                         </div>
                                     </div>
 
@@ -1228,7 +1235,7 @@
                                                 <div>
                                                     <span class="font-medium text-cyan-400">Securable Attributes over Security Controls:</span>
                                                     <p class="text-sm text-slate-400">
-                                                        Instead of focusing only on security controls or checklists, emphasize building software with inherent qualities - so it's easier to analyze, modify, test, and trust. Security features that are fully implemented in code are less likely to be circumvented and can always be supplemented.
+                                                        Prefer the engineering qualities that let a system be built and be kept defensible. Security features fully implemented in code are less likely to be circumvented and can always be supplemented. Control catalogs remain valid where they do their work — risk management, assurance, external evaluation — but they measure software; they do not construct it.
                                                     </p>
                                                 </div>
                                             </li>
@@ -1804,6 +1811,9 @@
                             <div class="flex items-center gap-2 mb-4">
                                 <h3 class="text-pink-400 text-xl font-semibold">Boundary Control Principle</h3>
                             </div>
+                            <p class="text-sm text-slate-300 mb-4">
+                                <em>*Control in this principle refers to its software-engineering sense of the word.</em>
+                            </p>
                             <p class="text-slate-300 mb-4">
                                 Flexibility within a system's interior is an engineering asset to be preserved; control at every trust boundary is a security requirement to be enforced. These objectives are complementary, not competing.
                             </p>
@@ -1930,12 +1940,12 @@
                             <p class="text-slate-300">
                                 The main repository contains the RFC, examples, and detailed documentation for securable software engineering practices.
                             </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
+                            <div class="flex flex-wrap gap-2 mb-4">                                
                                 <span class="badge status-complete">Active Development</span>
-                                <span class="badge">CC BY-SA 4.0 License</span>
-                                <span class="badge">Community Driven</span>
+                                <span class="badge status-warning">OWASP Official</span>
+                                <span class="badge">Documentation</span>
                             </div>
-                            <button onclick="window.open('https://github.com/Xcaciv/securable_software_engineering', '_blank')" class="btn-primary w-full px-4 py-2 rounded-lg font-medium">
+                            <button onclick="window.open('https://github.com/OWASP/FIASSE', '_blank')" class="btn-primary w-full px-4 py-2 rounded-lg font-medium">
                                 View on GitHub
                             </button>
                         </div>
@@ -2200,6 +2210,15 @@
                         </p>
                     </div>
                     <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <div class="card">
+                            <h4 class="text-pink-400 text-lg font-semibold mb-3">The Control-Catalog Fallacy</h4>
+                            <p class="text-slate-300 text-sm mb-3">
+                                In an engineering context, controls measure and constrain, they do not construct. Code is securable because of the qualities present in the code and how complete the security features are implemented, not because a test has been done.
+                            </p>
+                            <p class="text-slate-400 text-sm">
+                                <strong class="text-pink-400">Corrective:</strong> Apply the Securable Attributes over Security Controls value. Engineering builds security features that have securable attributes to satisfy security acceptance criteria. Control-catalogs are best suited for assurance, governance, policy and risk functions that complement the code creation process.
+                            </p>
+                        </div>
                         <div class="card">
                             <h4 class="text-pink-400 text-lg font-semibold mb-3">"Shoveling Left"</h4>
                             <p class="text-slate-300 text-sm mb-3">

@@ -38,6 +38,7 @@ To provide developers and security professionals with a practical, actionable fr
 ### Key Concepts
 
 - **The Securable Principle** — There is no static state of "secure". New methods of exploitation are developed all the time, so even unchanged software may have new vulnerabilities. Software must be maintainable or it will be exploitable.
+- **Securable Attributes over Security Controls** — Engineering qualities that let a system be built and kept defensible matter more than external catalogs of controls evaluated against the system from outside the code creation process. Security controls remain valid where they do their work — in risk management and assurance. Building defensible software is a different job, and it needs different vocabulary.
 - **Business Alignment** — Security must align with development's reason for existing to engage with them. This means abandoning the "shovel-left" anti-pattern in favor of clearer communication and earlier collaboration.
 - **Participation over Assessment** — Structured participation by the security team in the development process yields better results than security assessment alone, which tends to be late and expensive. It is OK to give development the answers to the security test, because they have to implement it to functionally pass. This is called requirements.
 
@@ -97,8 +98,8 @@ Set expectations in a way that organically leverages battle-tested software engi
 
 1. **Threat Scenarios** — Identify potential threats and frame them as use cases.
 2. **Acceptance Criteria** — Define what it looks like when the product is protected from threats.
-3. **Security Requirements** — Features that include sensitive data or delicate operations need explicit security requirements (see OWASP ASVS).
-4. **Security Features** — Matching the existing style, include explicit security requirements (see OWASP ASVS).
+3. **Security Requirements** — Features that handle sensitive data or perform delicate operations require explicit security requirements specifying what the feature must do and how. ASVS is a useful reference for what to require.
+4. **Security Features** — Specific capabilities whose purpose is security — Defendable Authentication, encryption at rest, authorization checks, audit logging. Security features are built; they are how engineering attention is invested. Specify them with the same rigor as any other feature.
 
 ### Implementation
 
@@ -142,7 +143,7 @@ The SSEM is centered on the core attributes that make software "securable" (FIAS
 
 ### Concrete Security
 
-- **Securable Attributes over Security Controls** — Emphasize building software with inherent qualities so it's easier to analyze, modify, test, and trust. Security features fully implemented in code are less likely to be circumvented and can always be supplemented.
+- **Securable Attributes over Security Controls** — prefer the engineering qualities that let a system be built and kept defensible over external catalogs of controls evaluated against the system from outside the code creation process. Security features fully implemented in code are less likely to be circumvented and can always be supplemented. Control catalogs remain valid where they do their work — risk management, assurance, external evaluation — but they measure software; they do not construct it.
 - **Participation over Assessment** — The security team offers high value when actively participating in development rather than only assessing after the fact. Participation enables organic knowledge transfer from the start.
 - **First Principle Alignment** — Ground security in established software engineering first principles rather than security-specific jargon or adversarial heuristics. Shared engineering vocabulary lets developers reason about security without years of specialized training.
 - **Business Alignment** — Security that sustains the organization's value creation over security pursued as an end in itself. Judge security efforts by how well they support business objectives and risk tolerance, not by how much activity they generate.
@@ -378,6 +379,8 @@ How the system works should be perceptible so engineers and stakeholders can see
 
 #### Boundary Control Principle
 
+*Control* in this principle refers to its software-engineering sense — the regulated handling of data and execution at trust boundaries — not to *security controls* in the risk-and-assurance sense.
+
 Flexibility within a system's interior is an engineering asset to be preserved; control at every trust boundary is a security requirement to be enforced. These objectives are complementary, not competing.
 
 *In practice:*
@@ -464,6 +467,9 @@ FIASSE only works when responsibilities are distributed across the roles that sh
 ### Common AppSec Anti-Patterns
 
 These patterns undermine AppSec credibility and cause developer disengagement. Each has a corrective discipline grounded in the Actionable Security Intelligence Principle.
+
+**The Control-Catalog Fallacy** — Treating the external control catalog as the definition of secure software. Catalogs like NIST 800-53, ISO 27001 Annex A, and PCI DSS support risk management, assurance, and external evaluation. They measure and constrain; they do not construct. Software becomes defensible because of the engineering qualities present in the code, not because a catalog has been satisfied.
+*Corrective:* Apply the first FIASSE value, Securable Attributes over Security Controls. Engineering attention belongs on the qualities that make software defensible; control catalogs belong in the assurance and risk functions that evaluate that defensibility from outside the code creation process.
 
 **"Shoveling Left"** — Supplying impractical information to developers and leaving the burden on them to make sense of it. Manifests in how vulnerabilities are reported, how training is conducted, and how test results are delivered.
 *Corrective:* Apply the Actionable Security Intelligence Principle. Translate raw information into prioritized, engineering-grounded direction calibrated to the developer's context before handing it over.

@@ -112,10 +112,10 @@ Encourage Software Engineering as a discipline so as to improve software securit
 
 #### Process
 
-1. **Software Engineering process extensions** — Align security assurance and governance with existing empirical software engineering processes.
+1. **Software Engineering process extensions** — Alignment of security assurance and governance process with existing empirical software engineering processes.
 2. **Securable Tenet Support** — Support the Securable Mindset in development activities like Merge Reviews and Dependency Management.
-3. **Dependency Stewardship** — Treat third-party dependencies as an ongoing engineering responsibility: selection, monitoring, update cadence, and removal — not a one-time choice.
-4. **Strategic Remediation** — Higher-quality security assurance data allows for systemic remediation and empirical process change.
+3. **Dependency Stewardship** — Treat third-party dependencies as an ongoing engineering responsibility: selection, monitoring, update cadence, and removal, rather than a one-time choice.
+4. **Strategic Remediation** — Higher quality security assurance data allows for systemic remediation and empirical process change.
 
 ### Assurance
 

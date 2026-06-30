@@ -11,6 +11,7 @@ Core concepts:
 - **SSEM** (Securable Software Engineering Model) — ten sub-attributes across three pillars: Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), Reliability (Availability, Integrity, Resilience).
 - **Core Tenets** — Securable Principle, Derived Integrity, Canonical Input Handling, Transparency.
 - **Engineering Principles** — Boundary Control, Request Surface Minimization, Principle of Least Astonishment, Actionable Security Intelligence.
+- **Implementation Process Focus** — align security assurance and governance with empirical engineering processes, support securable tenets in merge reviews and dependency management, practice dependency stewardship as ongoing work, and use higher quality assurance data for strategic remediation.
 
 ## Core content
 

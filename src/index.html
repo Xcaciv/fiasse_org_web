@@ -518,6 +518,162 @@
             letter-spacing: -0.03em;
             line-height: 1.1;
         }
+
+        /* ── Lifecycle Layers accordion (L1–L5) ───────────────────────────── */
+        .layer-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .layer-item {
+            background: var(--bg-elev);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+        .layer-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-base);
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            transition: background 0.15s ease;
+        }
+        .layer-header:hover { background: var(--border-accent-soft); }
+        .layer-badge {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: var(--accent);
+            color: var(--accent-contrast);
+        }
+        .layer-heading {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            width: 15rem;
+        }
+        .layer-title {
+            font-weight: 700;
+            font-size: 1.02rem;
+            color: var(--text-base);
+            line-height: 1.2;
+        }
+        .layer-eyebrow {
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+        .layer-summary {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--text-body);
+            min-width: 0;
+        }
+        .layer-phase {
+            flex-shrink: 0;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-accent);
+            color: var(--accent);
+        }
+        .layer-chevron {
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+            color: var(--accent);
+            display: flex;
+        }
+        .layer-item.open .layer-chevron { transform: rotate(180deg); }
+
+        /* Phase color theming — Prevention (sage) · Integration (ochre) · Remediation (terracotta) */
+        .layer-item[data-phase="prevention"]  .layer-badge { background: var(--accent-tertiary); }
+        .layer-item[data-phase="prevention"]  .layer-phase,
+        .layer-item[data-phase="prevention"]  .layer-chevron { color: var(--accent-tertiary); }
+        .layer-item[data-phase="prevention"]  .layer-phase { border-color: var(--accent-tertiary); }
+        .layer-item[data-phase="prevention"]  .layer-step-num { color: var(--accent-tertiary); border-color: var(--accent-tertiary); }
+        .layer-item.open[data-phase="prevention"] { border-color: var(--accent-tertiary); }
+
+        .layer-item[data-phase="integration"] .layer-badge { background: var(--accent); }
+        .layer-item[data-phase="integration"] .layer-phase,
+        .layer-item[data-phase="integration"] .layer-chevron { color: var(--accent); }
+        .layer-item[data-phase="integration"] .layer-phase { border-color: var(--accent); }
+        .layer-item[data-phase="integration"] .layer-step-num { color: var(--accent); border-color: var(--accent); }
+        .layer-item.open[data-phase="integration"] { border-color: var(--accent); }
+
+        .layer-item[data-phase="remediation"] .layer-badge { background: var(--accent-secondary); }
+        .layer-item[data-phase="remediation"] .layer-phase,
+        .layer-item[data-phase="remediation"] .layer-chevron { color: var(--accent-secondary); }
+        .layer-item[data-phase="remediation"] .layer-phase { border-color: var(--accent-secondary); }
+        .layer-item[data-phase="remediation"] .layer-step-num { color: var(--accent-secondary); border-color: var(--accent-secondary); }
+        .layer-item.open[data-phase="remediation"] { border-color: var(--accent-secondary); }
+
+        /* Collapsible body — animates height via grid-template-rows trick */
+        .layer-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+        .layer-item.open .layer-body { grid-template-rows: 1fr; }
+        .layer-body-inner { overflow: hidden; }
+        .layer-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem 1.5rem;
+            border-top: 1px solid var(--border-accent-soft);
+        }
+        .layer-step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .layer-step-num {
+            flex-shrink: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.82rem;
+            background: var(--border-accent-soft);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+        }
+        .layer-step p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            padding-top: 0.35rem;
+        }
+
+        @media (max-width: 768px) {
+            .layer-header { flex-wrap: wrap; gap: 0.6rem 0.85rem; }
+            .layer-heading { width: auto; flex: 1; }
+            .layer-summary { flex-basis: 100%; order: 5; }
+            .layer-phase { order: 4; }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-slate-900 text-cyan-400">
@@ -538,6 +694,7 @@
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
                     <button onclick="showPage('tenets')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
+                    <button onclick="showPage('lifecycle')" id="nav-lifecycle" class="btn-ghost px-4 py-2 rounded-lg font-medium">Process</button>
                     <button onclick="showPage('adoption')" id="nav-adoption" class="btn-ghost px-4 py-2 rounded-lg font-medium">Adoption</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
@@ -561,6 +718,7 @@
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
                 <button onclick="showPage('tenets'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
+                <button onclick="showPage('lifecycle'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Process</button>
                 <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
@@ -1970,6 +2128,172 @@
             </div>
         </section>
 
+        <!-- Lifecycle Layers Section -->
+        <section id="page-lifecycle" class="page-section py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
+                        Integrating Security into the Process
+                    </h1>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                        Five layers where FIASSE integrates securable engineering into the development process.
+                    </p>
+                </div>
+
+                <!-- Framing callout -->
+                <div class="card mb-10 max-w-4xl mx-auto">
+                    <p class="text-slate-300 mb-2">
+                        Each layer feeds the next and informs all previous layers.
+                    </p>
+                    <p class="text-green-400 font-medium">
+                        The first layer is the one most often omitted from current AppSec, and is the one identified as most consequential.
+                    </p>
+                </div>
+
+                <p class="text-center text-sm text-slate-400 mb-6">Select a layer to expand its steps.</p>
+
+                <!-- Accordion -->
+                <div class="layer-accordion">
+
+                    <!-- L1 -->
+                    <div class="layer-item" id="layer-1" data-phase="prevention">
+                        <button class="layer-header" onclick="toggleLayer('layer-1')" aria-expanded="false" aria-controls="layer-1-body">
+                            <span class="layer-badge">L1</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">Product Requirements</span>
+                                <span class="layer-eyebrow">Pre-Programming</span>
+                            </span>
+                            <span class="layer-summary">FIASSE + ASVS injected at requirements</span>
+                            <span class="layer-phase">Prevention</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-1-body" role="region" aria-label="Layer 1 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>A product manager or engineer drafts a feature description in the team's standard backlog tool, or in a PRD file.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Architects create new architecture or align the feature in existing architecture. This is documented via amendment, links, or artifacts.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Security ensures the presence of Security Features, Threat Scenarios, and Security Acceptance Criteria.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>The above points can be covered together in a single document that combines each roles concerns.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>The complete requirements are conveyed into Layer 2, where code calibrated to those requirements is created.</p></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L2 -->
+                    <div class="layer-item" id="layer-2" data-phase="prevention">
+                        <button class="layer-header" onclick="toggleLayer('layer-2')" aria-expanded="false" aria-controls="layer-2-body">
+                            <span class="layer-badge">L2</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">IDE/Agent-Embedded Completeness &amp; Securability</span>
+                                <span class="layer-eyebrow">While Programming</span>
+                            </span>
+                            <span class="layer-summary">Completeness against verifiable requirements &amp; securability.</span>
+                            <span class="layer-phase">Prevention</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-2-body" role="region" aria-label="Layer 2 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>An <a href="#ssem">SSEM-aligned</a> programmer drafts specifications and tests calibrated to those requirements before code is generated.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with the agent continuously checking completeness against the verifiable requirements.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>The change is created with the goal of securability using SSEM attributes: maintainability, trustworthiness, and reliability.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L3 -->
+                    <div class="layer-item" id="layer-3" data-phase="integration">
+                        <button class="layer-header" onclick="toggleLayer('layer-3')" aria-expanded="false" aria-controls="layer-3-body">
+                            <span class="layer-badge">L3</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">Intelligent Code Integration</span>
+                                <span class="layer-eyebrow">Merge Time</span>
+                            </span>
+                            <span class="layer-summary">Triage, fix, review-ready PRs with audit-grade evidence as a byproduct.</span>
+                            <span class="layer-phase">Integration</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-3-body" role="region" aria-label="Layer 3 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>A pull request or merge request is opened. Codified artifacts are already present.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>The merge is scanned, reviewed, and SBOM created. Each change is checked against the acceptance criteria.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>The reviewer asks for fixes for any issues discovered. This generates audit-grade evidence as a byproduct.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>The owner of the pull request ensures all issues raised are addressed, and the reviewer approves the changes for merge.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>On merge, the evidence trail is preserved so downstream layers and auditors can rely on it.</p></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L4 -->
+                    <div class="layer-item" id="layer-4" data-phase="remediation">
+                        <button class="layer-header" onclick="toggleLayer('layer-4')" aria-expanded="false" aria-controls="layer-4-body">
+                            <span class="layer-badge">L4</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">Intelligent Remediation</span>
+                                <span class="layer-eyebrow">Pre-Deployment</span>
+                            </span>
+                            <span class="layer-summary">Runtime business-logic validation at the trust-boundary layer.</span>
+                            <span class="layer-phase">Remediation</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-4-body" role="region" aria-label="Layer 4 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>The deployment pipeline runs the software for testing.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>When a deviation is detected, a targeted remediation tied to the original requirement is submitted.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Remediation are routed back through the PR-level integration layer rather than patched ad hoc.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Validated and passing deployments proceed; the requirement-to-evidence trail stays intact through release.</p></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- L5 -->
+                    <div class="layer-item" id="layer-5" data-phase="remediation">
+                        <button class="layer-header" onclick="toggleLayer('layer-5')" aria-expanded="false" aria-controls="layer-5-body">
+                            <span class="layer-badge">L5</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">Production Behavioral Monitoring</span>
+                                <span class="layer-eyebrow">Runtime</span>
+                            </span>
+                            <span class="layer-summary">Anomaly detection feeding signals back to previous layers.</span>
+                            <span class="layer-phase">Remediation</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-5-body" role="region" aria-label="Layer 5 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>Production telemetry, logs, and traces are collected as structured observability.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Anomaly detection watches for behavior that diverges from expected, requirement-defined norms.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Signals are correlated to the acceptance criteria they relate to, not just raw alerts.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>External tooling serve as mitigation in near real time until the application is corrected through the standard process.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies feed back into earlier layers as new or refined requirements, threat scenarios, or acceptance criteria.</p></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Resources Section -->
         <section id="page-resources" class="page-section py-20 px-4">
             <div class="container mx-auto max-w-6xl">
@@ -2449,6 +2773,7 @@
             project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
             ssem:         { tabs: ['overview', 'model', 'metrics'],                              default: 'overview' },
             tenets:       { tabs: ['core', 'principles'],                                        default: 'core' },
+            lifecycle:    { tabs: null, default: null },
             adoption:     { tabs: ['plan', 'roles'],                                             default: 'plan' }
         };
 
@@ -2545,6 +2870,15 @@
                 const el = document.getElementById('about-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
+        }
+
+        // Lifecycle layer accordion toggle (L1–L5)
+        function toggleLayer(id) {
+            const item = document.getElementById(id);
+            if (!item) return;
+            const header = item.querySelector('.layer-header');
+            const isOpen = item.classList.toggle('open');
+            if (header) header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
 
         // Mobile menu toggle

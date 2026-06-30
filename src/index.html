@@ -694,7 +694,7 @@
                     <button onclick="showPage('project')" id="nav-project" class="btn-ghost px-4 py-2 rounded-lg font-medium">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="btn-ghost px-4 py-2 rounded-lg font-medium">SSEM</button>
                     <button onclick="showPage('tenets')" id="nav-tenets" class="btn-ghost px-4 py-2 rounded-lg font-medium">Tenets</button>
-                    <button onclick="showPage('lifecycle')" id="nav-lifecycle" class="btn-ghost px-4 py-2 rounded-lg font-medium">Process</button>
+                    <button onclick="showPage('process')" id="nav-process" class="btn-ghost px-4 py-2 rounded-lg font-medium">Process</button>
                     <button onclick="showPage('adoption')" id="nav-adoption" class="btn-ghost px-4 py-2 rounded-lg font-medium">Adoption</button>
                     <button onclick="showPage('resources')" id="nav-resources" class="btn-ghost px-4 py-2 rounded-lg font-medium">Resources</button>
                     <button onclick="showPage('contributing')" id="nav-contributing" class="btn-ghost px-4 py-2 rounded-lg font-medium">Contributing</button>
@@ -718,7 +718,7 @@
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
                 <button onclick="showPage('tenets'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
-                <button onclick="showPage('lifecycle'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Process</button>
+                <button onclick="showPage('process'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Process</button>
                 <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
                 <button onclick="showPage('resources'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Resources</button>
                 <button onclick="showPage('contributing'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Contributing</button>
@@ -2128,8 +2128,8 @@
             </div>
         </section>
 
-        <!-- Lifecycle Layers Section -->
-        <section id="page-lifecycle" class="page-section py-20 px-4">
+        <!-- Process Section -->
+        <section id="page-process" class="page-section py-20 px-4">
             <div class="container mx-auto max-w-6xl">
                 <div class="text-center mb-10">
                     <h1 class="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">
@@ -2773,7 +2773,7 @@
             project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
             ssem:         { tabs: ['overview', 'model', 'metrics'],                              default: 'overview' },
             tenets:       { tabs: ['core', 'principles'],                                        default: 'core' },
-            lifecycle:    { tabs: null, default: null },
+            process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5'],       default: null },
             adoption:     { tabs: ['plan', 'roles'],                                             default: 'plan' }
         };
 
@@ -2804,8 +2804,8 @@
             };
         }
 
-        // Navigation functionality with URL hash support
-        // tabId is optional; pages with tabs fall back to their default when omitted
+        // Navigation functionality with URL hash support.
+        // tabId is optional; pages with tabs fall back to their default when omitted.
         function showPage(pageId, tabId = null, updateUrl = true) {
             // Back-compat: callers used to pass updateUrl as the 2nd arg
             if (typeof tabId === 'boolean') {
@@ -2843,9 +2843,14 @@
             // Resolve effective tab (use explicit tabId, else page default)
             const effectiveTab = tabId || PAGES[pageId].default;
 
-            // Update URL hash if requested — include tab only when explicitly provided
+            // Update URL hash if requested — process uses the active layer as its hash tab.
             if (updateUrl) {
-                updateHash(pageId, tabId);
+                updateHash(pageId, pageId === 'process' ? effectiveTab : tabId);
+            }
+
+            // Reset the process accordion when the Process page is shown.
+            if (pageId === 'process') {
+                showLifecycleLayer(effectiveTab, false);
             }
 
             // Activate tab on pages that have them
@@ -2873,12 +2878,44 @@
         }
 
         // Lifecycle layer accordion toggle (L1–L5)
-        function toggleLayer(id) {
+        function toggleLayer(id, updateUrl = true) {
             const item = document.getElementById(id);
             if (!item) return;
             const header = item.querySelector('.layer-header');
             const isOpen = item.classList.toggle('open');
             if (header) header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+            if (updateUrl) {
+                if (isOpen) {
+                    updateHash('process', id);
+                } else if (window.location.hash === `#process/${id}`) {
+                    updateHash('process', PAGES.process.default);
+                }
+            }
+        }
+
+        function showLifecycleLayer(id, updateUrl = true) {
+            const items = document.querySelectorAll('.layer-item');
+            items.forEach(item => {
+                item.classList.remove('open');
+                const header = item.querySelector('.layer-header');
+                if (header) header.setAttribute('aria-expanded', 'false');
+            });
+
+            const item = id ? document.getElementById(id) : null;
+            if (item) {
+                const header = item.querySelector('.layer-header');
+                item.classList.add('open');
+                if (header) header.setAttribute('aria-expanded', 'true');
+
+                requestAnimationFrame(() => {
+                    item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            if (updateUrl) {
+                updateHash('process', id);
+            }
         }
 
         // Mobile menu toggle

@@ -49,6 +49,7 @@
         :root {
             --font-size: 14px;
             --radius: 0.625rem;
+            --sticky-nav-offset: 7rem;
 
             /* Theme tokens — refined dark earth tones (warm ochre on dark walnut) */
             --bg-gradient: linear-gradient(135deg, #1a1612 0%, #221d17 50%, #1a1612 100%);
@@ -111,6 +112,10 @@
             font-weight: 400;
             line-height: 1.55;
             transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        html {
+            scroll-padding-top: var(--sticky-nav-offset);
         }
 
         h1, h2, h3 {
@@ -531,6 +536,7 @@
             border-radius: var(--radius);
             overflow: hidden;
             transition: border-color 0.2s ease;
+            scroll-margin-top: var(--sticky-nav-offset);
         }
         .layer-header {
             width: 100%;

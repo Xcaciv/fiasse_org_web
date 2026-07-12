@@ -674,11 +674,28 @@
             padding-top: 0.35rem;
         }
 
+        .layer-note {
+            padding: 0 1.5rem 1.5rem calc(1.5rem + 2.25rem + 1rem);
+            margin-top: 0.25rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .layer-note code {
+            padding: 0.15rem 0.45rem;
+            border-radius: 999px;
+            background: var(--border-accent-soft);
+            border: 1px solid var(--border-accent);
+            color: var(--accent);
+        }
+
         @media (max-width: 768px) {
             .layer-header { flex-wrap: wrap; gap: 0.6rem 0.85rem; }
             .layer-heading { width: auto; flex: 1; }
             .layer-summary { flex-basis: 100%; order: 5; }
             .layer-phase { order: 4; }
+            .layer-note { padding-left: 1.5rem; }
         }
     </style>
 </head>
@@ -2184,6 +2201,7 @@
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The above points can be covered together in a single document that combines each roles concerns.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>The complete requirements are conveyed into Layer 2, where code calibrated to those requirements is created.</p></li>
                                 </ol>
+                                <p class="layer-note">*An agentic workflow would use skills like the <code>prd-securability-enhancement</code> skill from the Securability Engineering claude plugin.</p>
                             </div>
                         </div>
                     </div>
@@ -2211,6 +2229,7 @@
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The change is created with the goal of securability using SSEM attributes: maintainability, trustworthiness, and reliability.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></li>
                                 </ol>
+                                <p class="layer-note">*An agentic workflow would use skills like the <code>securability-engineering</code> skill from the Securability Engineering claude plugin.</p>
                             </div>
                         </div>
                     </div>
@@ -2238,6 +2257,7 @@
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The owner of the pull request ensures all issues raised are addressed, and the reviewer approves the changes for merge.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>On merge, the evidence trail is preserved so downstream layers and auditors can rely on it.</p></li>
                                 </ol>
+                                <p class="layer-note">An agentic workflow would use skills like the <code>securability-engineering-review</code> skill from the Securability Engineering claude plugin.</p>
                             </div>
                         </div>
                     </div>
@@ -2262,9 +2282,10 @@
                                     <li class="layer-step"><span class="layer-step-num">I</span><p>The deployment pipeline runs the software for testing.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">II</span><p>Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">III</span><p>When a deviation is detected, a targeted remediation tied to the original requirement is submitted.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Remediation are routed back through the PR-level integration layer rather than patched ad hoc.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Remediation are routed back through the PR-level integration layer or back through architecture rather than patched ad hoc.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>Validated and passing deployments proceed; the requirement-to-evidence trail stays intact through release.</p></li>
                                 </ol>
+                                <p class="layer-note">An agentic workflow could perform this process on minor deviations, escalating more complex or sensitive issues.</p>
                             </div>
                         </div>
                     </div>
@@ -2292,6 +2313,7 @@
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>External tooling serve as mitigation in near real time until the application is corrected through the standard process.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies feed back into earlier layers as new or refined requirements, threat scenarios, or acceptance criteria.</p></li>
                                 </ol>
+                                <p class="layer-note">*An agentic workflow would enhances and correlate actual anomalies with code and architecture, reintegrating the observations from operations into the product.</p>
                             </div>
                         </div>
                     </div>

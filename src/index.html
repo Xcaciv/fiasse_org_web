@@ -2166,8 +2166,8 @@
                 <!-- Framing callout -->
                 <div class="card mb-10 max-w-4xl mx-auto">
                     <p class="text-slate-300 mb-2">
-                        Five layers where FIASSE integrates securable engineering into the development process. Each layer feeds the next and informs all previous layers.
-                        OWASP ASVS is used as a tool to inform verifiable requirements, while select activities under OWASP SAMM goals indicate maturity.
+                        Five development layers where FIASSE integrates securable engineering into the development process. Each layer feeds the next and informs all previous layers.
+                        OWASP ASVS is used as a tool to inform verifiable requirements, while select activities under OWASP SAMM indicate maturity. Incident response leverages 3rd party tooling for mitigation to buy time for full remediation.
                     </p>
                     <p class="text-green-400 font-medium">
                         The first layer is the one most often omitted from current AppSec, and is the one identified as most consequential.
@@ -2213,7 +2213,7 @@
                             <span class="layer-badge">L2</span>
                             <span class="layer-heading">
                                 <span class="layer-title">IDE/Agent-Embedded Completeness &amp; Securability</span>
-                                <span class="layer-eyebrow">While Programming</span>
+                                <span class="layer-eyebrow">While Building</span>
                             </span>
                             <span class="layer-summary">Completeness against verifiable requirements &amp; securability.</span>
                             <span class="layer-phase">Prevention</span>
@@ -2225,7 +2225,7 @@
                             <div class="layer-body-inner">
                                 <ol class="layer-steps">
                                     <li class="layer-step"><span class="layer-step-num">I</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">II</span><p>An <a href="#ssem">SSEM-aligned</a> programmer drafts specifications and tests calibrated to those requirements before code is generated.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>An <a href="#ssem">SSEM-aligned</a> programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with the agent continuously checking completeness against the verifiable requirements.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The change is created with the goal of securability using SSEM attributes: maintainability, trustworthiness, and reliability.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></li>
@@ -2315,6 +2315,34 @@
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies feed back into earlier layers as new or refined requirements, threat scenarios, or acceptance criteria.</p></li>
                                 </ol>
                                 <p class="layer-note">*An agentic workflow would enhances and correlate actual anomalies with code and architecture, reintegrating the observations from operations into the product.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IR -->
+                    <div class="layer-item" id="layer-6" data-phase="remediation">
+                        <button class="layer-header" onclick="toggleLayer('layer-6')" aria-expanded="false" aria-controls="layer-5-body">
+                            <span class="layer-badge">IR</span>
+                            <span class="layer-heading">
+                                <span class="layer-title">Incident Response</span>
+                                <span class="layer-eyebrow">Runtime</span>
+                            </span>
+                            <span class="layer-summary">Quick incident response and mitigation, then inform previous layers for remediation.</span>
+                            <span class="layer-phase">Incident</span>
+                            <span class="layer-chevron" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </button>
+                        <div class="layer-body" id="layer-5-body" role="region" aria-label="Layer 5 steps">
+                            <div class="layer-body-inner">
+                                <ol class="layer-steps">
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>Observability increases the chance of detection and informs the rest of the process.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Level 5 output defines "normal" operation driving classification of observable activities for flagging those related to the incident.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Containment and mitigation is performed with external security tooling.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Undesirable behavior can be documented, compared to requirements and mapped to code.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Updated expectations and tests pass into layers 1 and 2 for an integrated remediation workflow.</p></li>
+                                </ol>
+                                <p class="layer-note">*An agentic workflow would leverage business level context to help identify and solution quickly.</p>
                             </div>
                         </div>
                     </div>

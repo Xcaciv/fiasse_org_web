@@ -19,21 +19,6 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Download latest securable-claude-plugin marketplace.json
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          release_json=$(curl -fsSL https://api.github.com/repos/Securability-Engineering/securable-claude-plugin/releases/latest)
-          asset_url=$(echo "$release_json" | python3 -c "import json,sys; d=json.load(sys.stdin); print(next((a.get('browser_download_url', '') for a in d.get('assets', []) if a.get('name') == 'marketplace.json'), ''))")
-
-          if [ -z "$asset_url" ] || [ "$asset_url" = "null" ]; then
-            echo "marketplace.json asset was not found in the latest release."
-            exit 1
-          fi
-
-          mkdir -p src/claude
-          curl -fsSL "$asset_url" -o src/claude/marketplace.json
       - name: Check THIRDPARTIES.md freshness
         shell: bash
         run: |

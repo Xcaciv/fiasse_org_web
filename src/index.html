@@ -1290,6 +1290,12 @@
                                         <div>
                                             <h4 class="font-semibold">Securable Software Engineering Model (SSEM)</h4>
                                             <p class="text-sm text-slate-400">Continually target Maintainability, Trustworthiness, and Reliability</p>
+                                            <ul class="ulist text-sm text-slate-400 space-y-1 mt-2">
+                                                <li><b>Maintainability</b> &mdash; code that can be analyzed, modified, tested, and observed without introducing new vulnerabilities.</li>
+                                                <li><b>Trustworthiness</b> &mdash; behavior that meets expectations in a verifiable way: Confidentiality, Accountability, Authenticity.</li>
+                                                <li><b>Reliability</b> &mdash; predictable operation under adverse conditions: Availability, Integrity, Resilience.</li>
+                                                <li>Ask "Do we meet our defined goals for this securable attribute?" rather than a binary "Is it secure?"</li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="flex items-start space-x-3">
@@ -1297,6 +1303,13 @@
                                         <div>
                                             <h4 class="font-semibold">Securable Tenets</h4>
                                             <p class="text-sm text-slate-400">Foster a mindset for creating securable software, support it with process.</p>
+                                            <ul class="ulist text-sm text-slate-400 space-y-1 mt-2">
+                                                <li>Build so security can be maintained &mdash; there is no static state of "secure."</li>
+                                                <li>Parse, don't validate: handle input canonically at every trust boundary.</li>
+                                                <li>Derive integrity-critical values (price, role, state) from server-side authority, never from the client.</li>
+                                                <li>Locate control at trust boundaries; preserve flexibility in the interior.</li>
+                                                <li>Make behavior observable through logging and instrumentation built into the code itself.</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>   

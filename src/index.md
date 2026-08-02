@@ -116,7 +116,16 @@ Encourage Software Engineering as a discipline so as to improve software securit
 #### Code
 
 1. **Securable Software Engineering Model (SSEM)** — Continually target Maintainability, Trustworthiness, and Reliability.
+   - **Maintainability** — code that can be analyzed, modified, tested, and observed without introducing new vulnerabilities.
+   - **Trustworthiness** — behavior that meets expectations in a verifiable way: Confidentiality, Accountability, Authenticity.
+   - **Reliability** — predictable operation under adverse conditions: Availability, Integrity, Resilience.
+   - Ask "Do we meet our defined goals for this securable attribute?" rather than a binary "Is it secure?"
 2. **Securable Tenets** — Foster a mindset for creating securable software; support it with process.
+   - Build so security can be maintained — there is no static state of "secure."
+   - Parse, don't validate: handle input canonically at every trust boundary.
+   - Derive integrity-critical values (price, role, state) from server-side authority, never from the client.
+   - Locate control at trust boundaries; preserve flexibility in the interior.
+   - Make behavior observable through logging and instrumentation built into the code itself.
 
 #### Process
 

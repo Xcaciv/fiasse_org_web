@@ -20,8 +20,8 @@ Core concepts:
 
 ## Framework documentation
 
-- [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md): The canonical v1.0.4 framework specification.
-- [FIASSE RFC (main)](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md): Evolving normative text; pin to v1.0.4 for stable references.
+- [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md): The canonical v1.0.4 framework specification.
+- [FIASSE framework spec (main)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md): Evolving normative text; pin to v1.0.4 for stable references.
 - [OWASP ASVS v5.0.0 chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en): Feature-aligned security requirements used alongside FIASSE for concrete controls.
 
 ## Agent skills
@@ -34,12 +34,12 @@ Core concepts:
 ## Project
 
 - [OWASP project page](https://owasp.org/www-project-fiasse/): Official OWASP project landing page.
-- [GitHub repository](https://github.com/Xcaciv/securable_software_engineering): Source for the framework, RFC, examples, and supplements.
-- [GitHub Discussions](https://github.com/Xcaciv/securable_software_engineering/discussions): Feedback, questions, and discussion.
+- [GitHub repository](https://github.com/OWASP/FIASSE): Source for the framework, RFC, examples, and supplements.
+- [GitHub Discussions](https://github.com/OWASP/FIASSE/discussions): Feedback, questions, and discussion.
 
 ## Optional
 
-- [Examples](https://github.com/Xcaciv/securable_software_engineering/tree/main/examples): Prompts and templates (includes the SSEM-analysis prompt used by the review skill).
+- [Prompts](https://github.com/OWASP/FIASSE/tree/main/prompts): Prompts and templates (includes the securable-engineering add-in prompt used by the review skill).
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/): Tactical references complementary to FIASSE's engineering-first approach.
 - [ISO/IEC 25010:2011](https://www.iso.org/standard/35733.html): Source definitions for Maintainability and Reliability used by SSEM.
 - [RFC 4949 — Internet Security Glossary](https://www.rfc-editor.org/rfc/rfc4949): Source definitions for Confidentiality, Availability used by SSEM.

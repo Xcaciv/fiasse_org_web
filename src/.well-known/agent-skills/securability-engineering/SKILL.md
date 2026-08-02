@@ -19,14 +19,14 @@ Apply FIASSE v1.0.4 / SSEM as engineering constraints when generating, scaffoldi
 
 ## Reference Inputs
 
-- **FIASSE v1.0.4** — [securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) is the authoritative source for principles, sub-attribute definitions, and section numbering used throughout this skill.
+- **FIASSE v1.0.4** — [securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) is the authoritative source for principles, sub-attribute definitions, and section numbering used throughout this skill.
 - **OWASP ASVS v5.0.0** — [English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) provide feature-aligned security requirements. Map the feature being generated to the relevant chapter (e.g. V3 Session Management, V4 Access Control, V5 Validation/Sanitization) and treat the applicable requirements as implementation constraints.
 
 ## SSEM Attribute Enforcement
 
 Every code generation output must satisfy these **ten** sub-attributes.
 
-### Maintainability ([§3.2.1](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md))
+### Maintainability ([§3.2.1](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
@@ -35,7 +35,7 @@ Every code generation output must satisfy these **ten** sub-attributes.
 | **Testability** | All public interfaces testable without modifying the code under test. Dependencies injectable / mockable. Security controls (auth, validation, crypto) isolated for dedicated test suites. |
 | **Observability** | Structured logging with consistent fields at trust boundaries and security-relevant events. Decision-reason capture for allow / deny / redact outcomes. Metrics and traces for critical paths. Health and readiness signals for deployable units. Error messages convey enough context for diagnosis without leaking sensitive data (Transparency Principle, §2.5). |
 
-### Trustworthiness ([§3.2.2](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md))
+### Trustworthiness ([§3.2.2](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
@@ -43,7 +43,7 @@ Every code generation output must satisfy these **ten** sub-attributes.
 | **Accountability** | Security-sensitive actions logged with structured data (who, what, where, when). Audit trails append-only. Auth events (login, logout, failure) and authz decisions (grant, deny) recorded with the responsible principal. No sensitive data in logs. |
 | **Authenticity** | Use established, defendable authentication mechanisms. Verify token / session integrity (signed JWTs, secure cookies). Mutually authenticate service-to-service calls. Support non-repudiation — link actions irrefutably to entities. |
 
-### Reliability ([§3.2.3](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md))
+### Reliability ([§3.2.3](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
@@ -114,8 +114,8 @@ Generated code that embodies FIASSE v1.0.4 securable qualities. When the generat
 
 ## References
 
-- [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification
-- [FIASSE RFC (main)](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md) — evolving normative text; pin to v1.0.4 for stable generation constraints
+- [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification
+- [FIASSE framework spec (main)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text; pin to v1.0.4 for stable generation constraints
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements
 - [`references/principles.md`](references/principles.md) — full text of the FIASSE v1.0.4 principles applied by this skill
 - [`references/checklist.md`](references/checklist.md) — self-check used in Step 8

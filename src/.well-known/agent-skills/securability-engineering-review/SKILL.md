@@ -11,8 +11,8 @@ Review and score code, repositories, and pull/merge requests against the FIASSE 
 For scoring and reporting, this skill is authoritative. If other repository materials use older FIASSE/SSEM attribute groupings (e.g. merged "Authenticity & Accountability", no Observability sub-attribute, or Integrity under Trustworthiness), follow the v1.0.4-aligned model in this file.
 
 Source of truth for alignment:
-- Framework: [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) (pinned)
-- Informative companion prompt: [SSEM-analysis.prompt.md on `main`](https://raw.githubusercontent.com/Securability-Engineering/securable-framework-supplement/refs/heads/main/examples/SSEM-analysis/SSEM-analysis.prompt.md) — moving target; use this SKILL.md as the authoritative scoring contract.
+- Framework: [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) (pinned)
+- Informative companion prompt: [SSEM-analysis.prompt.md on `main`](https://raw.githubusercontent.com/Securability-Engineering/securable-framework-supplement/refs/heads/main/prompts/add-in/securable-engineering.prompt.md) — moving target; use this SKILL.md as the authoritative scoring contract.
 
 ## SSEM v1.0.4 Structure
 
@@ -177,8 +177,8 @@ If evidence is insufficient, state the limitation explicitly and score conservat
 
 ## OWASP & FIASSE References
 
-- [OWASP FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — Framework for Integrating Application Security into Software Engineering
-- [FIASSE RFC on main](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md) — evolving normative text (pin to v1.0.4 for scoring stability)
+- [OWASP FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Framework for Integrating Application Security into Software Engineering
+- [FIASSE framework spec on main](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text (pin to v1.0.4 for scoring stability)
 - ISO/IEC 25010:2011 — Software quality models (Maintainability, Reliability definitions)
 - RFC 4949 — Internet Security Glossary (Confidentiality, Availability definitions)
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements for cross-referencing Trustworthiness and Reliability evidence

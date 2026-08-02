@@ -67,11 +67,11 @@ Deliver a concise enhanced PRD that includes:
 
 ## References
 
-- [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification; pin requirement annotations to this version
+- [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification; pin requirement annotations to this version
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements (pin to this tag for stable requirement IDs)
-- [§2.1–§2.6 Foundational Principles](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — Securable Paradigm, Resiliently Add Computing Value, Security Mission, First Principle Alignment, Transparency, Principle of Least Astonishment
-- [§3.2.1–§3.2.3 SSEM Pillars and sub-attributes](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md) — Maintainability (now includes Observability), Trustworthiness, Reliability
-- [§4.3 Boundary Control Principle](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md)
-- [§4.4.1 Canonical Input Handling, §4.4.1.1 Request Surface Minimization, §4.4.1.2 Derived Integrity](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md)
-- [§6.1 Actionable Security Intelligence Principle](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md)
+- [§2.1–§2.6 Foundational Principles](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Securable Paradigm, Resiliently Add Computing Value, Security Mission, First Principle Alignment, Transparency, Principle of Least Astonishment
+- [§3.2.1–§3.2.3 SSEM Pillars and sub-attributes](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Maintainability (now includes Observability), Trustworthiness, Reliability
+- [§4.3 Boundary Control Principle](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
+- [§4.4.1 Canonical Input Handling, §4.4.1.1 Request Surface Minimization, §4.4.1.2 Derived Integrity](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
+- [§6.1 Actionable Security Intelligence Principle](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
 - [`references/checklist.md`](references/checklist.md) — per-feature PRD-enhancement self-check

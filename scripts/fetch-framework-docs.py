@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: CC-BY-SA-4.0
 """Download the docs/framework subdirectory from a tagged release of
-https://github.com/Xcaciv/securable_software_engineering.
+https://github.com/OWASP/FIASSE.
 
 Usage:
     python scripts/fetch-framework-docs.py [TAG] [OUTPUT_DIR]
@@ -23,7 +23,7 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
-REPO = "Xcaciv/securable_software_engineering"
+REPO = "OWASP/FIASSE"
 SUBDIR = "docs/framework"
 DEFAULT_TAG = "v1.0.4"
 DEFAULT_OUTPUT = Path("docs/framework")

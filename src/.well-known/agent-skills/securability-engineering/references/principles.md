@@ -2,7 +2,7 @@
 
 Full text of the principles invoked by [`../SKILL.md`](../SKILL.md). Each entry names the framework section, what it means in plain terms, and how it should constrain generated code.
 
-Authoritative source: [FIASSE v1.0.4 — securable_framework.md](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md).
+Authoritative source: [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md).
 
 ## Foundational (§2)
 

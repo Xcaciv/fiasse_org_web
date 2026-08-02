@@ -6,7 +6,7 @@ Relentlessly Practical. Relentlessly Securable.
 
 FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Securable Software Engineering. It provides practical guidance for Software Engineers to build securable applications, and for Security to impact securable outcomes.
 
-[Read the Doc (v1.0.4)](https://github.com/Xcaciv/securable_software_engineering/blob/v1.0.4/docs/securable_framework.md)
+[Read the Doc (v1.0.4)](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
 
 > Note: FIASSE is not an assurance framework. This is a new project and some concepts may seem odd — your LLM may not get it either. Share your honest feedback; we want you both to understand.
 
@@ -200,7 +200,7 @@ The model implies the existence of strategies for producing these qualities — 
 
 ### Measuring SSEM Attributes
 
-Measuring SSEM attributes is essential to quantify and evaluate the securable qualities of software. The lists below are a starting point for teams to adapt and expand. Try using [this prompt](https://github.com/Xcaciv/securable_software_engineering/blob/main/examples/SSEM-analysis/SSEM-analysis.prompt.md) in your code assistant to get started.
+Measuring SSEM attributes is essential to quantify and evaluate the securable qualities of software. The lists below are a starting point for teams to adapt and expand. Try using [this prompt](https://github.com/OWASP/FIASSE/blob/main/prompts/add-in/securable-engineering.prompt.md) in your code assistant to get started.
 
 #### Maintainability — Elemental Security
 
@@ -331,7 +331,7 @@ Core principles that guide software engineers in implementing securable software
 
 ### Core Tenets
 
-#### [Securable Principle](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#3-the-securable-principle)
+#### [Securable Principle](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#21-the-securable-paradigm-no-static-secure-state)
 
 Software is never in a final, fixed state of "secure"; instead, it must be built so it can be secured and kept secure over time. Security is an ongoing property of the system's design, code, and operations.
 
@@ -340,7 +340,7 @@ Software is never in a final, fixed state of "secure"; instead, it must be built
 - Emphasize maintainability, trustworthiness, and reliability as core engineering attributes to support long-term security.
 - Design the system so that changes can be applied safely and predictably, without destabilizing it.
 
-#### [Derived Integrity Principle](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#6411-the-derived-integrity-principle)
+#### [Derived Integrity Principle](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#4412-the-isolated-integrity-principle)
 
 An application must not implicitly trust or adopt unmanaged external context — such as client-supplied data or other untrusted inputs — when making critical decisions. Instead, derive important facts (identity, permissions, pricing, state) from authoritative, controlled sources to preserve integrity.
 
@@ -350,7 +350,7 @@ An application must not implicitly trust or adopt unmanaged external context —
 - Use explicitly trusted sources or recompute sensitive values server-side (roles, discounts, balances) rather than accepting them from the client.
 - Design flows so behavior depends on trustworthy state, avoiding hidden or accidental trust in anything an attacker can influence.
 
-#### [Canonical Input Handling](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#641-canonical-input-handling)
+#### [Canonical Input Handling](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#441-canonical-input-handling)
 
 Convert all incoming data into a validated, well-defined state before it is used anywhere in the system. Supports the Securable and Derived Integrity principles by ensuring every decision is based on normalized, predictable input.
 
@@ -362,7 +362,7 @@ Convert all incoming data into a validated, well-defined state before it is used
 - Define clear schemas and allowed formats for all inputs; enforce them at trust boundaries (API gateways, controllers) so the rest of the code works with strongly typed, normalized objects.
 - Use canonicalization to reduce ambiguity and attack surface (encodings, path forms, duplicated fields), making it easier to reason about integrity, authorization, and logging.
 
-#### [The Transparency Principle](https://github.com/Xcaciv/securable_software_engineering/blob/main/docs/FIASSE-RFC.md#26-the-transparency-principle)
+#### [The Transparency Principle](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#26-the-transparency-principle)
 
 How the system works should be perceptible so engineers and stakeholders can see what it is doing, why, and how. Design systems whose behavior is visible.
 
@@ -491,7 +491,7 @@ These patterns undermine AppSec credibility and cause developer disengagement. E
 
 The main repository contains the RFC, examples, and detailed documentation for securable software engineering practices.
 
-- [github.com/Xcaciv/securable_software_engineering](https://github.com/Xcaciv/securable_software_engineering)
+- [github.com/OWASP/FIASSE](https://github.com/OWASP/FIASSE)
 - Active Development · CC BY-SA 4.0 License · Community Driven
 
 ### OWASP Project Page
@@ -503,7 +503,7 @@ Official OWASP project documentation and community resources — comprehensive d
 ### Community
 
 - Slack: `#project-fiasse`
-- GitHub: [@xcaciv/securable_software_engineering](https://github.com/Xcaciv/securable_software_engineering)
+- GitHub: [OWASP/FIASSE](https://github.com/OWASP/FIASSE)
 - OWASP Project: [owasp.org/www-project-fiasse](https://owasp.org/www-project-fiasse/)
 
 Ways to get involved:
@@ -518,8 +518,8 @@ Ways to get involved:
 ### Quick Links
 
 - [OWASP Project Page](https://owasp.org/www-project-fiasse/)
-- [GitHub Repository](https://github.com/Xcaciv/securable_software_engineering)
-- [Examples](https://github.com/Xcaciv/securable_software_engineering/tree/main/examples)
+- [GitHub Repository](https://github.com/OWASP/FIASSE)
+- [Prompts](https://github.com/OWASP/FIASSE/tree/main/prompts)
 - [Other OWASP Projects](https://owasp.org/projects/)
 - [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/)
 
@@ -528,7 +528,7 @@ Ways to get involved:
 - [Privacy Policy](https://owasp.org/www-policy/operational/privacy)
 - [Policies & Terms](https://owasp.org/www-policy/)
 - [License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
-- [Security Policy](https://github.com/Xcaciv/securable_software_engineering/security/policy)
+- [Security Policy](https://github.com/OWASP/FIASSE/security/policy)
 
 ---
 

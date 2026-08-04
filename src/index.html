@@ -1012,7 +1012,7 @@
                 <!-- SSEM Diagram (replaces former hero image) -->
                 <div class="mt-10 mb-4 relative z-20">
                     <svg viewBox="0 0 800 560" class="ssem-diagram" role="img"
-                         aria-label="SSEM Model diagram. Three pillars — Maintainability, Trustworthiness, and Reliability — surround a central Securable hub. Each pillar is interactive and links to its description.">
+                         aria-label="SSEM Model diagram. Three pillars surround a central Securable hub: Maintainability, Trustworthiness, and Reliability. Each pillar is interactive and links to its description.">
                         <!-- Connector lines (rendered first so they sit behind the nodes) -->
                         <g class="ssem-link">
                             <line x1="400" y1="280" x2="195" y2="135"/>
@@ -1498,7 +1498,7 @@
 
                         </div>
                         <p class="text-sm text-slate-400 mt-6 pt-6" style="border-top: 1px solid var(--border-accent-soft);">
-                            Incomplete requirements are the dominant root cause of security gaps in application code. Where security expectations are absent from the requirements developers work from, the resulting implementation is not deficient by error &mdash; it is deficient by design. Some vulnerability classes sit outside this case regardless: injection flaws, supply-chain compromise, cryptographic weaknesses, and truly novel flaws. FIASSE addresses these residuals through Resilience, Dependency Stewardship, and Observability.
+                            Incomplete requirements are the dominant root cause of security gaps in application code. Where security expectations are absent from the requirements developers work from, the resulting implementation is not deficient by error. It is deficient by design. Some vulnerability classes sit outside this case regardless: injection flaws, supply-chain compromise, cryptographic weaknesses, and truly novel flaws. FIASSE addresses these residuals through Resilience, Dependency Stewardship, and Observability.
                         </p>
                     </div>
                 </div>
@@ -1531,7 +1531,7 @@
                                             <h4 class="font-semibold">Securable Tenets</h4>
                                             <p class="text-sm text-slate-400">Foster a mindset for creating securable software, support it with process.</p>
                                             <ul class="ulist text-sm text-slate-400 space-y-1 mt-2">
-                                                <li>Build so security can be maintained &mdash; there is no static state of "secure."</li>
+                                                <li>Build so security can be maintained. There is no static state of "secure."</li>
                                                 <li>Parse, don't validate: handle input canonically at every trust boundary.</li>
                                                 <li>Derive integrity-critical values (price, role, state) from server-side authority, never from the client.</li>
                                                 <li>Locate control at trust boundaries; preserve flexibility in the interior.</li>
@@ -1544,7 +1544,7 @@
 
                             <div>
                                 <h3 class="text-xl font-semibold text-cyan-400 mb-1">Process</h3>
-                                <p class="text-sm text-slate-400 mb-4">These extensions come together in the <a href="#process" onclick="showPage('process'); return false;" class="text-green-400 hover:underline">five-layer integration process</a> &mdash; five development layers, five steps each, from product requirements to incident response.</p>
+                                <p class="text-sm text-slate-400 mb-4">These extensions come together in the <a href="#process" onclick="showPage('process'); return false;" class="text-green-400 hover:underline">five-layer integration process</a>: five development layers, five steps each, from product requirements to incident response.</p>
                                 <div class="space-y-3">
                                     <div class="flex items-start space-x-3">
                                         <div class="w-6 h-6 bg-green-400 rounded-full flex-shrink-0 flex items-center justify-center text-slate-900 font-bold text-sm mt-1">3</div>
@@ -1578,7 +1578,7 @@
                                         <div class="w-6 h-6 bg-green-400 rounded-full flex-shrink-0 flex items-center justify-center text-slate-900 font-bold text-sm mt-1">7</div>
                                         <div>
                                             <h4 class="font-semibold">The Securability Report</h4>
-                                            <p class="text-sm text-slate-400">Every merge produces an informational report combining automated scanning with reviewer assessment in SSEM vocabulary. Generated unconditionally, it blocks nothing by default &mdash; guardrails, not gates. Gating designated finding classes is a policy decision, always with an override path; the resulting audit trail is what proof-based compliance (EU CRA, NIST SP 800-218) consumes. What's managed is posture over time, not the pass rate of individual merges.</p>
+                                            <p class="text-sm text-slate-400">Every merge produces an informational report combining automated scanning with reviewer assessment in SSEM vocabulary. Generated unconditionally, it blocks nothing by default. It works as a guardrail, not a gate. Gating designated finding classes is a policy decision, always with an override path. The resulting audit trail is what proof-based compliance (EU CRA, NIST SP 800-218) consumes. What's managed is posture over time, not the pass rate of individual merges.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1591,7 +1591,7 @@
                 <div id="project-tab-content-assurance" class="tab-content" style="display: none;">
                     <div class="card">
                         <h3 class="text-cyan-400 text-xl font-semibold mb-4">Security Assurance</h3>
-                        <p class="text-slate-400 mb-6">Assurance activities are still important when using the FIASSE approach. However, investment in participation in Requirements and Design phases has high value. Additionally, there is a significant difference in how testing results are used. Assurance metrics are downstream indicators of upstream health &mdash; recurring findings, regressing fixes, or stalled turnaround typically point at requirements or engineering gaps, not at the testing that surfaced them.</p>
+                        <p class="text-slate-400 mb-6">Assurance activities are still important when using the FIASSE approach. However, investment in participation in Requirements and Design phases has high value. Additionally, there is a significant difference in how testing results are used. Assurance metrics are downstream indicators of upstream health. Recurring findings, regressing fixes, or stalled turnaround typically point at requirements or engineering gaps, not at the testing that surfaced them.</p>
                         <div class="grid md:grid-cols-2 gap-8">
                             
                             <div class="phase-border-cyan pl-3">
@@ -1756,7 +1756,7 @@
                                     For The Security Team, the model identifies how existing code meets security needs and areas for improvement. Additionally, if there are security functionality that are not covered by these attributes alone, security knows there are explicit security requirements needed so that such functionality can be properly and completely integrated into the system.
                                 </p>
                                 <p class="mb-6">
-                                    The central shift SSEM enables is a change in the question asked during security assessment: rather than a binary "Is it secure?" evaluation, the focus becomes "Do we meet our defined goals for this particular securable attribute?" &mdash; actionable, measurable, and compatible with iterative development.
+                                    The central shift SSEM enables is a change in the question asked during security assessment: rather than a binary "Is it secure?" evaluation, the focus becomes "Do we meet our defined goals for this particular securable attribute?" That question is actionable, measurable, and compatible with iterative development.
                                 </p>
 
                                 <div class="grid md:grid-cols-2 gap-8">
@@ -1895,7 +1895,7 @@
                                             </div>
                                             <div class="phase-border-green pl-4">
                                                 <h4 class="font-semibold text-green-400">Observability</h4>
-                                                <p class="text-sm text-slate-400">The degree to which the internal state of a system can be inferred from its external outputs. Grounded in Kálmán's 1960 control theory formalization; must be built into the code itself, not achieved through external tooling alone &mdash; a system not instrumented at the code level is opaque by construction.</p>
+                                                <p class="text-sm text-slate-400">The degree to which the internal state of a system can be inferred from its external outputs. Grounded in Kálmán's 1960 control theory formalization; must be built into the code itself, not achieved through external tooling alone. A system not instrumented at the code level is opaque by construction.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2223,7 +2223,7 @@
                                         </div>
                                     </div>
                                     <p class="text-sm text-slate-300">
-                                        Where teams combine SSEM indicators into a composite score, treat it as a directional management aid, not a statement of assurance, compliance, or absolute security &mdash; useful for comparing a system against itself over time, not for claiming the codebase is "secure." Pair scoring with enhancement suggestions that are attribute-specific, actionable (state the next engineering step, not just the deficiency), evidence-based, comparable over time, context-aware, and reviewed when material. The most useful scoring output has three parts: the score, the rationale, and a short list of prioritized changes.
+                                        Where teams combine SSEM indicators into a composite score, treat it as a directional management aid, not a statement of assurance, compliance, or absolute security. It is useful for comparing a system against itself over time, not for claiming the codebase is "secure." Pair scoring with enhancement suggestions that are attribute-specific, actionable (state the next engineering step, not just the deficiency), evidence-based, comparable over time, context-aware, and reviewed when material. The most useful scoring output has three parts: the score, the rationale, and a short list of prioritized changes.
                                     </p>
                                 </div>
                             </div>
@@ -2304,7 +2304,7 @@
                                     Good candidates: pricing and totals calculated server-side from product IDs and quantities, user permissions loaded from a server-side session, object state managed by an internal state machine rather than accepted as a client parameter.
                                 </li>
                                 <li>
-                                    A more advanced application: a server must never accept a client-dictated signature algorithm (e.g., a JWT <code>alg</code> header) for verifying that same client's token &mdash; that lets the client dictate how its own integrity is established.
+                                    A more advanced application: a server must never accept a client-dictated signature algorithm (e.g., a JWT <code>alg</code> header) for verifying that same client's token. That would let the client dictate how its own integrity is established.
                                 </li>
                             </ul>
                         </div>
@@ -2331,7 +2331,7 @@
                         </ul>
 
                         <p class="text-slate-300 mb-4">
-                            <b>The Canonical Parsing Principle</b> &mdash; "Parse, don't validate": perform one strict parse step at the boundary into a canonical internal type, and fail closed if parsing does not succeed. The resulting data structure is proof that required invariants hold; core logic then operates on trustworthy structures instead of reinterpreting raw input repeatedly. Whether a boundary deviation is logged only or logged-and-rejected should be a deliberate policy choice based on context sensitivity, not a silent default &mdash; silent discard forgoes the reconnaissance detection, manipulation prevention, and audit evidence that rejection provides.
+                            <b>The Canonical Parsing Principle</b> &mdash; "Parse, don't validate": perform one strict parse step at the boundary into a canonical internal type, and fail closed if parsing does not succeed. The resulting data structure is proof that required invariants hold; core logic then operates on trustworthy structures instead of reinterpreting raw input repeatedly. Whether a boundary deviation is logged only or logged-and-rejected should be a deliberate policy choice based on context sensitivity, not a silent default. Silent discard forgoes the reconnaissance detection, manipulation prevention, and audit evidence that rejection provides.
                         </p>
 
                         <div class="space-y-4">
@@ -2438,7 +2438,7 @@
                                 <p class="font-semibold text-green-400">In practice, this means:</p>
                                 <ul class="space-y-2 text-slate-400 ulist">
                                     <li>Value added without resilience is capability the business will lose later, with interest, when the system cannot absorb the next threat or requirement.</li>
-                                    <li>Resilience pursued without adding value is security as an end in itself &mdash; the opposite of Business Value over Security Activity.</li>
+                                    <li>Resilience pursued without adding value is security as an end in itself. That is the opposite of Business Value over Security Activity.</li>
                                     <li>Software that meets functional requirements while sustaining Analyzability, Modifiability, and Testability satisfies both halves of the directive.</li>
                                 </ul>
                             </div>
@@ -2541,7 +2541,7 @@
                                 <ol class="layer-steps">
                                     <li class="layer-step"><span class="layer-step-num">I</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">II</span><p>An <a href="#ssem">SSEM-aligned</a> programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with completeness continuously checked against the verifiable requirements &mdash; by the programmer and their tooling, or by the agent in an agentic workflow.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with completeness continuously checked against the verifiable requirements, whether by the programmer and their tooling or by the agent in an agentic workflow.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The change is created with the goal of securability using SSEM attributes: maintainability, trustworthiness, and reliability.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></li>
                                 </ol>
@@ -2614,7 +2614,7 @@
                                 <span class="layer-title">Production Monitoring &amp; Incident Response</span>
                                 <span class="layer-eyebrow">Runtime</span>
                             </span>
-                            <span class="layer-summary">Anomaly detection, containment, and mitigation &mdash; lessons fed back to earlier layers.</span>
+                            <span class="layer-summary">Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers.</span>
                             <span class="layer-phase">Remediation</span>
                             <span class="layer-chevron" aria-hidden="true">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -2624,12 +2624,12 @@
                             <div class="layer-body-inner">
                                 <ol class="layer-steps">
                                     <li class="layer-step"><span class="layer-step-num">I</span><p>Production telemetry, logs, and traces are collected as structured observability, increasing the chance of detection and informing the rest of the process.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Anomaly detection watches for behavior that diverges from expected, requirement-defined norms &mdash; the same baseline of "normal" that drives classification of activity related to an incident.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Anomaly detection watches for behavior that diverges from expected, requirement-defined norms. The same baseline of "normal" drives classification of activity related to an incident.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">III</span><p>Signals are correlated to the acceptance criteria they relate to, not just raw alerts. When an incident is declared, containment and mitigation are performed with external security tooling in near real time.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>Undesirable behavior is documented, compared to requirements, and mapped to code while mitigation buys time for full remediation through the standard process.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria &mdash; an integrated remediation workflow.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria. This creates an integrated remediation workflow.</p></li>
                                 </ol>
-                                <p class="layer-note">*An agentic workflow would correlate anomalies and incident activity with code and architecture, leveraging business-level context to identify and solution quickly &mdash; reintegrating operational observations into the product.</p>
+                                <p class="layer-note">*An agentic workflow would correlate anomalies and incident activity with code and architecture, leveraging business-level context to identify and solution quickly, reintegrating operational observations into the product.</p>
                             </div>
                         </div>
                     </div>
@@ -2846,7 +2846,7 @@
                                 <div class="w-8 h-8 bg-cyan-400 rounded-full flex-shrink-0 flex items-center justify-center text-slate-900 font-bold mt-1">1</div>
                                 <div>
                                     <h4 class="text-cyan-400 font-semibold mb-2">Assess current practices</h4>
-                                    <p class="text-sm text-slate-400">Evaluate organizational readiness through stakeholder discussions and a review of existing security and development workflows. Identify where practices align with SSEM attributes, whether a functioning requirements process exists, whether a senior engineering bench with design maturity and calendar capacity exists, and whether merge reviews are substantive rather than rubber-stamp. Where a prerequisite is thin or absent, name it &mdash; degraded-mode adoption depends on that honesty.</p>
+                                    <p class="text-sm text-slate-400">Evaluate organizational readiness through stakeholder discussions and a review of existing security and development workflows. Identify where practices align with SSEM attributes, whether a functioning requirements process exists, whether a senior engineering bench with design maturity and calendar capacity exists, and whether merge reviews are substantive rather than rubber-stamp. Where a prerequisite is thin or absent, name it. Degraded-mode adoption depends on that honesty.</p>
                                 </div>
                             </div>
                         </div>
@@ -2909,7 +2909,7 @@
                     <div class="card mt-8">
                         <h3 class="text-cyan-400 text-xl font-semibold mb-4">Degraded-Mode Adoption</h3>
                         <p class="text-slate-300 text-sm mb-4">
-                            Where the readiness assessment identifies a gap &mdash; a sparse requirements process, a thin senior bench, an engineering culture that doesn't yet support substantive review &mdash; FIASSE is still adoptable, shaped around the gap rather than pretending the prerequisite is present. This is a legitimate posture, not a failure to adopt; what's illegitimate is claiming full adoption while operating without the prerequisites.
+                            The readiness assessment may identify a gap, such as a sparse requirements process, a thin senior bench, or an engineering culture that doesn't yet support substantive review. FIASSE is still adoptable there, shaped around the gap rather than pretending the prerequisite is present. This is a legitimate posture, not a failure to adopt. What's illegitimate is claiming full adoption while operating without the prerequisites.
                         </p>
                         <ul class="text-slate-400 text-sm space-y-2 ulist">
                             <li><b>Compensate with agentic assistance</b> &mdash; AI-assisted tooling can expand throughput that would otherwise consume scarce senior-engineer hours, though it does not replace the judgment the bench exists to provide.</li>
@@ -2941,7 +2941,7 @@
                             </div>
                         </div>
                         <p class="text-slate-300 text-sm mt-4 pt-4" style="border-top: 1px solid var(--border-accent-soft);">
-                            Where leading indicators don't move after two quarters of good-faith effort, the failure is in adoption &mdash; a missed prerequisite or missing leadership backing. Where leading indicators move but lagging indicators don't follow, the team is owed an honest reassessment of the framework's fit, not a longer runway.
+                            Where leading indicators don't move after two quarters of good-faith effort, the failure is in adoption: a missed prerequisite or missing leadership backing. Where leading indicators move but lagging indicators don't follow, the team is owed an honest reassessment of the framework's fit, not a longer runway.
                         </p>
                     </div>
                 </div>
@@ -2958,7 +2958,7 @@
                         <div class="card">
                             <h4 class="text-cyan-400 text-lg font-semibold mb-3">Security Team</h4>
                             <p class="text-slate-300 text-sm mb-3">
-                                Engage early and often. Shape requirements, design, and architecture rather than arriving at the end with a finding list. This is a strategic shift, not the norm today &mdash; it depends on business-leadership alignment as a precondition and agentic tooling for capacity relief, and it is a transition, not a switchover: assurance work continues while participation is grown into.
+                                Engage early and often. Shape requirements, design, and architecture rather than arriving at the end with a finding list. This is a strategic shift, not the norm today. It depends on business-leadership alignment as a precondition and on agentic tooling for capacity relief. It is a transition, not a switchover. Assurance work continues while participation is grown into.
                             </p>
                             <ul class="text-slate-400 text-sm space-y-2 ulist">
                                 <li>State security objectives in SSEM-grounded acceptance criteria developers can act on.</li>
@@ -2969,7 +2969,7 @@
                         <div class="card">
                             <h4 class="text-green-400 text-lg font-semibold mb-3">Senior Software Engineers</h4>
                             <p class="text-slate-300 text-sm mb-3">
-                                Carry SSEM vocabulary and securable design patterns into merge reviews, architecture decisions, and mentorship &mdash; including review of AI-generated code and the prompt-engineering standards that shape it.
+                                Carry SSEM vocabulary and securable design patterns into merge reviews, architecture decisions, and mentorship, including review of AI-generated code and the prompt-engineering standards that shape it.
                             </p>
                             <ul class="text-slate-400 text-sm space-y-2 ulist">
                                 <li>Model Boundary Control, Isolated Integrity, and Canonical Input Handling in day-to-day code.</li>
@@ -3014,7 +3014,7 @@
                         <div class="card">
                             <h4 class="text-pink-400 text-lg font-semibold mb-3">The Control-as-Requirement Fallacy</h4>
                             <p class="text-slate-300 text-sm mb-3">
-                                Treating a catalog control (NIST 800-53, ISO 27001 Annex A, PCI DSS) as a specification the programmer should already know to build. A control like "Enforce approved authorizations" (AC-3) is deliberately implementation-agnostic; it cannot be verified against a codebase as written. Translated into a requirement &mdash; every request to a document endpoint verifies the caller's permission server-side; unauthorized requests return 403 and are logged &mdash; development has something to implement, and a passing test against those criteria is the audit evidence.
+                                Treating a catalog control (NIST 800-53, ISO 27001 Annex A, PCI DSS) as a specification the programmer should already know to build. A control like "Enforce approved authorizations" (AC-3) is deliberately implementation-agnostic; it cannot be verified against a codebase as written. Translate it into a requirement: every request to a document endpoint verifies the caller's permission server-side, and unauthorized requests return 403 and are logged. Now development has something to implement, and a passing test against those criteria is the audit evidence.
                             </p>
                             <p class="text-slate-400 text-sm">
                                 <strong class="text-pink-400">Corrective:</strong> The requirements process. Allocate which layer satisfies each control, specify the code's share as observable behavior with acceptance criteria, and treat the catalog as a floor, never a ceiling.
@@ -3023,7 +3023,7 @@
                         <div class="card">
                             <h4 class="text-pink-400 text-lg font-semibold mb-3">The Control-as-Protection Fallacy</h4>
                             <p class="text-slate-300 text-sm mb-3">
-                                Reading the documented existence of a control as a property of the software, when many controls are properly satisfied outside the application (platform, network, process). A correctly-external control still leaves residual obligations inside the code &mdash; e.g., the code must accept identity only from the trusted boundary and fail closed when the upstream protection is absent &mdash; that go unspecified because "the control is handled."
+                                Reading the documented existence of a control as a property of the software, when many controls are properly satisfied outside the application (platform, network, process). A correctly-external control still leaves residual obligations inside the code that go unspecified because "the control is handled." For example, the code must accept identity only from the trusted boundary and fail closed when the upstream protection is absent.
                             </p>
                             <p class="text-slate-400 text-sm">
                                 <strong class="text-pink-400">Corrective:</strong> Specify the code's residual share of every relevant control explicitly, implement it, and verify it.

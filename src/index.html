@@ -2527,7 +2527,7 @@
                         <button class="layer-header" onclick="toggleLayer('layer-2')" aria-expanded="false" aria-controls="layer-2-body">
                             <span class="layer-badge">L2</span>
                             <span class="layer-heading">
-                                <span class="layer-title">IDE/Agent-Embedded</span>
+                                <span class="layer-title">Agent-Embedded Guardrails</span>
                                 <span class="layer-eyebrow">While Building</span>
                             </span>
                             <span class="layer-summary">Completeness &amp; Securability against verifiable requirements.</span>
@@ -2541,7 +2541,7 @@
                                 <ol class="layer-steps">
                                     <li class="layer-step"><span class="layer-step-num">I</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">II</span><p>An <a href="#ssem">SSEM-aligned</a> programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with the agent continuously checking completeness against the verifiable requirements.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Code is generated or written against the specifications, with completeness continuously checked against the verifiable requirements &mdash; by the programmer and their tooling, or by the agent in an agentic workflow.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">IV</span><p>The change is created with the goal of securability using SSEM attributes: maintainability, trustworthiness, and reliability.</p></li>
                                     <li class="layer-step"><span class="layer-step-num">V</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></li>
                                 </ol>
@@ -2555,7 +2555,7 @@
                         <button class="layer-header" onclick="toggleLayer('layer-3')" aria-expanded="false" aria-controls="layer-3-body">
                             <span class="layer-badge">L3</span>
                             <span class="layer-heading">
-                                <span class="layer-title">Intelligent Code Integration</span>
+                                <span class="layer-title">Intelligent Code Control</span>
                                 <span class="layer-eyebrow">Merge Time</span>
                             </span>
                             <span class="layer-summary">Triage, fix, review-ready PRs with audit-grade evidence as a byproduct.</span>
@@ -2611,53 +2611,25 @@
                         <button class="layer-header" onclick="toggleLayer('layer-5')" aria-expanded="false" aria-controls="layer-5-body">
                             <span class="layer-badge">L5</span>
                             <span class="layer-heading">
-                                <span class="layer-title">Production Behavioral Monitoring</span>
+                                <span class="layer-title">Production Monitoring &amp; Incident Response</span>
                                 <span class="layer-eyebrow">Runtime</span>
                             </span>
-                            <span class="layer-summary">Anomaly detection feeding signals back to previous layers.</span>
+                            <span class="layer-summary">Anomaly detection, containment, and mitigation &mdash; lessons fed back to earlier layers.</span>
                             <span class="layer-phase">Remediation</span>
                             <span class="layer-chevron" aria-hidden="true">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </span>
                         </button>
-                        <div class="layer-body" id="layer-5-body" role="region" aria-label="Layer 5 steps">
+                        <div class="layer-body" id="layer-5-body" role="region" aria-label="Production Monitoring and Incident Response steps">
                             <div class="layer-body-inner">
                                 <ol class="layer-steps">
-                                    <li class="layer-step"><span class="layer-step-num">I</span><p>Production telemetry, logs, and traces are collected as structured observability.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Anomaly detection watches for behavior that diverges from expected, requirement-defined norms.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Signals are correlated to the acceptance criteria they relate to, not just raw alerts.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>External tooling serve as mitigation in near real time until the application is corrected through the standard process.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies feed back into earlier layers as new or refined requirements, threat scenarios, or acceptance criteria.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">I</span><p>Production telemetry, logs, and traces are collected as structured observability, increasing the chance of detection and informing the rest of the process.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Anomaly detection watches for behavior that diverges from expected, requirement-defined norms &mdash; the same baseline of "normal" that drives classification of activity related to an incident.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Signals are correlated to the acceptance criteria they relate to, not just raw alerts. When an incident is declared, containment and mitigation are performed with external security tooling in near real time.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Undesirable behavior is documented, compared to requirements, and mapped to code while mitigation buys time for full remediation through the standard process.</p></li>
+                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria &mdash; an integrated remediation workflow.</p></li>
                                 </ol>
-                                <p class="layer-note">*An agentic workflow would enhance and correlate actual anomalies with code and architecture, reintegrating the observations from operations into the product.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- IR -->
-                    <div class="layer-item" id="layer-6" data-phase="remediation">
-                        <button class="layer-header" onclick="toggleLayer('layer-6')" aria-expanded="false" aria-controls="layer-6-body">
-                            <span class="layer-badge">IR</span>
-                            <span class="layer-heading">
-                                <span class="layer-title">Incident Response</span>
-                                <span class="layer-eyebrow">Runtime</span>
-                            </span>
-                            <span class="layer-summary">Fast mitigation, informing quality remediation.</span>
-                            <span class="layer-phase">Incident</span>
-                            <span class="layer-chevron" aria-hidden="true">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </span>
-                        </button>
-                        <div class="layer-body" id="layer-6-body" role="region" aria-label="Incident Response steps">
-                            <div class="layer-body-inner">
-                                <ol class="layer-steps">
-                                    <li class="layer-step"><span class="layer-step-num">I</span><p>Observability increases the chance of detection and informs the rest of the process.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">II</span><p>Level 5 output defines "normal" operation driving classification of observable activities for flagging those related to the incident.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">III</span><p>Containment and mitigation is performed with external security tooling.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">IV</span><p>Undesirable behavior can be documented, compared to requirements and mapped to code.</p></li>
-                                    <li class="layer-step"><span class="layer-step-num">V</span><p>Updated expectations and tests pass into layers 1 and 2 for an integrated remediation workflow.</p></li>
-                                </ol>
-                                <p class="layer-note">*An agentic workflow would leverage business level context to help identify and solution quickly.</p>
+                                <p class="layer-note">*An agentic workflow would correlate anomalies and incident activity with code and architecture, leveraging business-level context to identify and solution quickly &mdash; reintegrating operational observations into the product.</p>
                             </div>
                         </div>
                     </div>
@@ -3202,7 +3174,7 @@
             project:      { tabs: ['overview', 'expectations', 'implementation', 'assurance'], default: 'overview' },
             ssem:         { tabs: ['overview', 'model', 'metrics'],                              default: 'overview' },
             tenets:       { tabs: ['core', 'principles'],                                        default: 'core' },
-            process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5', 'layer-6'], default: null },
+            process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5'], default: null },
             adoption:     { tabs: ['plan', 'roles', 'anti-patterns'],                             default: 'plan' }
         };
 

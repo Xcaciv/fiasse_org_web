@@ -1109,6 +1109,15 @@
         .agentic-note .an-label { color: var(--text-muted); letter-spacing: 0.14em; margin-right: 0.5rem; }
         .agentic-note code { color: var(--accent); }
 
+        /* Setting Expectations cards */
+        .exp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+        .exp-card { background: var(--bg-elev); border: 1px solid var(--border-accent-soft); padding: 1.5rem 1.7rem; }
+        .exp-card-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem; }
+        .exp-item { display: flex; gap: 0.95rem; padding: 0.6rem 0; }
+        .exp-item .n { font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; padding-top: 0.15rem; }
+        .exp-item h4 { font-size: 0.94rem; color: var(--text-base); margin-bottom: 0.3rem; }
+        .exp-item p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
         /* Failure-mode rows */
         .fail-list { display: flex; flex-direction: column; gap: 1rem; }
         .fail-row { display: grid; grid-template-columns: 3rem minmax(0, 15rem) minmax(0, 1fr); gap: 1.4rem; background: var(--bg-elev); border: 1px solid var(--border-accent-soft); padding: 1.3rem 1.5rem; transition: border-color 0.15s ease; }
@@ -1205,7 +1214,7 @@
         }
         @media (max-width: 768px) {
             .topnav { display: none; }
-            .value-grid, .tenet-grid, .indicator-grid, .role-grid, .res-link-grid, .mini-grid { grid-template-columns: 1fr; }
+            .value-grid, .tenet-grid, .indicator-grid, .role-grid, .res-link-grid, .mini-grid, .exp-grid { grid-template-columns: 1fr; }
             .res-feature-grid { grid-template-columns: 1fr; }
             .fail-row { grid-template-columns: 3rem minmax(0, 1fr); }
             .fail-body { grid-column: 1 / -1; }
@@ -1380,7 +1389,7 @@
                     </div>
                     <div class="mini-grid">
                         <button class="mini-card" onclick="showPage('process')">
-                            <h4 class="text-cyan-400">Expectations</h4>
+                            <h4 class="text-cyan-400">Setting Expectations</h4>
                             <p>Reference architectures, threat scenarios, and acceptance criteria set before code is written.</p>
                         </button>
                         <button class="mini-card" onclick="showPage('process')">
@@ -1660,11 +1669,6 @@
                     </div>
                 </div>
 
-                <div class="quote-bar purple mt-10">
-                    "Incomplete requirements are the dominant root cause of security gaps in application code.
-                    Where security expectations are absent from the requirements developers work from, the resulting
-                    implementation is not deficient by error. It is deficient by design."
-                </div>
             </div>
         </section>
 
@@ -1801,6 +1805,93 @@
 
                 <div class="separator mt-14"></div>
 
+                <!-- Setting Expectations -->
+                <div class="eyebrow-row"><span class="slashes">//</span><span class="eyebrow-label">Setting Expectations</span></div>
+                <div class="section-h" style="margin-bottom: 0.6rem;">
+                    <h2 style="color: var(--text-base);">Where Security Outcomes Are Decided</h2>
+                </div>
+                <p class="lede" style="margin-top: 0.2rem; margin-bottom: 1.8rem;">
+                    The central idea of FIASSE: security outcomes are decided where expectations are set.
+                    Participation during architecture and requirements produces the artifacts that every
+                    later layer consumes.
+                </p>
+                <div class="exp-grid">
+                    <div class="exp-card">
+                        <div class="exp-card-label">Architecture &amp; Design</div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent-tertiary);">01</span>
+                            <span>
+                                <h4>Reference Architecture</h4>
+                                <p>Leverage known security architectures to inform needed architecture outcomes.</p>
+                            </span>
+                        </div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent-tertiary);">02</span>
+                            <span>
+                                <h4>Threat Modeling</h4>
+                                <p>Identify potential threats and vulnerabilities using a formal methodology like STRIDE,
+                                   PASTA, or LINDDUN, conducted by a cross-functional group and producing a documented
+                                   threat model.</p>
+                            </span>
+                        </div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent-tertiary);">03</span>
+                            <span>
+                                <h4>Threat Awareness</h4>
+                                <p>A lightweight, continuous complement to formal threat modeling: asking "What can go
+                                   wrong?" at the code level, guided by the Four Question Framework. It does not
+                                   substitute for formal threat modeling. Design-level findings should be escalated
+                                   into the formal threat model.</p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="exp-card">
+                        <div class="exp-card-label">Requirements</div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent);">01</span>
+                            <span>
+                                <h4>Threat Scenarios</h4>
+                                <p>Identify potential threats and frame them as use cases.</p>
+                            </span>
+                        </div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent);">02</span>
+                            <span>
+                                <h4>Security Acceptance Criteria</h4>
+                                <p>Specific, testable conditions a feature must satisfy to be considered secure.
+                                   Implementation completeness against defined acceptance criteria is itself a
+                                   measurable security outcome.</p>
+                            </span>
+                        </div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent);">03</span>
+                            <span>
+                                <h4>Security Requirements</h4>
+                                <p>Features that handle sensitive data or perform delicate operations require explicit
+                                   security requirements specifying what the feature must do and how. ASVS is a useful
+                                   reference for what to require.</p>
+                            </span>
+                        </div>
+                        <div class="exp-item">
+                            <span class="n" style="color: var(--accent);">04</span>
+                            <span>
+                                <h4>Security Features</h4>
+                                <p>Specific capabilities whose purpose is security: Defendable Authentication, encryption
+                                   at rest, authorization checks, audit logging. Security features are built; they are
+                                   how engineering attention is invested. Specify them with the same rigor as any other
+                                   feature.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote-bar purple mt-8">
+                    "Incomplete requirements are the dominant root cause of security gaps in application code.
+                    Where security expectations are absent from the requirements developers work from, the resulting
+                    implementation is not deficient by error. It is deficient by design."
+                </div>
+
+                <div class="separator mt-14"></div>
+
                 <!-- Three project pillars -->
                 <div class="section-h">
                     <h2 style="color: var(--text-base);">Three Project Pillars</h2>
@@ -1808,7 +1899,7 @@
                 <div class="trio-grid">
                     <div class="num-card">
                         <span class="num" style="color: var(--accent);">01</span>
-                        <h3 class="text-cyan-400">Expectations</h3>
+                        <h3 class="text-cyan-400">Setting Expectations</h3>
                         <p>Set security expectations before code is written: reference architectures, threat
                            scenarios, acceptance criteria, and explicit security requirements. These are not domains
                            in the maturity-framework sense. They indicate the context of development activity.</p>

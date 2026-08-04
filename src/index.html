@@ -935,10 +935,14 @@
         .brand-mark {
             width: 1.85rem; height: 1.85rem; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--accent); color: var(--accent);
-            font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
-            letter-spacing: 0.05em; box-shadow: 0 0 12px -4px var(--glow-accent);
+            border: 1px solid var(--accent); border-radius: 50%;
+            box-shadow: 0 0 12px -4px var(--glow-accent);
+            padding: 0.28rem; box-sizing: border-box;
         }
+        .brand-mark img { width: 100%; height: 100%; display: block; }
+        .brand-mark .brand-mark-black { display: none; }
+        [data-theme="light"] .brand-mark .brand-mark-white { display: none; }
+        [data-theme="light"] .brand-mark .brand-mark-black { display: block; }
         .brand-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.02rem; letter-spacing: 0.08em; color: var(--text-base); }
         .brand-ver { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; }
         .topnav { margin-left: auto; display: flex; align-items: center; gap: 0.15rem; }
@@ -1228,7 +1232,10 @@
         <div class="container mx-auto px-4">
             <div class="topbar-inner">
                 <button class="brand" onclick="showPage('project')" aria-label="OWASP FIASSE home">
-                    <span class="brand-mark">OW</span>
+                    <span class="brand-mark">
+                        <img class="brand-mark-white" src="img/OWASP_Icon_R_White.svg" alt="" width="24" height="24">
+                        <img class="brand-mark-black" src="img/OWASP_Icon_R_Black.svg" alt="" width="24" height="24">
+                    </span>
                     <span class="brand-name">FIASSE</span>
                     <span class="brand-ver">v1.0.6</span>
                 </button>
@@ -2306,7 +2313,10 @@
             <div class="footer-grid">
                 <div>
                     <div class="brand">
-                        <span class="brand-mark">OW</span>
+                        <span class="brand-mark">
+                            <img class="brand-mark-white" src="img/OWASP_Icon_R_White.svg" alt="" width="24" height="24">
+                            <img class="brand-mark-black" src="img/OWASP_Icon_R_Black.svg" alt="" width="24" height="24">
+                        </span>
                         <span class="brand-name">OWASP FIASSE</span>
                     </div>
                     <p class="footer-desc">

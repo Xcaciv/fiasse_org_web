@@ -322,7 +322,7 @@ Measuring SSEM attributes is essential to quantify and evaluate the securable qu
 - Verification of identities.
 - Adaptability of authentication mechanisms — whether the design supports ongoing analysis, modification, and verification as threats evolve.
 
-#### Reliability — Universal Security
+#### Reliability — Behavioral Security
 
 ##### Availability
 

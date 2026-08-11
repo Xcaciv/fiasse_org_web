@@ -53,13 +53,13 @@ jobs:
                   raise RuntimeError(f"No </body> tag found in {file_path}")
 
               midpoint = body_start + ((body_end - body_start) // 2)
-                line_end = content.find(">", midpoint, body_end)
-                if line_end == -1:
-                  raise RuntimeError(f"No newline found after midpoint in {file_path}")
+              line_end = content.find(">", midpoint, body_end)
+              if line_end == -1:
+                raise RuntimeError(f"No newline found after midpoint in {file_path}")
 
-                line_break = "\r\n" if line_end > 0 and content[line_end - 1] == "\r" else "\n"
-                insert_at = line_end + 1
-                updated = content[:insert_at] + comment + line_break + content[insert_at:]
+              line_break = "\r\n" if line_end > 0 and content[line_end - 1] == "\r" else "\n"
+              insert_at = line_end + 1
+              updated = content[:insert_at] + comment + line_break + content[insert_at:]
               file_path.write_text(updated, encoding="utf-8")
 
           print("Inserted comments into target HTML files.")

@@ -715,24 +715,25 @@
         .proc-list { display: flex; flex-direction: column; gap: 0.85rem; }
         .proc-item { display: flex; gap: 0.85rem; align-items: flex-start; text-align: left; background: var(--bg-elev); border: 1px solid var(--border-accent-soft); padding: 0.95rem 1.05rem; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
         .proc-item:hover { border-color: var(--border-accent); }
-        .proc-item.active { border-color: var(--accent-tertiary); background: color-mix(in srgb, var(--accent-tertiary) 7%, transparent); box-shadow: 0 0 22px -12px var(--glow-tertiary); }
-        .proc-item .l-badge { font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem; padding-top: 0.1rem; }
+        .proc-item { --proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary); }
+        .proc-item.active { border-color: var(--proc-accent); background: color-mix(in srgb, var(--proc-accent) 7%, transparent); box-shadow: 0 0 22px -12px var(--proc-glow); }
+        .proc-item .l-badge { color: var(--proc-accent); font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem; padding-top: 0.1rem; }
         .proc-item-title { font-family: var(--font-heading); font-weight: 600; font-size: 0.92rem; color: var(--text-base); margin-bottom: 0.3rem; }
         .proc-item-meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); line-height: 1.55; }
-        .proc-detail { background: var(--bg-elev); border: 1px solid var(--accent-tertiary); padding: 1.8rem 2rem; box-shadow: 0 0 38px -22px var(--glow-tertiary); }
+        .proc-detail { --proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary); background: var(--bg-elev); border: 1px solid var(--proc-accent); padding: 1.8rem 2rem; box-shadow: 0 0 38px -22px var(--proc-glow); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
         .proc-detail-panel { display: none; }
         .proc-detail-panel.active { display: block; }
         .proc-detail-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.6rem; }
-        .proc-detail-l { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--accent-tertiary); }
-        .proc-detail-meta { flex: 1; border: 1px solid var(--accent-tertiary); color: var(--accent-tertiary); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; }
+        .proc-detail-l { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--proc-accent); }
+        .proc-detail-meta { flex: 1; border: 1px solid var(--proc-accent); color: var(--proc-accent); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; }
         .proc-detail h2 { font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 1.4rem; }
         .proc-steps { display: flex; flex-direction: column; }
         .proc-step { position: relative; display: flex; gap: 1rem; padding-bottom: 1.35rem; }
-        .proc-step-num { flex-shrink: 0; width: 1.7rem; height: 1.7rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; border: 1px solid var(--accent-tertiary); color: var(--accent-tertiary); background: var(--bg-base); z-index: 1; }
+        .proc-step-num { flex-shrink: 0; width: 1.7rem; height: 1.7rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; border: 1px solid var(--proc-accent); color: var(--proc-accent); background: var(--bg-base); z-index: 1; }
         .proc-step::before { content: ''; position: absolute; left: 0.85rem; top: 1.7rem; bottom: 0; width: 1px; background: var(--border-accent-soft); }
         .proc-step:last-child::before { display: none; }
         .proc-step p { color: var(--text-body); font-size: 0.94rem; line-height: 1.6; padding-top: 0.15rem; }
-        .agentic-note { margin-top: 0.8rem; padding-top: 1.1rem; border-top: 1px dashed var(--border-accent-soft); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: var(--accent-tertiary); }
+        .agentic-note { margin-top: 0.8rem; padding-top: 1.1rem; border-top: 1px dashed var(--border-accent-soft); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: var(--proc-accent); }
         .agentic-note .an-label { color: var(--text-muted); letter-spacing: 0.14em; margin-right: 0.5rem; }
         .agentic-note code { color: var(--accent); }
 
@@ -1328,36 +1329,36 @@
                 <div class="proc-grid mt-10">
                     <!-- Layer list -->
                     <div class="proc-list" role="tablist" aria-label="Process layers">
-                        <button class="proc-item active" id="layer-1" role="tab" aria-selected="true" onclick="selectProcLayer('layer-1')">
-                            <span class="l-badge" style="color: var(--accent-tertiary);">L1</span>
+                        <button class="proc-item active" id="layer-1" role="tab" aria-selected="true" onclick="selectProcLayer('layer-1')" style="--proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary);">
+                            <span class="l-badge">L1</span>
                             <span>
                                 <span class="proc-item-title block">Product Requirements</span>
                                 <span class="proc-item-meta block">Pre-Programming · FIASSE + ASVS injected at requirements · Prevention</span>
                             </span>
                         </button>
-                        <button class="proc-item" id="layer-2" role="tab" aria-selected="false" onclick="selectProcLayer('layer-2')">
-                            <span class="l-badge" style="color: var(--accent-tertiary);">L2</span>
+                        <button class="proc-item" id="layer-2" role="tab" aria-selected="false" onclick="selectProcLayer('layer-2')" style="--proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary);">
+                            <span class="l-badge">L2</span>
                             <span>
                                 <span class="proc-item-title block">Agent-Embedded Guardrails</span>
                                 <span class="proc-item-meta block">While Building · Completeness &amp; Securability against verifiable requirements · Prevention</span>
                             </span>
                         </button>
-                        <button class="proc-item" id="layer-3" role="tab" aria-selected="false" onclick="selectProcLayer('layer-3')">
-                            <span class="l-badge" style="color: var(--accent-quaternary);">L3</span>
+                        <button class="proc-item" id="layer-3" role="tab" aria-selected="false" onclick="selectProcLayer('layer-3')" style="--proc-accent: var(--accent-quaternary); --proc-glow: var(--glow-quaternary);">
+                            <span class="l-badge">L3</span>
                             <span>
                                 <span class="proc-item-title block">Intelligent Code Control</span>
                                 <span class="proc-item-meta block">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration</span>
                             </span>
                         </button>
-                        <button class="proc-item" id="layer-4" role="tab" aria-selected="false" onclick="selectProcLayer('layer-4')">
-                            <span class="l-badge" style="color: var(--accent-secondary);">L4</span>
+                        <button class="proc-item" id="layer-4" role="tab" aria-selected="false" onclick="selectProcLayer('layer-4')" style="--proc-accent: var(--accent-secondary); --proc-glow: var(--glow-secondary);">
+                            <span class="l-badge">L4</span>
                             <span>
                                 <span class="proc-item-title block">Intelligent Remediation</span>
                                 <span class="proc-item-meta block">Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation</span>
                             </span>
                         </button>
-                        <button class="proc-item" id="layer-5" role="tab" aria-selected="false" onclick="selectProcLayer('layer-5')">
-                            <span class="l-badge" style="color: var(--accent-secondary);">L5</span>
+                        <button class="proc-item" id="layer-5" role="tab" aria-selected="false" onclick="selectProcLayer('layer-5')" style="--proc-accent: var(--accent-secondary); --proc-glow: var(--glow-secondary);">
+                            <span class="l-badge">L5</span>
                             <span>
                                 <span class="proc-item-title block">Production Monitoring &amp; Incident Response</span>
                                 <span class="proc-item-meta block">Runtime · Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers · Remediation</span>
@@ -1367,7 +1368,7 @@
 
                     <!-- Detail panels -->
                     <div class="proc-detail">
-                        <div class="proc-detail-panel active" id="layer-1-detail" role="tabpanel">
+                        <div class="proc-detail-panel active" id="layer-1-detail" role="tabpanel" style="--proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary);">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L1</span>
                                 <span class="proc-detail-meta">Pre-Programming · FIASSE + ASVS injected at requirements · Prevention</span>
@@ -1382,7 +1383,7 @@
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>prd-securability-enhancement</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-2-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-2-detail" role="tabpanel" style="--proc-accent: var(--accent-tertiary); --proc-glow: var(--glow-tertiary);">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L2</span>
                                 <span class="proc-detail-meta">While Building · Completeness &amp; Securability against verifiable requirements · Prevention</span>
@@ -1397,7 +1398,7 @@
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>securability-engineering</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-3-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-3-detail" role="tabpanel" style="--proc-accent: var(--accent-quaternary); --proc-glow: var(--glow-quaternary);">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L3</span>
                                 <span class="proc-detail-meta">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration</span>
@@ -1412,7 +1413,7 @@
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>securability-engineering-review</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-4-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-4-detail" role="tabpanel" style="--proc-accent: var(--accent-secondary); --proc-glow: var(--glow-secondary);">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L4</span>
                                 <span class="proc-detail-meta">Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation</span>
@@ -1427,7 +1428,7 @@
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow could perform this process on minor deviations, escalating more complex or sensitive issues.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-5-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-5-detail" role="tabpanel" style="--proc-accent: var(--accent-secondary); --proc-glow: var(--glow-secondary);">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L5</span>
                                 <span class="proc-detail-meta">Runtime · Anomaly detection, containment, and mitigation · Remediation</span>
@@ -2129,7 +2130,15 @@
                 item.setAttribute('aria-selected', active ? 'true' : 'false');
             });
             document.querySelectorAll('.proc-detail-panel').forEach(panel => {
-                panel.classList.toggle('active', panel.id === `${layerId}-detail`);
+                const active = panel.id === `${layerId}-detail`;
+                panel.classList.toggle('active', active);
+                if (active) {
+                    const detail = panel.closest('.proc-detail');
+                    if (detail) {
+                        detail.style.setProperty('--proc-accent', panel.style.getPropertyValue('--proc-accent'));
+                        detail.style.setProperty('--proc-glow', panel.style.getPropertyValue('--proc-glow'));
+                    }
+                }
             });
 
             if (updateUrl) {

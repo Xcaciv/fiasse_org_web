@@ -53,7 +53,7 @@ jobs:
                   raise RuntimeError(f"No </body> tag found in {file_path}")
 
               midpoint = body_start + ((body_end - body_start) // 2)
-                line_end = content.find("\n", midpoint, body_end)
+                line_end = content.find(">", midpoint, body_end)
                 if line_end == -1:
                   raise RuntimeError(f"No newline found after midpoint in {file_path}")
 

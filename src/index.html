@@ -866,6 +866,7 @@
                 <nav class="topnav" aria-label="Primary">
                     <button onclick="showPage('project')" id="nav-project" class="topnav-link active">Project</button>
                     <button onclick="showPage('ssem')" id="nav-ssem" class="topnav-link">SSEM</button>
+                    <button onclick="showPage('corevalues')" id="nav-corevalues" class="topnav-link">Core Values</button>
                     <button onclick="showPage('tenets')" id="nav-tenets" class="topnav-link">Tenets</button>
                     <button onclick="showPage('process')" id="nav-process" class="topnav-link">Process</button>
                     <button onclick="showPage('adoption')" id="nav-adoption" class="topnav-link">Adoption</button>
@@ -889,6 +890,7 @@
             <div class="flex flex-col space-y-2">
                 <button onclick="showPage('project'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Project</button>
                 <button onclick="showPage('ssem'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">SSEM</button>
+                <button onclick="showPage('corevalues'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Core Values</button>
                 <button onclick="showPage('tenets'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Tenets</button>
                 <button onclick="showPage('process'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Process</button>
                 <button onclick="showPage('adoption'); toggleMobileMenu()" class="btn-ghost px-4 py-2 rounded-lg font-medium text-left">Adoption</button>
@@ -1043,48 +1045,14 @@
         <section id="page-ssem" class="page-section py-16 px-4">
             <div class="container mx-auto max-w-6xl">
                 <div class="eyebrow-row"><span class="slashes">//</span><span class="eyebrow-label">SSEM · Securable Software Engineering Model</span></div>
-                <h1 class="text-4xl md:text-5xl font-bold title-left" style="color: var(--text-base);">Four Core Values</h1>
+                <h1 class="text-4xl md:text-5xl font-bold title-left" style="color: var(--text-base);">SSEM Code Attributes</h1>
                 <p class="lede">
                     A body of software engineering terms to describe fundamental attributes of securable
                     software. A shared design language for product, development, security, and management.
                 </p>
 
-                <div class="value-grid mt-10">
-                    <div class="num-card">
-                        <span class="num" style="color: var(--accent-tertiary);">01</span><span class="tick" style="color: var(--accent-tertiary);"></span>
-                        <h3 style="color: var(--text-base);">Securable Attributes over Security Controls</h3>
-                        <p>Software engineers build security features using securable attributes to satisfy
-                           security acceptance criteria. Control catalogs remain valid where they do their work:
-                           risk management, assurance, and external evaluation. They measure software; they do not construct it.</p>
-                    </div>
-                    <div class="num-card">
-                        <span class="num" style="color: var(--accent);">02</span><span class="tick" style="color: var(--accent);"></span>
-                        <h3 style="color: var(--text-base);">Participation over Assessment</h3>
-                        <p>Security teams offer high value when actively participating in development rather
-                           than solely assessing, reviewing, and reporting after the fact. Participation enables
-                           organic knowledge transfer from the start.</p>
-                    </div>
-                    <div class="num-card">
-                        <span class="num" style="color: var(--accent-quaternary);">03</span><span class="tick" style="color: var(--accent-quaternary);"></span>
-                        <h3 style="color: var(--text-base);">Engineering First Principles over Security Jargon</h3>
-                        <p>Ground security in established software engineering first principles rather than
-                           security-specific jargon or adversarial heuristics. Shared engineering vocabulary lets
-                           developers reason about security without years of specialized training.</p>
-                    </div>
-                    <div class="num-card">
-                        <span class="num" style="color: var(--accent-secondary);">04</span><span class="tick" style="color: var(--accent-secondary);"></span>
-                        <h3 style="color: var(--text-base);">Business Value over Security Activity</h3>
-                        <p>Security that sustains the organization's value creation over security pursued as an
-                           end in itself. Judge security efforts by how well they support business objectives and
-                           risk tolerance, not by how much activity they generate.</p>
-                    </div>
-                </div>
-
-                <div class="separator"></div>
-
                 <!-- Model attributes -->
-                <div class="section-h">
-                    <h2 style="color: var(--text-base);">Model Attributes</h2>
+                <div class="section-h mt-10" style="justify-content: flex-end;">
                     <span class="section-hint">Click a pillar to expand definitions</span>
                 </div>
                 <div class="trio-grid">
@@ -1175,6 +1143,50 @@
                     "The central shift SSEM enables is a change in the question asked during security assessment:
                     rather than a binary 'Is it secure?' evaluation, the focus becomes 'Do we meet our defined goals
                     for this particular securable attribute?'"
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section id="page-corevalues" class="page-section py-16 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="eyebrow-row"><span class="slashes">//</span><span class="eyebrow-label">Core Values · Foundational Principles of FIASSE</span></div>
+                <h1 class="text-4xl md:text-5xl font-bold title-left" style="color: var(--text-base);">Four Core Values</h1>
+                <p class="lede">
+                    FIASSE is oriented by four core values. Framed in the spirit of the Agile Manifesto,
+                    each expresses a relative preference: both sides have worth, but when choices must be
+                    made, FIASSE favors the left.
+                </p>
+
+                <div class="value-grid mt-10">
+                    <div class="num-card">
+                        <span class="num" style="color: var(--accent-tertiary);">01</span><span class="tick" style="color: var(--accent-tertiary);"></span>
+                        <h3 style="color: var(--text-base);">Securable Attributes over Security Controls</h3>
+                        <p>Software engineers build security features using securable attributes to satisfy
+                           security acceptance criteria. Control catalogs remain valid where they do their work:
+                           risk management, assurance, and external evaluation. They measure software; they do not construct it.</p>
+                    </div>
+                    <div class="num-card">
+                        <span class="num" style="color: var(--accent);">02</span><span class="tick" style="color: var(--accent);"></span>
+                        <h3 style="color: var(--text-base);">Participation over Assessment</h3>
+                        <p>Security teams offer high value when actively participating in development rather
+                           than solely assessing, reviewing, and reporting after the fact. Participation enables
+                           organic knowledge transfer from the start.</p>
+                    </div>
+                    <div class="num-card">
+                        <span class="num" style="color: var(--accent-quaternary);">03</span><span class="tick" style="color: var(--accent-quaternary);"></span>
+                        <h3 style="color: var(--text-base);">Engineering First Principles over Security Jargon</h3>
+                        <p>Ground security in established software engineering first principles rather than
+                           security-specific jargon or adversarial heuristics. Shared engineering vocabulary lets
+                           developers reason about security without years of specialized training.</p>
+                    </div>
+                    <div class="num-card">
+                        <span class="num" style="color: var(--accent-secondary);">04</span><span class="tick" style="color: var(--accent-secondary);"></span>
+                        <h3 style="color: var(--text-base);">Business Value over Security Activity</h3>
+                        <p>Security that sustains the organization's value creation over security pursued as an
+                           end in itself. Judge security efforts by how well they support business objectives and
+                           risk tolerance, not by how much activity they generate.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1959,6 +1971,7 @@
                         </div>
                         <div>
                             <button class="footer-link" onclick="showPage('ssem')">SSEM</button>
+                            <button class="footer-link" onclick="showPage('corevalues')">Core Values</button>
                             <button class="footer-link" onclick="showPage('process')">Process</button>
                             <button class="footer-link" onclick="showPage('resources')">Resources</button>
                         </div>
@@ -2005,6 +2018,7 @@
         const PAGES = {
             project:      { tabs: null, default: null },
             ssem:         { tabs: ['ssem-maintainability', 'ssem-trustworthiness', 'ssem-reliability'], default: null },
+            corevalues:   { tabs: null, default: null },
             tenets:       { tabs: ['tenet-1', 'tenet-2', 'tenet-3', 'tenet-4', 'tenet-5', 'tenet-6', 'tenet-7', 'tenet-8'], default: null },
             process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5'], default: 'layer-1' },
             adoption:     { tabs: ['plan', 'roles', 'anti-patterns'], default: 'plan' },

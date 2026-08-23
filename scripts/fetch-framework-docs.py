@@ -15,6 +15,7 @@ Uses only the Python 3 standard library.
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import sys
 import tarfile
@@ -23,8 +24,13 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
+# GitHub repository and subdirectory being fetched.
 REPO = "OWASP/FIASSE"
 SUBDIR = "docs/framework"
+
+# Default release tag and output path. If the user runs the script without
+# arguments, it downloads the framework docs for v1.0.4 into ./docs/framework
+# relative to the current working directory.
 DEFAULT_TAG = "v1.0.4"
 DEFAULT_OUTPUT = Path("docs/framework")
 
@@ -47,6 +53,27 @@ def parse_args() -> argparse.Namespace:
         help=f"destination directory (default: {DEFAULT_OUTPUT})",
     )
     return parser.parse_args()
+
+
+def resolve_tag(tag: str) -> str:
+    if tag != "latest":
+        return tag
+
+    api_url = f"https://api.github.com/repos/{REPO}/releases/latest"
+    try:
+        with urlopen(api_url) as response:
+            payload = json.load(response)
+        latest_tag = payload.get("tag_name")
+        if not latest_tag:
+            sys.exit("Error: latest release tag is missing from the GitHub API response.")
+        return latest_tag
+    except HTTPError as e:
+        sys.exit(
+            f"Error: could not resolve the latest release from GitHub "
+            f"(HTTP {e.code})."
+        )
+    except URLError as e:
+        sys.exit(f"Error: could not reach GitHub API ({e.reason}).")
 
 
 def download(url: str, dest: Path) -> None:
@@ -116,9 +143,12 @@ def extract_subdir(archive: Path, subdir: str, dest: Path) -> int:
 
 def main() -> None:
     args = parse_args()
-    tag: str = args.tag
+    tag: str = resolve_tag(args.tag)
     output_dir: Path = args.output_dir
 
+    # GitHub source archives are downloaded as a .tar.gz file for the requested
+    # tag, then the framework docs are peeled out of that archive and written to
+    # the target directory.
     url = f"https://codeload.github.com/{REPO}/tar.gz/refs/tags/{tag}"
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -126,6 +156,9 @@ def main() -> None:
         print(f"Fetching {REPO}@{tag}...")
         download(url, archive)
 
+        # The destination is not created under the temp download directory. It is
+        # the caller-provided path, which defaults to ./docs/framework from the
+        # current working directory.
         print(f"Extracting {SUBDIR} -> {output_dir}...")
         if output_dir.exists():
             shutil.rmtree(output_dir)

@@ -10,47 +10,47 @@ FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Eng
 - [1.2 Document Purpose and Scope](./S1.2.0.md): Audience, the "securable" vs. "secure" distinction, and how FIASSE relates to SSEM.
 - [2. Foundational Principles](./S2.0.0.md): The principles that underpin the framework.
 - [2.1 The Securable Paradigm](./S2.1.0.md): Why there is no static secure state and what adaptive resilience means in practice.
-- [2.2. Resiliently Add Computing Value](./S2.2.0.md): TBD
-- [2.3. Security Mission: Reducing Material Impact](./S2.3.0.md): TBD
+- [2.2. Resiliently Add Computing Value](./S2.2.0.md): The primary directive of software engineering: create valuable code that withstands change, stress, and attack.
+- [2.3. Security Mission: Reducing Material Impact](./S2.3.0.md): Security exists to reduce the probability of material impact from a cyber event, not to eliminate all breaches.
 - [2.4 Aligning Security with Development](./S2.4.0.md): Shared vocabulary over security jargon; why "think like an attacker" does not scale as a development mandate.
-- [2.5. The Transparency Principle](./S2.5.0.md): TBD
-- [2.6. The Principle of Least Astonishment](./S2.6.0.md): TBD
+- [2.5. The Transparency Principle](./S2.5.0.md): Design systems so their internal state and behavior are observable and understandable to authorized parties.
+- [2.6. The Principle of Least Astonishment](./S2.6.0.md): Predictable behavior aids analysis, reduces cognitive load, and removes the surprises that hide defects.
 - [3. The Securable Software Engineering Model (SSEM)](./S3.0.0.md): The model that expresses securable attributes in engineering terms.
 - [3.1 Model Overview and Design Language](./S3.1.0.md): SSEM as design language, not a compliance checklist.
 - [3.2 Core Securable Attributes](./S3.2.0.md): Maintainability, Trustworthiness, and Reliability as the three pillars of securable software.
-- [3.2.1. Maintainability](./S3.2.1.md): TBD
-- [3.2.2. Trustworthiness](./S3.2.2.md): TBD
-- [3.2.3. Reliability](./S3.2.3.md): TBD
+- [3.2.1. Maintainability](./S3.2.1.md): Analyzability, Modifiability, Testability, and Observability, with ISO/IEC 25010 definitions and their security relevance.
+- [3.2.2. Trustworthiness](./S3.2.2.md): Confidentiality, Accountability, and Authenticity as inherent code qualities rather than overlaid controls.
+- [3.2.3. Reliability](./S3.2.3.md): Availability, Integrity, and Resilience: consistent operation under adverse conditions, unexpected input, and attack.
 - [4. Practical Guidance for Securable Software Development](./S4.0.0.md): Engineering practices that produce securable code.
-- [4.1. Establishing Clear Expectations](./S4.1.0.md): TBD
-- [4.1.1. Proactive Communication](./S4.1.1.md): TBD
-- [4.1.2. Integrating Security into Requirements](./S4.1.2.md): TBD
-- [4.2. Threat Modeling](./S4.2.0.md): TBD
-- [4.2.1. Code-Level Threat Awareness](./S4.2.1.md): TBD
-- [4.2.2. Threat Modeling Solution Framework](./S4.2.2.md): TBD
+- [4.1. Establishing Clear Expectations](./S4.1.0.md): Set security expectations early, in terms that fit the way software is already produced.
+- [4.1.1. Proactive Communication](./S4.1.1.md): Keep development teams informed about security initiatives and maintain regular points of contact.
+- [4.1.2. Integrating Security into Requirements](./S4.1.2.md): Security Features, Threat Scenarios, and Security Acceptance Criteria as requirements deliverables.
+- [4.2. Threat Modeling](./S4.2.0.md): Formal threat modeling and continuous code-level threat awareness, and why the two must not be conflated.
+- [4.2.1. Code-Level Threat Awareness](./S4.2.1.md): Asking "What can go wrong?" in merge reviews, static analysis triage, and pairing.
+- [4.2.2. Threat Modeling Solution Framework](./S4.2.2.md): Follow the data, use STRIDE for structure, and answer "What are we going to do about it?" in SSEM terms.
 - [4.3 The Boundary Control Principle](./S4.3.0.md): Preserve interior flexibility; enforce control at trust boundaries.
 - [4.4 Resilient Coding](./S4.4.0.md): Canonical input handling, request surface minimization, and derived integrity.
-- [4.4.1. Canonical Input Handling](./S4.4.1.md): TBD
+- [4.4.1. Canonical Input Handling](./S4.4.1.md): Canonicalize, validate, and sanitize at the point of input, with request surface minimization and derived integrity.
 - [4.5 Dependency Management](./S4.5.0.md): Dependency selection and maintenance as an ongoing engineering responsibility.
-- [4.6. Dependency Stewardship](./S4.6.0.md): TBD
+- [4.6. Dependency Stewardship](./S4.6.0.md): Apply SSEM attributes to the whole lifecycle of third-party dependencies, independent of supply chain attestation.
 - [5. Integrating Security into Development Processes](./S5.0.0.md): Extending existing workflows rather than bolting on security processes.
-- [5.1. Natively Extending Development Processes](./S5.1.0.md): TBD
-- [5.2. The Role of Merge Reviews](./S5.2.0.md): TBD
-- [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): TBD
+- [5.1. Natively Extending Development Processes](./S5.1.0.md): Integrate security into existing workflows instead of imposing separate gates.
+- [5.2. The Role of Merge Reviews](./S5.2.0.md): Merge reviews as guardrails, not gates, and the Securability Report they produce.
+- [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): Why security participation in planning and requirements costs a fraction of remediation in production.
 - [6. Common AppSec Anti-Patterns](./S6.0.0.md): "Shoveling Left," ineffective vulnerability reporting, and exploit-first training.
-- [6.1. The "Shoveling Left" Phenomenon](./S6.1.0.md): TBD
-- [6.1.1. Ineffective Vulnerability Reporting](./S6.1.1.md): TBD
-- [6.1.2. Pitfalls of Exploit-First Training](./S6.1.2.md): TBD
-- [6.2. Strategic Use of Security Output](./S6.2.0.md): TBD
+- [6.1. The "Shoveling Left" Phenomenon](./S6.1.0.md): Supplying impractical information to developers and leaving them to make sense of it.
+- [6.1.1. Ineffective Vulnerability Reporting](./S6.1.1.md): Raw scanner output in the backlog and what to do instead: validate, find patterns, and give engineering direction.
+- [6.1.2. Pitfalls of Exploit-First Training](./S6.1.2.md): Why "learn the hack to stop the attack" does not equip developers for daily engineering work.
+- [6.2. Strategic Use of Security Output](./S6.2.0.md): Use scanning and testing output without bypassing the engineering workflows developers rely on.
 - [7. Roles and Responsibilities](./S7.0.0.md): How security teams, senior engineers, developing engineers, and product owners each participate.
-- [7.1. The Role of the Security Team](./S7.1.0.md): TBD
-- [7.2. Senior Software Engineers](./S7.2.0.md): TBD
-- [7.3. Developing Software Engineers](./S7.3.0.md): TBD
-- [7.4. Product Owners and Managers](./S7.4.0.md): TBD
+- [7.1. The Role of the Security Team](./S7.1.0.md): Guide engineers through a self-governed process and measure partnership effectiveness, not compliance.
+- [7.2. Senior Software Engineers](./S7.2.0.md): The primary technical partners for adoption, whose judgment matters more as AI generates more code.
+- [7.3. Developing Software Engineers](./S7.3.0.md): Building judgment through SSEM, merge reviews, and pair programming.
+- [7.4. Product Owners and Managers](./S7.4.0.md): How FIASSE literacy changes backlog decisions, acceptance criteria, and vendor conversations.
 - [8. Organizational Adoption of FIASSE](./S8.0.0.md): A practical, non-rigid path for introducing FIASSE into an organization.
 - [9. Conclusion](./S9.0.0.md): The central shift and the starting point for adoption.
 - [10. References](./S10.0.0.md): Source material and further reading.
 
 ## Optional
-- [Web Site](https://fiasse.org/): Human friendly content.
-- [OWASP Project Page](https://owasp.org/www-project-fiasse/): OWASP details for project.
+- [Web Site](https://fiasse.org/): The human-facing site.
+- [OWASP Project Page](https://owasp.org/www-project-fiasse/): The official OWASP project page.

@@ -16,10 +16,10 @@
       document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
   })();
 </script>
-<title>How securable is your codebase? — OWASP FIASSE Self-Assessment</title>
+<title>How securable is your codebase? | OWASP FIASSE Self-Assessment</title>
 <meta name="description" content="12 questions, 2 minutes, no signup. Score your codebase against the OWASP FIASSE SSEM model: Maintainability, Trustworthiness, Reliability.">
 <meta property="og:title" content="How securable is your codebase?">
-<meta property="og:description" content="Secure is a state. Securable is a property. 12 questions, 2 minutes — scored against OWASP FIASSE's SSEM model.">
+<meta property="og:description" content="Secure is a state. Securable is a property. 12 questions, 2 minutes, scored against OWASP FIASSE's SSEM model.">
 <meta property="og:image" content="https://fiasse.org/img/fiasse_site_sm.png">
 <meta property="og:image:alt" content="OWASP FIASSE Logo">
 <meta property="og:type" content="website">
@@ -129,10 +129,10 @@
   <section id="intro">
     <div class="eyebrow">OWASP FIASSE · Self-assessment</div>
     <h1>How securable is your codebase?</h1>
-    <p class="sub"><b>Secure is a state. Securable is a property.</b> Answer 12 questions about one codebase you know well — honestly. You'll get a securability read across the SSEM attributes: Maintainability, Trustworthiness, Reliability.</p>
+    <p class="sub"><b>Secure is a state. Securable is a property.</b> Answer 12 questions, honestly, about one codebase you know well. You will get a securability read across the SSEM attributes: Maintainability, Trustworthiness, and Reliability.</p>
     <div class="card">
-      <p style="color:var(--text-body);font-size:15px">⏱ 2 minutes · 🔒 nothing leaves your browser · 📊 scored 0 to 100 against the SSEM model</p>
-      <p class="small">This is a self-assessment and conversation starter, not an audit. It measures what scanners can't see: whether your code could <i>absorb</i> a fix quickly.</p>
+      <p style="color:var(--text-body);font-size:15px">2 minutes · Nothing leaves your browser · Scored 0 to 100 against the SSEM model</p>
+      <p class="small">This is a self-assessment and conversation starter, not an audit. It measures what scanners cannot see: whether your code could <i>absorb</i> a fix quickly.</p>
       <div style="margin-top:18px"><button class="btn-primary" onclick="start()">Start the assessment</button></div>
     </div>
     <p class="footer">An <a href="https://owasp.org/www-project-fiasse/">OWASP Official project</a> · <a href="https://owaspfiasse.org">owaspfiasse.org</a> · CC BY-SA 4.0</p>
@@ -167,11 +167,16 @@
         <button class="btn-primary" onclick="copyShare()" id="copyBtn">Copy result</button>
         <button class="btn-secondary" onclick="restart()">Retake</button>
       </div>
-      <p class="small">Post your <i>weakest attribute</i> and compare — that's where the interesting conversations start.</p>
+      <p class="small">Post your <i>weakest attribute</i> and compare. That is where the interesting conversations start.</p>
     </div>
     <div class="card">
-      <p style="font-weight:600;margin-bottom:8px">Improve the number (free, ~30 minutes):</p>
-      <p style="color:var(--text-body);font-size:14.5px">① Read <a href="/#tenets">the Securable Tenets</a> for your weakest attribute → ② find one violation in your code (don't fix it yet — just see it) → ③ write one ticket in SSEM language → ④ install the <a href="/#resources">Claude Code securability plugin</a> so your agent reviews every change.</p>
+      <p style="font-weight:600;margin-bottom:8px">Improve the number (free, about 30 minutes):</p>
+      <ol style="color:var(--text-body);font-size:14.5px;padding-left:1.2em;margin:0">
+        <li>Read <a href="/#tenets">the Securable Tenets</a> for your weakest attribute.</li>
+        <li>Find one violation in your code. Do not fix it yet. Just see it.</li>
+        <li>Write one ticket in SSEM language.</li>
+        <li>Install the <a href="/#resources">Claude Code securability plugin</a> so your agent reviews every change.</li>
+      </ol>
     </div>
     <p class="footer">Per FIASSE Appendix A.4: a composite score is a directional read, not a statement of assurance.<br>OWASP FIASSE · <a href="https://owaspfiasse.org">owaspfiasse.org</a> · Secure is a state. Securable is a property.</p>
   </section>
@@ -184,27 +189,27 @@ const QS = [
  {p:"M", a:"Analyzability", t:"A new engineer needs to understand your auth flow end-to-end. Realistically, how long?",
   o:[["An afternoon with the docs and code",3],["A couple of days and a few Slack questions",2],["A week-plus of archaeology",1],["There is exactly one person who knows, and we protect them",0]]},
  {p:"M", a:"Modifiability", t:"A critical CVE lands in a core dependency (think log4shell-class). How long until the fix is in production?",
-  o:[["Hours — bump, test, ship",3],["A few days",2],["Weeks — upgrades break things",1],["We are still running the vulnerable version of the last one",0]]},
+  o:[["Hours: bump, test, ship",3],["A few days",2],["Weeks: upgrades break things",1],["We are still running the vulnerable version of the last one",0]]},
  {p:"M", a:"Testability", t:"How confident are you changing input-validation code without breaking behavior?",
-  o:[["Confident — tests will catch a regression",3],["Mostly — coverage is decent in that area",2],["Nervous — we test manually and pray",1],["We do not touch that code",0]]},
+  o:[["Confident: tests will catch a regression",3],["Mostly: coverage is decent in that area",2],["Nervous: we test manually and pray",1],["We do not touch that code",0]]},
  {p:"M", a:"Observability", t:"Can you trace one specific user's action through your logs right now?",
-  o:[["Yes — structured logs, correlated request IDs",3],["Usually, with some grepping",2],["Only for the paths someone instrumented",1],["Our logs are write-only in practice",0]]},
+  o:[["Yes: structured logs, correlated request IDs",3],["Usually, with some grepping",2],["Only for the paths someone instrumented",1],["Our logs are write-only in practice",0]]},
  {p:"T", a:"Confidentiality", t:"Where do secrets (keys, tokens, credentials) actually live in your system?",
-  o:[["Managed secrets store, rotated, never in code",3],["Env vars and CI secrets, mostly disciplined",2],["Some config files we don't talk about",1],["git grep password returns results",0]]},
+  o:[["Managed secrets store, rotated, never in code",3],["Env vars and CI secrets, mostly disciplined",2],["Some config files we do not talk about",1],["git grep password returns results",0]]},
  {p:"T", a:"Accountability", t:"A record was modified last Tuesday. Can you say who or what changed it?",
-  o:[["Yes — audit trail down to the actor and reason",3],["Usually — for the important tables",2],["We'd know the service, not the actor",1],["No",0]]},
+  o:[["Yes: audit trail down to the actor and reason",3],["Usually, for the important tables",2],["We would know the service, not the actor",1],["No",0]]},
  {p:"T", a:"Authenticity", t:"Service-to-service calls inside your system: how are they authenticated?",
   o:[["Mutual auth / signed identities everywhere",3],["API keys per service, managed",2],["A shared secret everyone knows",1],["Inside the network = trusted",0]]},
- {p:"R", a:"Availability", t:"When a dependency of your system degrades (API, queue, DB), your app…",
-  o:[["Degrades gracefully — designed fallbacks",3],["Mostly survives, some features error",2],["Cascades — one failure takes several features",1],["Pages everyone at 3am, every time",0]]},
- {p:"R", a:"Integrity", t:"Client-supplied data (prices, roles, IDs, state): what happens before business logic uses it?",
-  o:[["Canonicalized + validated at the boundary; critical facts re-derived server-side",3],["Validated in most handlers",2],["Validated where someone remembered",1],["We trust the client — it's our own frontend",0]]},
+ {p:"R", a:"Availability", t:"When a dependency of your system degrades (API, queue, DB), what does your app do?",
+  o:[["Degrades gracefully: designed fallbacks",3],["Mostly survives, some features error",2],["Cascades: one failure takes several features",1],["Pages everyone at 3am, every time",0]]},
+ {p:"R", a:"Integrity", t:"What happens to client-supplied data (prices, roles, IDs, state) before business logic uses it?",
+  o:[["Canonicalized + validated at the boundary; critical facts re-derived server-side",3],["Validated in most handlers",2],["Validated where someone remembered",1],["We trust the client. It is our own frontend",0]]},
  {p:"R", a:"Resilience", t:"After your last incident (or outage), how did recovery actually go?",
   o:[["Restored fast from a practiced runbook, then root-caused",3],["Recovered okay; learned things",2],["Long scramble, heroics, no write-up",1],["Which incident? We may be in one now",0]]},
  {p:"M", a:"Modifiability (recurrence)", t:"When a security finding is fixed, does that class of bug stay fixed?",
-  o:[["Yes — we fix root causes and add guardrails",3],["Mostly, in the areas we've hardened",2],["The same classes keep reappearing",1],["We fix the same bug so often it has a nickname",0]]},
+  o:[["Yes: we fix root causes and add guardrails",3],["Mostly, in the areas we have hardened",2],["The same classes keep reappearing",1],["We fix the same bug so often it has a nickname",0]]},
  {p:"T", a:"Accountability (requirements)", t:"Do security expectations exist as requirements/acceptance criteria before code is written?",
-  o:[["Yes — security participates in requirements and design",3],["For big features",2],["Security appears at review time with findings",1],["Security appears after the incident",0]]},
+  o:[["Yes: security participates in requirements and design",3],["For big features",2],["Security appears at review time with findings",1],["Security appears after the incident",0]]},
 ];
 // Pillar colors follow the primary page: M=green, T=cyan, R=magenta
 const PILLARS = {M:{name:"Maintainability",color:"var(--pill-m)",qs:[]},T:{name:"Trustworthiness",color:"var(--pill-t)",qs:[]},R:{name:"Reliability",color:"var(--pill-r)",qs:[]}};
@@ -238,11 +243,11 @@ function finish(){
   const pm=pillarScore("M"), pt=pillarScore("T"), pr=pillarScore("R");
   const total=Math.round((pm+pt+pr)/3);
   $("scoreNum").textContent=total;
-  const verdicts=[[85,"Securable. Your engineering absorbs security work — keep it that way as AI raises your code volume."],
+  const verdicts=[[85,"Securable. Your engineering absorbs security work. Keep it that way as AI raises your code volume."],
     [70,"Largely securable, with soft spots an incident will find first."],
     [55,"Split personality: some fixes ship in hours, others wait for a rewrite that never comes."],
     [40,"Security work here is expensive. Findings likely outlive the engineers who receive them."],
-    [0,"Your scanners aren't the problem. Every fix is fighting the codebase — securability first, findings second."]];
+    [0,"Your scanners are not the problem. Every fix is fighting the codebase. Securability first, findings second."]];
   $("verdict").textContent=verdicts.find(v=>total>=v[0])[1];
   const rows=[["Maintainability",pm],["Trustworthiness",pt],["Reliability",pr]];
   $("grades").innerHTML=rows.map(([n,v],i)=>`<div class="grade-row"><span class="lab">${n}</span><span class="bar"><i style="width:${v}%;background:${["var(--pill-m)","var(--pill-t)","var(--pill-r)"][i]}"></i></span><span class="g" style="color:${gradeColor(v)}">${grade(v)}</span></div>`).join("");
@@ -250,15 +255,15 @@ function finish(){
   let worst=0; for(let i=1;i<QS.length;i++) if((answers[i]??0)<(answers[worst]??0)) worst=i;
   const wq=QS[worst], attr=wq.a.replace(/ \(.*\)/,"");
   const tips={
-    "Analyzability":"Start with the FIASSE tenet <b>Transparency</b>: one afternoon adding module-level docs + an architecture sketch of the auth flow pays back on the next ten changes.",
-    "Modifiability":"Start with <b>Boundary Control</b>: hard shell at trust boundaries, flexible interior. Decoupling at the boundary is what makes dependency upgrades routine instead of terrifying.",
-    "Testability":"Add characterization tests around the code you fear before touching it. FIASSE treats testability as a security attribute — a fix you can't verify is a fix you won't ship.",
-    "Observability":"Structured logs + request correlation IDs on security-relevant paths. The <b>Transparency Principle</b>: behavior should be perceptible — to you, before it is to an attacker's benefit.",
-    "Confidentiality":"Move secrets to a managed store this sprint. Then run a repo-history scan — leaked-once means rotate, not delete.",
+    "Analyzability":"Start with the FIASSE tenet <b>Transparency</b>. One afternoon adding module-level docs and an architecture sketch of the auth flow pays back on the next ten changes.",
+    "Modifiability":"Start with <b>Boundary Control</b>: hard shell at trust boundaries, flexible interior. Decoupling at the boundary is what makes dependency upgrades routine instead of frightening.",
+    "Testability":"Add characterization tests around the code you fear before touching it. FIASSE treats Testability as a security attribute. A fix you cannot verify is a fix you will not ship.",
+    "Observability":"Add structured logs and request correlation IDs on security-relevant paths. The <b>Transparency Principle</b>: behavior should be perceptible to you before it is useful to an attacker.",
+    "Confidentiality":"Move secrets to a managed store this sprint. Then run a repo-history scan. A secret leaked once must be rotated, not deleted.",
     "Accountability":"Pick your three most sensitive actions and give them a real audit trail (actor, action, reason, time). FIASSE calls this making actions <b>traceable to the responsible entity</b>.",
     "Authenticity":"Replace 'inside the network = trusted' with per-service identity. The <b>Isolated Integrity Principle</b>: integrity-critical facts stay isolated from client control and derive from authoritative sources.",
     "Availability":"Design one graceful-degradation path for your most-depended-on dependency. Resilience is a feature; schedule it like one.",
-    "Integrity":"Adopt <b>Canonical Parsing</b> at one boundary this week — parse, don't validate: one strict parse into a typed structure, fail closed, and derive critical facts (roles, prices) server-side per the Isolated Integrity Principle.",
+    "Integrity":"Adopt <b>Canonical Parsing</b> at one boundary this week. Parse, don't validate: one strict parse into a typed structure, fail closed, and derive critical facts (roles, prices) server-side per the Isolated Integrity Principle.",
     "Resilience":"Write the runbook your last incident deserved, then rehearse it once. Recovery speed is an engineered property, not a personality trait."};
   $("tip").innerHTML=`<b>Weakest link: ${attr}.</b> ${tips[attr]||"See the tenets at owaspfiasse.org."}`;
   $("shareText").textContent=`My codebase scored ${total}/100 on the OWASP securability self-check (M:${grade(pm)} T:${grade(pt)} R:${grade(pr)}). Weakest attribute: ${attr}.\nSecure is a state. Securable is a property. → owaspfiasse.org/assess`;

@@ -4,7 +4,7 @@
 
 Relentlessly Practical. Relentlessly Securable.
 
-FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Securable Software Engineering. It provides practical guidance for Software Engineers to build securable applications, and for Security to impact securable outcomes.
+FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Securable Software Engineering. It provides practical guidance for the engineers who build applications and for the security teams who work with them.
 
 [Read the Doc (latest)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md)
 
@@ -18,10 +18,12 @@ FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Sec
 
 - [About](#about)
 - [The Project](#the-project)
+- [Process: Five Layers](#process-five-layers)
 - [SSEM — Securable Software Engineering Model](#ssem--securable-software-engineering-model)
 - [Tenets of FIASSE](#tenets-of-fiasse)
 - [Adoption](#adoption)
 - [Resources](#resources)
+- [Contributing](#contributing)
 
 ---
 
@@ -29,7 +31,7 @@ FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Sec
 
 ### What is FIASSE?
 
-FIASSE (/feiz/) is an [OWASP project](https://owasp.org/www-project-fiasse/) that provides a software-engineering-centric approach to building securable software. It combines practical software engineering methodologies with modern security practices to create a framework that is effective and scalable.
+FIASSE (/feiz/) is an [OWASP project](https://owasp.org/www-project-fiasse/) that provides a software-engineering-centric approach to building securable software. It grounds application security in established software engineering practice, so security work scales with development instead of competing with it.
 
 ### Our Mission
 
@@ -92,7 +94,7 @@ FIASSE is designed to align people, process, and technology with the business of
 
 ### Expectations
 
-Set expectations in a way that organically leverages battle-tested software engineering practices for optimum security outcomes.
+Set security expectations through the software engineering practices teams already use.
 
 #### Architecture and Design
 
@@ -111,7 +113,7 @@ Incomplete requirements are the dominant root cause of security gaps in applicat
 
 ### Implementation
 
-Encourage Software Engineering as a discipline so as to improve software security posture.
+Strengthen software engineering discipline. Security posture follows from it.
 
 #### Code
 
@@ -148,9 +150,79 @@ Assurance activities are still important when using the FIASSE approach. Investm
 
 ---
 
+## Process: Five Layers
+
+Modern development cycles outrun review-based AppSec. FIASSE integrates security at five development layers. Each layer feeds the next and informs the ones before it. The first layer is the one most often skipped, and the one with the most consequence.
+
+### Layer 1: Product Requirements
+
+*Pre-programming · Prevention*
+
+1. Product management and security collaborate to draft a feature description in the team's standard backlog tool, or in a PRD file.
+2. Architects collaborate with security to create new architecture or align the feature in existing architecture. This is documented via amendment, links, or artifacts.
+3. Participation ensures Security Features, Threat Scenarios, and Security Acceptance Criteria are present. A separate security review is an extra step, not a substitute.
+4. The business requirements, architecture, and security expectations are captured as a point-in-time artifact.
+5. The artifact is conveyed into Layer 2, where code calibrated to those requirements is created.
+
+*Agentic note:* an agentic workflow would use a skill like `prd-securability-enhancement` from the Securability Engineering Claude plugin.
+
+### Layer 2: Agent-Embedded Guardrails
+
+*While building · Prevention*
+
+1. The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.
+2. An SSEM-aligned programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.
+3. Code is written or generated against the specifications. Completeness is checked continuously against the verifiable requirements, by the programmer and their tooling or by the agent.
+4. The change is built for securability using the SSEM attributes: Maintainability, Trustworthiness, and Reliability.
+5. The completed work moves toward merge with its requirements and evidence attached.
+
+*Agentic note:* an agentic workflow would use a skill like `securability-engineering` from the Securability Engineering Claude plugin.
+
+### Layer 3: Intelligent Code Control
+
+*Merge time · Integration*
+
+1. A pull request or merge request is opened. Codified artifacts are already present.
+2. The merge is scanned and reviewed, and an SBOM is created. Each change is checked against the acceptance criteria.
+3. The reviewer asks for fixes for any issues found. The exchange produces audit-grade evidence as a byproduct.
+4. The owner of the pull request ensures all issues raised are addressed, and the reviewer approves the changes for merge.
+5. On merge, the evidence trail is preserved so downstream layers and auditors can rely on it.
+
+*Agentic note:* an agentic workflow would use a skill like `securability-engineering-review` from the Securability Engineering Claude plugin.
+
+### Layer 4: Intelligent Remediation
+
+*Pre-deployment · Remediation*
+
+1. The deployment pipeline runs the software for testing.
+2. Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.
+3. When a deviation is detected, a targeted remediation tied to the original requirement is submitted.
+4. Remediations are routed back through Layer 3 or through architecture, not patched ad hoc.
+5. Validated deployments proceed. The requirement-to-evidence trail stays intact through release.
+
+*Agentic note:* an agentic workflow could handle minor deviations and escalate complex or sensitive issues.
+
+### Layer 5: Production Monitoring and Incident Response
+
+*Runtime · Remediation*
+
+1. Production telemetry, logs, and traces are collected as structured observability. This raises the chance of detection and informs the rest of the process.
+2. Anomaly detection watches for behavior that diverges from the norms the requirements define. The same baseline of "normal" classifies activity during an incident.
+3. Signals are correlated to the acceptance criteria they relate to, not left as raw alerts. When an incident is declared, containment and mitigation happen with external security tooling in near real time.
+4. Undesirable behavior is documented, compared to requirements, and mapped to code while mitigation buys time for full remediation through the standard process.
+5. Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria. Remediation becomes part of the same workflow.
+
+*Agentic note:* an agentic workflow would correlate anomalies and incident activity with code and architecture, using business context to find the fix quickly and feed operational observations back into the product.
+
+### Where Security Outcomes Are Decided
+
+The central idea of FIASSE: security outcomes are decided where expectations are set. Participation during architecture and requirements produces the artifacts that every later layer consumes.
+
+---
+
 ## SSEM — Securable Software Engineering Model
 
-A model that identifies fundamental and universal attributes that are the building blocks of securable software. Together, these terms form a comprehensive model for understanding software security and a design language for communicating security concerns.
+A model that identifies the fundamental attributes that are the building blocks of securable software. Together these terms form a model for understanding software security and a design language for discussing it.
 
 The SSEM is centered on the core attributes that make software "securable" (FIASSE §3.2 Core Securable Attributes). These attributes allow SSEM to abstract security away from specialized jargon or exploit-centric views:
 
@@ -169,21 +241,21 @@ The central shift SSEM enables is a change in the question asked during security
 ### Benefits
 
 - **Intention** — With defined security objectives, development teams act with purpose instead of guessing about how to pass the next security assessment.
-- **Transparency** — Developers, operators, and responders can diagnose issues quickly and confidently, with full context and zero data leakage.
+- **Transparency** — Developers, operators, and responders can diagnose issues quickly and confidently, with the context they need and without leaking data.
 
 ### Why SSEM
 
-- **Optimized for Business** — SSEM gives AppSec insight into development without derailing processes or adding toil.
-- **Developer-Centric** — Aligns Application Security with software development principles and strategies.
-- **Scalable Framework** — Adaptable to projects of any size, from small applications to high-scale systems.
+- **Fits existing process** — AppSec gains insight into development without derailing delivery or adding toil.
+- **Developer-centered** — Security is expressed in the principles and vocabulary developers already use.
+- **Scales with the team** — The same vocabulary works for a small application and a large system, and for a merge review or an AI agent.
 
 ### SSEM as a Design Language
 
 A design language is a set of shared terms, concepts, and patterns that helps a team communicate ideas, expectations, and standards consistently. In software engineering, it provides a common vocabulary for describing system qualities, architecture, and implementation details, making collaboration easier.
 
-A design language ensures clarity and consistency, simplifies decision-making through well-defined principles, and embeds security concepts into familiar engineering terms. This empowers developers to build securable systems without needing deep security expertise.
+A design language gives clarity and consistency, simplifies decisions through well-defined principles, and puts security concepts into familiar engineering terms. Developers can then build securable systems without deep security expertise.
 
-By adopting SSEM as your software engineering design language, you adopt a pre-built shorthand for all roles (product, development, security, management...) that carries with it the *essence of security culture*.
+Adopting SSEM as the team's design language gives every role (product, development, security, management) a shared shorthand that carries security culture with it.
 
 ### The Model
 
@@ -220,7 +292,7 @@ The model implies the existence of strategies for producing these qualities. Tha
 
 ### Measuring SSEM Attributes
 
-Measuring SSEM attributes is essential to quantify and evaluate the securable qualities of software. The lists below are a starting point for teams to adapt and expand. Try using [this prompt](https://github.com/OWASP/FIASSE/blob/main/prompts/add-in/securable-engineering.prompt.md) in your code assistant to get started.
+Measuring SSEM attributes lets a team see whether its securable qualities are improving. The lists below are a starting point for teams to adapt and expand. Try using [this prompt](https://github.com/OWASP/FIASSE/blob/main/prompts/add-in/securable-engineering.prompt.md) in your code assistant to get started.
 
 #### Maintainability — Elemental Security
 
@@ -550,7 +622,7 @@ The main repository contains the framework specification, prompts, and detailed 
 
 ### OWASP Project Page
 
-Official OWASP project documentation and community resources: comprehensive documentation, community discussions, and the latest project updates.
+The official OWASP project page, with project news and community links.
 
 - [owasp.org/www-project-fiasse](https://owasp.org/www-project-fiasse/)
 
@@ -560,10 +632,24 @@ Official OWASP project documentation and community resources: comprehensive docu
 - GitHub: [OWASP/FIASSE](https://github.com/OWASP/FIASSE)
 - OWASP Project: [owasp.org/www-project-fiasse](https://owasp.org/www-project-fiasse/)
 
-Ways to get involved:
+---
 
-- Contribute feedback
-- Create a Pull Request with correction or addition
+## Contributing
+
+FIASSE is not an assurance framework. This is a new project and some concepts may seem odd. Your LLM may not get it either. Share your honest feedback; we want you both to understand.
+
+How to help:
+
+- **Feedback** — Read the docs. What do you like? What is missing, confusing, or ridiculous? Use [GitHub Discussions](https://github.com/OWASP/FIASSE/discussions).
+- **Contributions** — Corrections and additions are welcome from anyone. Small fixes count. Fork the [repository](https://github.com/OWASP/FIASSE), make the change, review it locally, and open a pull request.
+
+Pull request guidelines:
+
+1. Changes align with project goals. FIASSE is not an assurance framework.
+2. Changes are documented and follow project standards and style.
+3. The pull request includes a clear, concise description of the changes.
+
+All contributors must abide by the OWASP Code of Conduct.
 
 ---
 

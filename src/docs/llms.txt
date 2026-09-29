@@ -18,7 +18,7 @@ FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Eng
 - [3. The Securable Software Engineering Model (SSEM)](./S3.0.0.md): The model that expresses securable attributes in engineering terms.
 - [3.1 Model Overview and Design Language](./S3.1.0.md): SSEM as design language, not a compliance checklist.
 - [3.2 Core Securable Attributes](./S3.2.0.md): Maintainability, Trustworthiness, and Reliability as the three pillars of securable software.
-- [3.2.1. Maintainability](./S3.2.1.md): Analyzability, Modifiability, Testability, and Observability, with ISO/IEC 25010 definitions and their security relevance.
+- [3.2.1. Maintainability](./S3.2.1.md): Analyzability, Modifiability, and Testability from ISO/IEC 25010, plus Observability from control theory, and why each matters for security.
 - [3.2.2. Trustworthiness](./S3.2.2.md): Confidentiality, Accountability, and Authenticity as inherent code qualities rather than overlaid controls.
 - [3.2.3. Reliability](./S3.2.3.md): Availability, Integrity, and Resilience: consistent operation under adverse conditions, unexpected input, and attack.
 - [4. Practical Guidance for Securable Software Development](./S4.0.0.md): Engineering practices that produce securable code.
@@ -35,7 +35,7 @@ FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Eng
 - [4.6. Dependency Stewardship](./S4.6.0.md): Apply SSEM attributes to the whole lifecycle of third-party dependencies, independent of supply chain attestation.
 - [5. Integrating Security into Development Processes](./S5.0.0.md): Extending existing workflows rather than bolting on security processes.
 - [5.1. Natively Extending Development Processes](./S5.1.0.md): Integrate security into existing workflows instead of imposing separate gates.
-- [5.2. The Role of Merge Reviews](./S5.2.0.md): Merge reviews as guardrails, not gates, and the Securability Report they produce.
+- [5.2. The Role of Merge Reviews](./S5.2.0.md): Merge reviews as guardrails, not gates: the scalable point for securable code review, learning, and code-level threat awareness.
 - [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): Why security participation in planning and requirements costs a fraction of remediation in production.
 - [6. Common AppSec Anti-Patterns](./S6.0.0.md): "Shoveling Left," ineffective vulnerability reporting, and exploit-first training.
 - [6.1. The "Shoveling Left" Phenomenon](./S6.1.0.md): Supplying impractical information to developers and leaving them to make sense of it.

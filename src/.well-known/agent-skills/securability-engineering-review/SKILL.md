@@ -1,20 +1,20 @@
 ---
 name: securability-engineering-review
-description: Review and score an existing codebase, repository, pull request, or merge request against the FIASSE v1.0.4 Securable Software Engineering Model (SSEM). Use when a user asks to review, audit, assess, score, grade, or evaluate code for securable engineering qualities; produce an SSEM scorecard or evaluation report; perform a FIASSE-aligned code or PR review; or establish a security posture baseline for a project. Scores the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience). This is the review/analysis counterpart to the `securability-engineering` code-generation skill — use this skill for evaluating existing code, not for generating new code.
+description: Review and score an existing codebase, repository, pull request, or merge request against the FIASSE v1.3.0 Securable Software Engineering Model (SSEM). Use when a user asks to review, audit, assess, score, grade, or evaluate code for securable engineering qualities; produce an SSEM scorecard or evaluation report; perform a FIASSE-aligned code or PR review; or establish a security posture baseline for a project. Scores the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience). This is the review/analysis counterpart to the `securability-engineering` code-generation skill — use this skill for evaluating existing code, not for generating new code.
 license: CC-BY-SA-4.0
 ---
 
-# Securability Engineering Review (FIASSE v1.0.4 / SSEM Scoring)
+# Securability Engineering Review (FIASSE v1.3.0 / SSEM Scoring)
 
-Review and score code, repositories, and pull/merge requests against the FIASSE v1.0.4 Securable Software Engineering Model (SSEM). This is the review counterpart to `securability-engineering` (which generates new code) — use this skill for evaluating existing code.
+Review and score code, repositories, and pull/merge requests against the FIASSE v1.3.0 Securable Software Engineering Model (SSEM). This is the review counterpart to `securability-engineering` (which generates new code) — use this skill for evaluating existing code.
 
-For scoring and reporting, this skill is authoritative. If other repository materials use older FIASSE/SSEM attribute groupings (e.g. merged "Authenticity & Accountability", no Observability sub-attribute, or Integrity under Trustworthiness), follow the v1.0.4-aligned model in this file.
+For scoring and reporting, this skill is authoritative. If other repository materials use older FIASSE/SSEM attribute groupings (e.g. merged "Authenticity & Accountability", no Observability sub-attribute, or Integrity under Trustworthiness), follow the v1.3.0-aligned model in this file.
 
 Source of truth for alignment:
-- Framework: [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) (pinned)
+- Framework: [FIASSE v1.3.0 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) (pinned)
 - Informative companion prompt: [SSEM-analysis.prompt.md on `main`](https://raw.githubusercontent.com/Securability-Engineering/securable-framework-supplement/refs/heads/main/prompts/add-in/securable-engineering.prompt.md) — moving target; use this SKILL.md as the authoritative scoring contract.
 
-## SSEM v1.0.4 Structure
+## SSEM Structure (FIASSE v1.3.0)
 
 Three pillars, ten sub-attributes:
 
@@ -27,21 +27,24 @@ Notable deltas from earlier SSEM drafts:
 - *Accountability* and *Authenticity* are separate sub-attributes under Trustworthiness (no longer merged).
 - *Integrity* sits under Reliability only (covers both system and data integrity); it is not duplicated under Trustworthiness.
 
-## Guiding Principles (FIASSE v1.0.4)
+## Guiding Principles (FIASSE v1.3.0)
 
 Use these principles as interpretive lenses when assigning scores and writing findings:
 
-1. **The Securable Paradigm** (§2.1) — no static "secure" state exists; systems must be designed for adaptive resilience and continuous improvement.
-2. **Resiliently Add Computing Value** (§2.2) — software must meet functional requirements while possessing the securable qualities that enable long-term integrity.
+1. **The Securable Paradigm** (§2.1) — no static "secure" state exists; systems must be built so security can be maintained.
+2. **Resiliently Add Computing Value** (§2.2) — software must meet functional requirements while leaving the system able to withstand the change, stress, and attack that follows.
 3. **Security Mission** (§2.3) — reduce the probability of material impact from cyber events; complete breach elimination is not a practical goal.
-4. **First Principle Alignment** (§2.4) — ground security in software engineering first principles rather than security-specific jargon.
-5. **Transparency Principle** (§2.5) — design systems so internal state and behavior remain observable to authorized parties.
-6. **Principle of Least Astonishment** (§2.6) — behavior should match reasonable expectations.
-7. **Boundary Control Principle** (§4.3) — enforce control at trust boundaries; preserve flexibility in the interior.
-8. **Canonical Input Handling** (§4.4.1) — canonicalize, validate, and sanitize inputs at trust boundaries.
-9. **Request Surface Minimization** (§4.4.1.1) — process only explicitly expected request values.
-10. **Derived Integrity Principle** (§4.4.1.2) — calculate critical state server-side; never adopt it from client-supplied context.
-11. **Actionable Security Intelligence** (§6.1) — convert raw security output into prioritized, engineering-grounded direction.
+4. **The Quality-Security Relationship** (§2.4) — security cannot exceed software quality; the ceiling is set by the code.
+5. **Aligning Security with Development** (§2.5) — ground security in software engineering first principles rather than security-specific jargon.
+6. **Transparency Principle** (§2.6) — design systems so authorized parties can understand internal state and behavior, within the bound set by Confidentiality.
+7. **Principle of Least Astonishment** (§2.7) — behavior should match reasonable expectations.
+8. **Boundary Control Principle** (§4.3) — enforce control at trust boundaries; preserve flexibility in the interior.
+9. **Resilient Coding** (§4.4) — defensive coding, isolation of risky operations, deterministic resource release, graceful and secure failure, and least privilege at the code level.
+10. **Canonical Input Handling** (§4.4.1) — canonicalize, validate, and sanitize inputs at trust boundaries.
+11. **Canonical Parsing Principle** (§4.4.1.1) — parse input against an explicit per-operation schema into typed structures; fail closed; treat unknown fields as a deliberate log-or-reject decision.
+12. **Isolated Integrity Principle** (§4.4.1.2) — integrity-critical facts are established server-side in a trusted context and are never set or biased by client-supplied context.
+13. **Dependency Stewardship** (§4.5) — dependencies are evaluated and maintained against SSEM attributes over the life of the relationship.
+14. **Actionable Security Intelligence Principle** (§6.2) — convert raw security output into prioritized, engineering-grounded direction.
 
 ## Scoring Framework
 
@@ -105,8 +108,8 @@ If the working directory is itself the project under review, infer what you can 
 
 5. **Evaluate Reliability**:
    - **Availability** — "Property of being accessible and usable on demand by an authorized entity." Look at uptime posture, thread safety, deadlock prevention, redundancy, and scalability.
-   - **Integrity** — Property of accuracy and completeness at both the system and data levels. Look at input validation, output encoding, canonical input handling, derived-integrity patterns, tamper detection, and checksum/hash validation.
-   - **Resilience** — Ability to continue operating during and after component failure. Look at exception handling, graceful degradation, error recovery, fault tolerance, circuit breakers, and resource management.
+   - **Integrity** — Property of accuracy and completeness at both the system and data levels. Look at input validation, output encoding, canonical parsing, isolated-integrity patterns, tamper detection, and checksum/hash validation.
+   - **Resilience** — Ability to continue operating during and after component failure. Look at exception handling, graceful and secure failure, error recovery, fault tolerance, circuit breakers, isolation of risky operations, and resource management.
 
 6. **Document Evidence** — Reference actual code patterns, files, architecture choices, test posture, and operational safeguards.
 
@@ -145,7 +148,7 @@ For each pillar, provide:
 1. **[Recommendation Title]** (Priority: High/Medium/Low)
    - **Issue:** specific problem
    - **Impact:** effect on pillar score
-   - **Solution:** actionable remediation steps, referencing the FIASSE principle it supports when applicable (e.g. Boundary Control, Derived Integrity, Transparency)
+   - **Solution:** actionable remediation steps, referencing the FIASSE principle it supports when applicable (e.g. Boundary Control, Isolated Integrity, Transparency)
    - **Expected Improvement:** +[X.X] points
 
 ### Part 3: Appendix A — Evaluation Checklist
@@ -177,10 +180,11 @@ If evidence is insufficient, state the limitation explicitly and score conservat
 
 ## OWASP & FIASSE References
 
-- [OWASP FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Framework for Integrating Application Security into Software Engineering
-- [FIASSE framework spec on main](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text (pin to v1.0.4 for scoring stability)
+- [OWASP FIASSE v1.3.0 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — Framework for Integrating Application Security into Software Engineering
+- [FIASSE framework spec on main](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text (pin to v1.3.0 for scoring stability)
 - ISO/IEC 25010:2011 — Software quality models (Maintainability, Reliability definitions)
-- RFC 4949 — Internet Security Glossary (Confidentiality, Availability definitions)
+- ISO/IEC 27000:2018 — Information security vocabulary (Confidentiality, Availability, Integrity, Authenticity definitions)
+- ISO/IEC TS 5723:2022 — Trustworthiness vocabulary
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements for cross-referencing Trustworthiness and Reliability evidence
 - OWASP Code Review Guide
 
@@ -188,7 +192,7 @@ If evidence is insufficient, state the limitation explicitly and score conservat
 
 When invoked:
 - Ask for missing project information if the repository context is incomplete
-- Evaluate the codebase against the v1.0.4-aligned scoring model in this file
+- Evaluate the codebase against the v1.3.0-aligned scoring model in this file
 - Produce the report in the required three-part format
 - Use repository evidence over assumptions
-- Prefer FIASSE-native terminology (e.g. "defendable authentication", "canonical input handling", "derived integrity") when describing findings
+- Prefer FIASSE-native terminology (e.g. "defendable authentication", "canonical input handling", "canonical parsing", "isolated integrity") when describing findings

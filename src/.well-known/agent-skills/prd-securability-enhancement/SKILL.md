@@ -1,12 +1,12 @@
 ---
 name: prd-securability-enhancement
-description: Enhance, enrich, harden, or annotate PRDs, product specs, feature specs, user stories, epics, requirements docs, backlog items, acceptance criteria, or definitions of done with FIASSE v1.0.4 / SSEM securability requirements and OWASP ASVS v5.0.0 coverage. Use when asked to add security requirements, choose an ASVS level, map features to ASVS controls, write per-feature securability notes, derive testable acceptance criteria, or apply the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience), plus FIASSE principles (Transparency, Boundary Control, Canonical Input Handling, Request Surface Minimization, Derived Integrity, Least Astonishment). This is the requirements-stage counterpart to `securability-engineering` (code generation) and `securability-engineering-review` (code scoring) — use before code is written, not to produce or score code.
+description: Enhance, enrich, harden, or annotate PRDs, product specs, feature specs, user stories, epics, requirements docs, backlog items, acceptance criteria, or definitions of done with FIASSE v1.3.0 / SSEM securability requirements and OWASP ASVS v5.0.0 coverage. Use when asked to add security requirements, choose an ASVS level, map features to ASVS controls, write per-feature securability notes, derive testable acceptance criteria, or apply the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience), plus FIASSE principles (Transparency, Boundary Control, Canonical Input Handling, the Canonical Parsing Principle, the Isolated Integrity Principle, Least Astonishment, and control-to-requirement translation). This is the requirements-stage counterpart to `securability-engineering` (code generation) and `securability-engineering-review` (code scoring) — use before code is written, not to produce or score code.
 license: CC-BY-SA-4.0
 ---
 
-# PRD Securability Enhancement (FIASSE v1.0.4 / SSEM + ASVS)
+# PRD Securability Enhancement (FIASSE v1.3.0 / SSEM + ASVS)
 
-Enhance product requirement content so each feature includes explicit securability requirements, implementation notes, and measurable acceptance criteria aligned to OWASP ASVS v5.0.0 and FIASSE v1.0.4 / SSEM. This is the requirements-stage member of the FIASSE skill trio — the counterparts are [`securability-engineering`](../securability-engineering/SKILL.md) (code generation) and [`securability-engineering-review`](../securability-engineering-review/SKILL.md) (code scoring).
+Enhance product requirement content so each feature includes explicit securability requirements, implementation notes, and measurable acceptance criteria aligned to OWASP ASVS v5.0.0 and FIASSE v1.3.0 / SSEM. This is the requirements-stage member of the FIASSE skill trio — the counterparts are [`securability-engineering`](../securability-engineering/SKILL.md) (code generation) and [`securability-engineering-review`](../securability-engineering-review/SKILL.md) (code scoring).
 
 Apply the workflow below to any feature spec, user story, epic breakdown, BRD, or backlog item the user provides.
 
@@ -26,13 +26,13 @@ Apply the workflow below to any feature spec, user story, epic breakdown, BRD, o
 
 3. **Map Features to ASVS** — For each feature, identify applicable ASVS sections and requirements from the [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en), filtered by the chosen level.
 
-4. **Close Requirement Gaps** — Mark coverage as Covered / Partial / Missing / Not Applicable, then add missing requirement statements directly to the feature requirements.
+4. **Close Requirement Gaps** — Mark coverage as Covered / Partial / Missing / Not Applicable, then add missing requirement statements directly to the feature requirements. Where a catalog control (NIST SP 800-53, ISO/IEC 27001 Annex A, PCI DSS) is in scope, translate it into a requirement with acceptance criteria instead of passing the control ID through as a requirement (§6.1.3). Record which layer satisfies each control and the code's residual share.
 
-5. **Add Compact Securability Notes** — For each feature, write a brief paragraph capturing only the material SSEM sub-attributes and FIASSE v1.0.4 principles that shape implementation. Cover, when relevant:
+5. **Add Compact Securability Notes** — For each feature, write a brief paragraph capturing only the material SSEM sub-attributes and FIASSE v1.3.0 principles that shape implementation. Cover, when relevant:
 
    **Maintainability** (§3.2.1)
    - *Analyzability, Modifiability, Testability* — call out where the feature should remain easy to reason about, change, and test as it grows
-   - *Observability* (new in v1.0.4) — what structured logging, metrics, and decision reasons must exist for this feature
+   - *Observability* — what structured logging, metrics, and decision reasons must exist for this feature
 
    **Trustworthiness** (§3.2.2)
    - *Confidentiality* — sensitivity classification, data minimization, access scope
@@ -46,11 +46,11 @@ Apply the workflow below to any feature spec, user story, epic breakdown, BRD, o
 
    **FIASSE Principles**
    - **Boundary Control** (§4.3) — where the feature's trust boundaries are and what control belongs at each
-   - **Canonical Input Handling** (§4.4.1) — canonicalize → sanitize → validate at every boundary
-   - **Request Surface Minimization** (§4.4.1.1) — which request fields, headers, and params the feature actually consumes
-   - **Derived Integrity** (§4.4.1.2) — which values must be server-derived (identity, permissions, pricing, balances, state) and never accepted from the client
-   - **Transparency Principle** (§2.5) — the structured logging, metrics, and decision-reason capture that make Observability real
-   - **Principle of Least Astonishment** (§2.6) — predictable defaults, naming, and error semantics
+      - **Canonical Input Handling** (§4.4.1) — canonicalize → validate → sanitize at every boundary
+   - **Canonical Parsing Principle** (§4.4.1.1) — the explicit input schema per operation, which fields the feature parses, fail-closed behavior, and the stated log-or-reject policy for unknown fields
+   - **Isolated Integrity Principle** (§4.4.1.2) — which values must be established server-side (identity, permissions, pricing, balances, object state) and never set or biased by the client
+   - **Transparency Principle** (§2.6) — the structured logging, metrics, and decision-reason capture that make Observability real
+   - **Principle of Least Astonishment** (§2.7) — predictable defaults, naming, and error semantics
 
 6. **Self-Check** — Run the per-feature checks in [`references/checklist.md`](references/checklist.md) before emitting the enhanced PRD. Items left unchecked become entries in the open-gaps section.
 
@@ -67,11 +67,12 @@ Deliver a concise enhanced PRD that includes:
 
 ## References
 
-- [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification; pin requirement annotations to this version
+- [FIASSE v1.3.0 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — authoritative framework specification; pin requirement annotations to this version
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements (pin to this tag for stable requirement IDs)
-- [§2.1–§2.6 Foundational Principles](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Securable Paradigm, Resiliently Add Computing Value, Security Mission, First Principle Alignment, Transparency, Principle of Least Astonishment
-- [§3.2.1–§3.2.3 SSEM Pillars and sub-attributes](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — Maintainability (now includes Observability), Trustworthiness, Reliability
-- [§4.3 Boundary Control Principle](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
-- [§4.4.1 Canonical Input Handling, §4.4.1.1 Request Surface Minimization, §4.4.1.2 Derived Integrity](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
-- [§6.1 Actionable Security Intelligence Principle](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md)
+- [§2.1–§2.7 Foundational Principles](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — Securable Paradigm, Resiliently Add Computing Value, Security Mission, Quality-Security Relationship, Aligning Security with Development, Transparency, Principle of Least Astonishment
+- [§3.2.1–§3.2.3 SSEM Pillars and sub-attributes](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — Maintainability (including Observability), Trustworthiness, Reliability
+- [§4.3 Boundary Control Principle](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md)
+- [§4.4.1 Canonical Input Handling, §4.4.1.1 Canonical Parsing Principle, §4.4.1.2 Isolated Integrity Principle](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md)
+- [§6.1 Security Controls in the Code Creation Process](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — the control-as-requirement and control-as-protection fallacies, and the requirements process as the corrective
+- [§6.2 Actionable Security Intelligence Principle](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md)
 - [`references/checklist.md`](references/checklist.md) — per-feature PRD-enhancement self-check

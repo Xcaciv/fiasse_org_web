@@ -1,12 +1,12 @@
 ---
 name: securability-engineering
-description: Generate, scaffold, write, refactor, or harden code so the output is securable by default per FIASSE v1.0.4 and the Securable Software Engineering Model (SSEM). Use when a user asks to write, build, create, implement, scaffold, stub out, refactor, or harden code — especially security-sensitive components such as authentication, authorization, input handling, validation, API endpoints, request handlers, data access, cryptography, logging, error handling, or anything crossing a trust boundary. Applies the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience), plus Transparency, Boundary Control, Canonical Input Handling, Request Surface Minimization, Derived Integrity, and Least Astonishment. This is the code-generation counterpart to `securability-engineering-review` — use this skill to produce new code, not to score existing code.
+description: Generate, scaffold, write, refactor, or harden code so the output is securable by default per FIASSE v1.3.0 and the Securable Software Engineering Model (SSEM). Use when a user asks to write, build, create, implement, scaffold, stub out, refactor, or harden code — especially security-sensitive components such as authentication, authorization, input handling, validation, API endpoints, request handlers, data access, cryptography, logging, error handling, or anything crossing a trust boundary. Applies the ten SSEM sub-attributes across Maintainability (Analyzability, Modifiability, Testability, Observability), Trustworthiness (Confidentiality, Accountability, Authenticity), and Reliability (Availability, Integrity, Resilience), plus Transparency, Boundary Control, Canonical Input Handling, the Canonical Parsing Principle, the Isolated Integrity Principle, Dependency Stewardship, and Least Astonishment. This is the code-generation counterpart to `securability-engineering-review` — use this skill to produce new code, not to score existing code.
 license: CC-BY-SA-4.0
 ---
 
 # Securability Engineering — Code Generation Wrapper
 
-Apply FIASSE v1.0.4 / SSEM as engineering constraints when generating, scaffolding, refactoring, or hardening code, so the output embodies securable qualities from the start. This is the code-generation counterpart to [`securability-engineering-review`](../securability-engineering-review/SKILL.md), which scores existing code against the same model.
+Apply FIASSE v1.3.0 / SSEM as engineering constraints when generating, scaffolding, refactoring, or hardening code, so the output embodies securable qualities from the start. This is the code-generation counterpart to [`securability-engineering-review`](../securability-engineering-review/SKILL.md), which scores existing code against the same model.
 
 ## When to Use
 
@@ -19,23 +19,23 @@ Apply FIASSE v1.0.4 / SSEM as engineering constraints when generating, scaffoldi
 
 ## Reference Inputs
 
-- **FIASSE v1.0.4** — [securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) is the authoritative source for principles, sub-attribute definitions, and section numbering used throughout this skill.
+- **FIASSE v1.3.0** — [securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) is the authoritative source for principles, sub-attribute definitions, and section numbering used throughout this skill.
 - **OWASP ASVS v5.0.0** — [English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) provide feature-aligned security requirements. Map the feature being generated to the relevant chapter (e.g. V3 Session Management, V4 Access Control, V5 Validation/Sanitization) and treat the applicable requirements as implementation constraints.
 
 ## SSEM Attribute Enforcement
 
 Every code generation output must satisfy these **ten** sub-attributes.
 
-### Maintainability ([§3.2.1](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
+### Maintainability ([§3.2.1](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
 | **Analyzability** | Methods ≤ 30 LoC. Cyclomatic complexity < 10. Clear, descriptive naming. No dead code. Comments at trust boundaries and complex logic explain *why*. |
 | **Modifiability** | Loose coupling via interfaces / dependency injection. No static mutable state. Security-sensitive logic (auth, crypto, validation) centralized in dedicated modules, not scattered. Configuration externalized. |
 | **Testability** | All public interfaces testable without modifying the code under test. Dependencies injectable / mockable. Security controls (auth, validation, crypto) isolated for dedicated test suites. |
-| **Observability** | Structured logging with consistent fields at trust boundaries and security-relevant events. Decision-reason capture for allow / deny / redact outcomes. Metrics and traces for critical paths. Health and readiness signals for deployable units. Error messages convey enough context for diagnosis without leaking sensitive data (Transparency Principle, §2.5). |
+| **Observability** | Structured logging with consistent fields at trust boundaries and security-relevant events. Decision-reason capture for allow / deny / redact outcomes. Metrics and traces for critical paths. Health and readiness signals for deployable units. Error messages convey enough context for diagnosis without leaking sensitive data (Transparency Principle, §2.6). |
 
-### Trustworthiness ([§3.2.2](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
+### Trustworthiness ([§3.2.2](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
@@ -43,33 +43,32 @@ Every code generation output must satisfy these **ten** sub-attributes.
 | **Accountability** | Security-sensitive actions logged with structured data (who, what, where, when). Audit trails append-only. Auth events (login, logout, failure) and authz decisions (grant, deny) recorded with the responsible principal. No sensitive data in logs. |
 | **Authenticity** | Use established, defendable authentication mechanisms. Verify token / session integrity (signed JWTs, secure cookies). Mutually authenticate service-to-service calls. Support non-repudiation — link actions irrefutably to entities. |
 
-### Reliability ([§3.2.3](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md))
+### Reliability ([§3.2.3](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md))
 
 | Attribute | Enforcement Rule |
 |-----------|-----------------|
 | **Availability** | Enforce resource limits (memory, connections, file handles). Configure timeouts for all external calls. Rate-limit where appropriate. Thread-safe design for concurrent code. Graceful degradation for non-critical failures. |
-| **Integrity** | Validate input at every trust boundary: canonicalize → sanitize → validate (§4.4.1). Output-encode when crossing trust boundaries. Use parameterized queries exclusively. Apply the **Derived Integrity Principle** (§4.4.1.2): never accept client-supplied values for server-owned state. Apply **Request Surface Minimization** (§4.4.1.1): extract only specific expected values from requests. Applies at both system and data integrity levels. |
-| **Resilience** | Defensive coding: anticipate out-of-bounds input and handle gracefully. Specific exception handling — no bare catch-all. Constrain null handling to input checks and DB communication paths. Use immutable data structures in concurrent code. Ensure no resource leaks — proper disposal patterns. Graceful degradation under load. Circuit breakers and retries with backoff for external dependencies where warranted. |
+| **Integrity** | Handle input at every trust boundary: canonicalize → validate → sanitize (§4.4.1). Output-encode when crossing trust boundaries. Use parameterized queries exclusively. Apply the **Canonical Parsing Principle** (§4.4.1.1): define an explicit input schema per operation, parse only expected fields into a typed structure, fail closed when parsing does not succeed, and log or reject unknown fields by deliberate policy. Apply the **Isolated Integrity Principle** (§4.4.1.2): never accept client-supplied values for integrity-critical, server-owned state. Applies at both system and data integrity levels. |
+| **Resilience** | Defensive coding: anticipate out-of-bounds input and handle gracefully. Specific exception handling — no bare catch-all. Constrain null handling to input checks and DB communication paths. Use immutable data structures in concurrent code. Ensure no resource leaks — proper disposal patterns. Graceful degradation under load. Circuit breakers and retries with backoff for external dependencies where warranted. Avoid or isolate risky operations (string-built queries, deserialization of untrusted data, dynamic execution) behind a narrow, auditable interface. Fail gracefully and securely: transition to a known state, keep external error messages generic, and capture diagnostics in internal logs only. Hold only the privileges the operation needs, for no longer than it needs them (§4.4). |
 
 ## Trust Boundary Handling (§4.3, Boundary Control Principle)
 
 Apply the **turtle analogy**: hard shell at trust boundaries, flexible interior.
 
 - Identify trust boundaries in the generated code (user input, API calls, DB queries, file I/O, service-to-service, cross-tenant)
-- Apply strict input handling (canonicalization → sanitization → validation) at every boundary entry point (§4.4.1)
-- Apply Request Surface Minimization (§4.4.1.1) at every inbound boundary — accept only explicitly expected values
-- Apply Derived Integrity (§4.4.1.2) for anything that influences authorization, pricing, identity, or server-owned state
-- Log trust-boundary crossings with validation outcomes and decision reasons (Transparency Principle, §2.5)
+- Apply strict input handling (canonicalization → validation → sanitization) at every boundary entry point (§4.4.1)
+- Apply the Canonical Parsing Principle (§4.4.1.1) at every inbound boundary — parse against an explicit per-operation schema, fail closed, and make unknown fields a deliberate log-or-reject decision
+- Apply the Isolated Integrity Principle (§4.4.1.2) for anything that influences authorization, pricing, identity, object state, or other server-owned facts
+- Log trust-boundary crossings with validation outcomes and decision reasons (Transparency Principle, §2.6)
 - Keep interior logic flexible — strict control belongs at the boundary, not scattered everywhere
 
 ## Foundational Principles (Quick Reference)
 
-These FIASSE v1.0.4 principles inform every generated unit of code. Full text and rationale are in [`references/principles.md`](references/principles.md).
+These FIASSE v1.3.0 principles inform every generated unit of code. Full text and rationale are in [`references/principles.md`](references/principles.md).
 
-- §2.1 Securable Paradigm · §2.2 Resiliently Add Computing Value · §2.3 Security Mission · §2.4 First Principle Alignment · §2.5 Transparency Principle · §2.6 Principle of Least Astonishment
-- §4.3 Boundary Control · §4.4.1 Canonical Input Handling · §4.4.1.1 Request Surface Minimization · §4.4.1.2 Derived Integrity
-- §6.1 Actionable Security Intelligence
-- Plus a project-specific rule: **Dependency Hygiene** for Trustworthiness and Reliability — minimize, monitor, pin
+- §2.1 Securable Paradigm · §2.2 Resiliently Add Computing Value · §2.3 Security Mission · §2.4 Quality-Security Relationship · §2.5 Aligning Security with Development · §2.6 Transparency Principle · §2.7 Principle of Least Astonishment
+- §4.3 Boundary Control · §4.4 Resilient Coding · §4.4.1 Canonical Input Handling · §4.4.1.1 Canonical Parsing Principle · §4.4.1.2 Isolated Integrity Principle · §4.5 Dependency Stewardship
+- §6.2 Actionable Security Intelligence Principle · §6.3 Strategic Use of Security Output
 
 ## Steps
 
@@ -79,18 +78,20 @@ When generating code, apply this sequence:
 
 2. **Map Feature Requirements to ASVS** — Identify the relevant chapter(s) of [OWASP ASVS v5.0.0](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) and treat the applicable requirements as implementation constraints.
 
-3. **Apply SSEM Constraints** — Enforce the rules in the Attribute Enforcement tables above for each piece of generated code. Observability is a first-class Maintainability sub-attribute in v1.0.4 — treat it accordingly.
+3. **Apply SSEM Constraints** — Enforce the rules in the Attribute Enforcement tables above for each piece of generated code. Observability is a first-class Maintainability sub-attribute in SSEM — treat it accordingly.
 
-4. **Handle Trust Boundaries** — Apply Boundary Control (§4.3), Canonical Input Handling (§4.4.1), Request Surface Minimization (§4.4.1.1), and Derived Integrity (§4.4.1.2) at every boundary the generated code crosses.
+4. **Handle Trust Boundaries** — Apply Boundary Control (§4.3), Canonical Input Handling (§4.4.1), the Canonical Parsing Principle (§4.4.1.1), and the Isolated Integrity Principle (§4.4.1.2) at every boundary the generated code crosses.
 
-5. **Select Dependencies Deliberately** — For each external dependency:
+5. **Select Dependencies Deliberately** (Dependency Stewardship, §4.5) — For each external dependency:
+   - Add it only when its value justifies the ongoing maintenance it introduces; prefer standard library or framework capabilities when sufficient
+   - Prefer dependencies from authenticated, verifiable developers with a traceable delivery path and trusted repository provenance
    - Prefer latest stable versions unless a compatibility constraint is explicitly known
    - Prefer libraries with low known CVE / CWE exposure and no unresolved critical / high issues in current releases
    - Prefer mature, actively maintained projects with recent releases and clear security response practices
-   - Minimize dependency footprint; avoid adding libraries when standard library / framework capabilities are sufficient
+   
    - Pin versions and include lockfile guidance to support reproducible and reviewable builds
 
-6. **Instrument Transparency** — Add structured logging at security-sensitive points; capture decision reasons for allow / deny / redact outcomes; expose health metrics where applicable; emit audit trail events for auth / authz. Follow the Transparency Principle (§2.5) to satisfy Observability.
+6. **Instrument Transparency** — Add structured logging at security-sensitive points; capture decision reasons for allow / deny / redact outcomes; expose health metrics where applicable; emit audit trail events for auth / authz. Follow the Transparency Principle (§2.6) to satisfy Observability.
 
 7. **Generate Code** — Produce the code with all constraints applied. The result should be:
    - Small, single-purpose functions with clear names (Analyzability, Least Astonishment)
@@ -104,20 +105,21 @@ When generating code, apply this sequence:
 
 ## Output
 
-Generated code that embodies FIASSE v1.0.4 securable qualities. When the generation is non-trivial, append a short **Securability Notes** section listing:
+Generated code that embodies FIASSE v1.3.0 securable qualities. When the generation is non-trivial, append a short **Securability Notes** section listing:
 
 - Which SSEM sub-attributes were actively enforced (explicitly naming Observability where instrumented)
-- Which FIASSE principles were applied (e.g. Boundary Control, Derived Integrity, Transparency, Least Astonishment)
+- Which FIASSE principles were applied (e.g. Boundary Control, Canonical Parsing, Isolated Integrity, Transparency, Least Astonishment)
 - Applicable ASVS chapter or requirement IDs
 - Dependency-selection rationale (version and risk posture)
 - Any trade-offs made
 
 ## References
 
-- [FIASSE v1.0.4 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.0.4/docs/securable_framework.md) — authoritative framework specification
-- [FIASSE framework spec (main)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text; pin to v1.0.4 for stable generation constraints
+- [FIASSE v1.3.0 — securable_framework.md](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md) — authoritative framework specification
+- [FIASSE framework spec (main)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) — evolving normative text; pin to v1.3.0 for stable generation constraints
 - [OWASP ASVS v5.0.0 — English chapters](https://github.com/OWASP/ASVS/tree/v5.0.0/5.0/en) — feature-aligned security requirements
-- [`references/principles.md`](references/principles.md) — full text of the FIASSE v1.0.4 principles applied by this skill
+- [`references/principles.md`](references/principles.md) — full text of the FIASSE v1.3.0 principles applied by this skill
 - [`references/checklist.md`](references/checklist.md) — self-check used in Step 8
 - ISO/IEC 25010:2011 — Software quality models (Maintainability, Reliability definitions)
-- RFC 4949 — Internet Security Glossary (Confidentiality, Availability definitions)
+- ISO/IEC 27000:2018 — Information security vocabulary (Confidentiality, Availability, Integrity, Authenticity definitions)
+- ISO/IEC TS 5723:2022 — Trustworthiness vocabulary

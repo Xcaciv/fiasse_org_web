@@ -35,3 +35,18 @@ This file is the working memory for the repository. Keep it aligned with [readme
 
 - Add durable terminology decisions here when they affect multiple files.
 - Treat this file as lightweight project memory, not a replacement for the documentation in `src/`.
+
+## Framework Version Alignment
+
+- The site, the `/docs/` mirror, and the agent skills under `src/.well-known/agent-skills/` reflect FIASSE v1.3.0 (`https://github.com/OWASP/FIASSE/tree/v1.3.0`).
+- The `/docs/` mirror is the `docs/framework` section split from that tag, plus a site-specific `docs/llms.txt` with descriptions. Regenerate it with `scripts/fetch-framework-docs.py <tag> src/docs` when a new release is adopted, then update the index, version strings, and skill section references.
+- Version strings to update together on a release bump: the header badge and footer in `src/index.html`, the framework version stat tile, `src/llms.txt`, `src/campaign/security_property.html`, the three `SKILL.md` files and their references, `src/.well-known/agent-skills/index.json` (descriptions and sha256 digests of each `SKILL.md`), and `DEFAULT_TAG` in the fetch script.
+
+## Terminology Decisions (v1.3.0)
+
+- Use "The Isolated Integrity Principle" (section 4.4.1.2). "Derived Integrity" is the retired name.
+- Use "The Canonical Parsing Principle" (section 4.4.1.1). "Request Surface Minimization" is the retired name. Its content (explicit schema per operation, parse only expected fields, fail closed) lives inside Canonical Parsing.
+- Use "The Actionable Security Intelligence Principle" (section 6.2) for the principle. "Strategic Use of Security Output" (section 6.3) is that principle applied to tool output, not a separate principle.
+- Dependency guidance is a single section, "Dependency Stewardship" (section 4.5). There is no separate "Dependency Management" section.
+- The input handling order in the framework is canonicalization, validation, sanitization.
+- Attribute definitions cite ISO/IEC 25010, ISO/IEC 27000, and ISO/IEC TS 5723. Do not cite RFC 4949 for SSEM definitions.

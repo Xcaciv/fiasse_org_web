@@ -1,55 +1,90 @@
 # FIASSE — Framework for Integrating Application Security into Software Engineering
 > A developer-first, creational framework that embeds application security into the software engineering discipline using the Securable Software Engineering Model (SSEM) as a shared design language.
 
-FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Engineers, AppSec/Product Security professionals, engineering managers, and product owners. Unlike assurance-oriented standards such as OWASP ASVS, SAMM, or other verification frameworks, FIASSE is **creational**: it guides how software is designed and built so that security qualities are native to the code, rather than prescribing how finished software should be tested or audited. It deliberately leaves verification, testing checklists, and compliance-style controls to those complementary frameworks and avoids overlap with them. Its core model, SSEM (pronounced /si:m/), replaces security-centric jargon with established software engineering vocabulary, organizing the attributes of securable software under three categories: **Maintainability** (Analyzability, Modifiability, Testability, Observability), **Trustworthiness** (Confidentiality, Accountability, Authenticity), and **Reliability** (Availability, Integrity, Resilience). FIASSE rejects the static notion of "secure" in favor of "securable" — a system built so its protective qualities can be sustained as threats, dependencies, and requirements evolve — and operationalizes this through principles like the Boundary Control Principle, canonical input handling, Transparency, Least Astonishment, and dependency stewardship. It explicitly names and counters common AppSec anti-patterns such as "Shoveling Left," exploit-first training, and ineffective vulnerability reporting, and it defines role-specific responsibilities so security engagement moves upstream into requirements, design, and merge reviews rather than bolt-on scanning. The outcome is a common design language that aligns development and security around measurable engineering attributes instead of binary pass/fail security gates.
+FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Engineers, AppSec/Product Security professionals, engineering managers, and product owners. Unlike assurance-oriented standards such as OWASP ASVS, SAMM, or other verification frameworks, FIASSE is **creational**: it guides how software is designed and built so that security qualities are native to the code, rather than prescribing how finished software should be tested or audited. It deliberately leaves verification, testing checklists, and compliance-style controls to those complementary frameworks and avoids overlap with them. Its core model, SSEM (pronounced /si:m/), replaces security-centric jargon with established software engineering vocabulary, organizing the attributes of securable software under three categories: **Maintainability** (Analyzability, Modifiability, Testability, Observability), **Trustworthiness** (Confidentiality, Accountability, Authenticity), and **Reliability** (Availability, Integrity, Resilience). FIASSE rejects the static notion of "secure" in favor of "securable" — a system built so its protective qualities can be sustained as threats, dependencies, and requirements evolve — and operationalizes this through principles like the Boundary Control Principle, Canonical Input Handling (the Canonical Parsing Principle and the Isolated Integrity Principle), Transparency, Least Astonishment, and Dependency Stewardship. It explicitly names and counters common AppSec anti-patterns such as the control-as-requirement and control-as-protection fallacies, "Shoveling Left," exploit-first training, and ineffective vulnerability reporting, and it defines role-specific responsibilities so security engagement moves upstream into requirements, design, and merge reviews rather than bolt-on scanning. The outcome is a common design language that aligns development and security around measurable engineering attributes instead of binary pass/fail security gates.
+
+These files mirror the `docs/framework` section split of the FIASSE v1.3.0 release (https://github.com/OWASP/FIASSE/tree/v1.3.0/docs/framework). Section numbers match the full document at https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md.
 
 ## Docs
 - [Abstract and Table of Contents](./S0.0.0.md): Overview, scope, and full document structure.
 - [1. Introduction](./S1.0.0.md): The AppSec challenge and why current approaches fail to change outcomes.
-- [1.1 The Application Security Challenge](./S1.1.0.md): Why "shift left," training, and tooling have underdelivered, including the impact of AI-generated code.
-- [1.2 Document Purpose and Scope](./S1.2.0.md): Audience, the "securable" vs. "secure" distinction, and how FIASSE relates to SSEM.
-- [2. Foundational Principles](./S2.0.0.md): The principles that underpin the framework.
-- [2.1 The Securable Paradigm](./S2.1.0.md): Why there is no static secure state and what adaptive resilience means in practice.
-- [2.2. Resiliently Add Computing Value](./S2.2.0.md): The primary directive of software engineering: create valuable code that withstands change, stress, and attack.
+- [1.1. The Application Security Challenge](./S1.1.0.md): Why "shift left," training, and tooling have underdelivered, including the impact of AI-generated code.
+- [1.2. Document Purpose and Scope](./S1.2.0.md): Audience, the "securable" vs. "secure" distinction, how FIASSE relates to SSEM, and how it complements assurance approaches.
+- [2. Foundational Principles](./S2.0.0.md): The four core values (Securable Attributes over Security Controls, Participation over Assessment, Engineering First Principles over Security Jargon, Business Value over Security Activity) and the terminology note on controls, features, and attributes.
+- [2.1. The Securable Paradigm: No Static Secure State](./S2.1.0.md): Why there is no static secure state, the three organizing ideas, and the reframed question "Is it built so that security can be maintained?"
+- [2.2. Resiliently Add Computing Value](./S2.2.0.md): The primary directive of software engineering. Each word is load-bearing: value, add, resiliently.
 - [2.3. Security Mission: Reducing Material Impact](./S2.3.0.md): Security exists to reduce the probability of material impact from a cyber event, not to eliminate all breaches.
-- [2.4 Aligning Security with Development](./S2.4.0.md): Shared vocabulary over security jargon; why "think like an attacker" does not scale as a development mandate.
-- [2.5. The Transparency Principle](./S2.5.0.md): Design systems so their internal state and behavior are observable and understandable to authorized parties.
-- [2.6. The Principle of Least Astonishment](./S2.6.0.md): Predictable behavior aids analysis, reduces cognitive load, and removes the surprises that hide defects.
+- [2.4. The Quality-Security Relationship](./S2.4.0.md): Security cannot exceed software quality. ISO/IEC 5055, the code-scoped ceiling, and why quality investment is security investment.
+- [2.5. Aligning Security with Development](./S2.5.0.md): Shared vocabulary over security jargon, participation over assessment, and assurance metrics as indicators of upstream health.
+- [2.6. The Transparency Principle](./S2.6.0.md): Design systems so authorized parties can understand internal state and behavior, within the bound set by Confidentiality.
+- [2.6.1. Transparency and Maintainability](./S2.6.1.md): How traceable data flow, state changes, and decision logic speed diagnosis and change assessment.
+- [2.6.2. Transparency and Trustworthiness](./S2.6.2.md): Transparency as the mechanism that makes Accountability possible and reinforces Authenticity.
+- [2.6.3. Transparency Tactics](./S2.6.3.md): Clear code, version control, structured logs, immutable audit trails, instrumentation, and logging at trust boundaries.
+- [2.7. The Principle of Least Astonishment](./S2.7.0.md): Predictable behavior aids analysis, reduces cognitive load, and makes trust boundaries intuitive.
 - [3. The Securable Software Engineering Model (SSEM)](./S3.0.0.md): The model that expresses securable attributes in engineering terms.
-- [3.1 Model Overview and Design Language](./S3.1.0.md): SSEM as design language, not a compliance checklist.
-- [3.2 Core Securable Attributes](./S3.2.0.md): Maintainability, Trustworthiness, and Reliability as the three pillars of securable software.
-- [3.2.1. Maintainability](./S3.2.1.md): Analyzability, Modifiability, and Testability from ISO/IEC 25010, plus Observability from control theory, and why each matters for security.
-- [3.2.2. Trustworthiness](./S3.2.2.md): Confidentiality, Accountability, and Authenticity as inherent code qualities rather than overlaid controls.
-- [3.2.3. Reliability](./S3.2.3.md): Availability, Integrity, and Resilience: consistent operation under adverse conditions, unexpected input, and attack.
+- [3.1. Model Overview and Design Language](./S3.1.0.md): SSEM as design language, not a compliance checklist. The three categories and ten attributes.
+- [3.2. Core Securable Attributes](./S3.2.0.md): Maintainability, Trustworthiness, and Reliability as the three pillars of securable software.
+- [3.2.1. Maintainability](./S3.2.1.md): Analyzability, Modifiability, and Testability from ISO/IEC 25010, plus Observability from control theory, with contributing factors for each.
+- [3.2.2. Trustworthiness](./S3.2.2.md): Confidentiality, Accountability, and Authenticity as inherent code qualities, and why SSEM has no Authorization attribute.
+- [3.2.3. Reliability](./S3.2.3.md): Availability, Integrity at the system and data levels, and Resilience under adverse conditions, unexpected input, and attack.
 - [4. Practical Guidance for Securable Software Development](./S4.0.0.md): Engineering practices that produce securable code.
 - [4.1. Establishing Clear Expectations](./S4.1.0.md): Set security expectations early, in terms that fit the way software is already produced.
-- [4.1.1. Proactive Communication](./S4.1.1.md): Keep development teams informed about security initiatives and maintain regular points of contact.
-- [4.1.2. Integrating Security into Requirements](./S4.1.2.md): Security Features, Threat Scenarios, and Security Acceptance Criteria as requirements deliverables.
+- [4.1.1. Proactive Communication](./S4.1.1.md): Tell development teams about security initiatives before findings arrive and keep regular points of contact.
+- [4.1.2. Integrating Security into Requirements](./S4.1.2.md): Security Features, Threat Scenarios, and Security Acceptance Criteria as requirements deliverables, and the residual vulnerability classes requirements do not reach.
 - [4.2. Threat Modeling](./S4.2.0.md): Formal threat modeling and continuous code-level threat awareness, and why the two must not be conflated.
 - [4.2.1. Code-Level Threat Awareness](./S4.2.1.md): Asking "What can go wrong?" in merge reviews, static analysis triage, and pairing.
 - [4.2.2. Threat Modeling Solution Framework](./S4.2.2.md): Follow the data, use STRIDE for structure, and answer "What are we going to do about it?" in SSEM terms.
-- [4.3 The Boundary Control Principle](./S4.3.0.md): Preserve interior flexibility; enforce control at trust boundaries.
-- [4.4 Resilient Coding](./S4.4.0.md): Canonical input handling, request surface minimization, and derived integrity.
-- [4.4.1. Canonical Input Handling](./S4.4.1.md): Canonicalize, validate, and sanitize at the point of input, with request surface minimization and derived integrity.
-- [4.5 Dependency Management](./S4.5.0.md): Dependency selection and maintenance as an ongoing engineering responsibility.
-- [4.6. Dependency Stewardship](./S4.6.0.md): Apply SSEM attributes to the whole lifecycle of third-party dependencies, independent of supply chain attestation.
+- [4.3. The Boundary Control Principle](./S4.3.0.md): Preserve interior flexibility; enforce control at trust boundaries. Control here is the software-engineering sense of the word.
+- [4.4. Resilient Coding](./S4.4.0.md): Defensive coding practices: strong typing, boundary validation, output encoding, null handling, error handling, isolation of risky operations, resource management, secure failure, and least privilege at the code level.
+- [4.4.1. Canonical Input Handling](./S4.4.1.md): Canonicalize, validate, and sanitize at the point of input, with the Canonical Parsing Principle and the Isolated Integrity Principle.
+- [4.5. Dependency Stewardship](./S4.5.0.md): Apply SSEM attributes when selecting, integrating, monitoring, and maintaining dependencies over the life of the relationship.
 - [5. Integrating Security into Development Processes](./S5.0.0.md): Extending existing workflows rather than bolting on security processes.
 - [5.1. Natively Extending Development Processes](./S5.1.0.md): Integrate security into existing workflows instead of imposing separate gates.
-- [5.2. The Role of Merge Reviews](./S5.2.0.md): Merge reviews as guardrails, not gates: the scalable point for securable code review, learning, and code-level threat awareness.
-- [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): Why security participation in planning and requirements costs a fraction of remediation in production.
-- [6. Common AppSec Anti-Patterns](./S6.0.0.md): "Shoveling Left," ineffective vulnerability reporting, and exploit-first training.
-- [6.1. The "Shoveling Left" Phenomenon](./S6.1.0.md): Supplying impractical information to developers and leaving them to make sense of it.
-- [6.1.1. Ineffective Vulnerability Reporting](./S6.1.1.md): Raw scanner output in the backlog and what to do instead: validate, find patterns, and give engineering direction.
-- [6.1.2. Pitfalls of Exploit-First Training](./S6.1.2.md): Why "learn the hack to stop the attack" does not equip developers for daily engineering work.
-- [6.2. Strategic Use of Security Output](./S6.2.0.md): Use scanning and testing output without bypassing the engineering workflows developers rely on.
+- [5.2. The Role of Merge Reviews](./S5.2.0.md): Merge reviews as guardrails, not gates: the venue for guidance, validation, knowledge transfer, and code-level threat awareness.
+- [5.2.1. The Securability Report](./S5.2.1.md): Every merge produces an informational report that combines scan results and changeset-scoped signals with reviewer assessment in SSEM terms.
+- [5.2.2. The Advisory Default](./S5.2.2.md): The report makes securability consequences visible while they are cheap to discuss and shows SSEM reasoning applied to real code.
+- [5.2.3. Gating as a Policy Decision](./S5.2.3.md): Teams may elevate finding classes to blocking. An override path must exist and records who accepted what, and why.
+- [5.2.4. The Audit Trail](./S5.2.4.md): Reports and gating decisions form a timestamped, attributable record produced by ordinary work that can support SBOM attestations.
+- [5.2.5. Posture over Pass Rates](./S5.2.5.md): Manage security posture over time. A recurring override signals an upstream requirements or securability gap.
+- [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): Set expectations before implementation. Once a flaw ships, the average time from finding to fix is 252 days.
+- [5.4. Phases and Empirical Intelligence](./S5.4.0.md): Which stages FIASSE governs (requirements, build, merge), which are governed by assurance and operations practice, and how later findings return upstream.
+- [5.4.1. Requirements and Design](./S5.4.1.md): Security participation, threat modeling, control translation, and a point-in-time statement of expectations.
+- [5.4.2. Build](./S5.4.2.md): SSEM attributes, Boundary Control, Resilient Coding, Dependency Stewardship, and vetting AI-generated code against acceptance criteria.
+- [5.4.3. Merge](./S5.4.3.md): The Securability Report, advisory default, policy gating, audit trail, and recurring findings as upstream signals.
+- [5.4.4. Validation](./S5.4.4.md): Verification, assurance, and testing as assurance practice. Flaws found here are redrawn as requirements before they enter the backlog.
+- [5.4.5. Production Operation and Incident Response](./S5.4.5.md): Operations practice outside FIASSE governance that depends on Observability, Accountability, and Resilience built into the code.
+- [5.4.6. Findings as Empirical Intelligence](./S5.4.6.md): Trace findings to a cause and redraw them for the stage that could have prevented them.
+- [6. Common AppSec Anti-Patterns](./S6.0.0.md): Security controls misapplied in code creation, "Shoveling Left," and misuse of security output.
+- [6.1. Security Controls in the Code Creation Process](./S6.1.0.md): Catalog control, security requirement, security feature, and verification evidence as four distinct artifacts.
+- [6.1.1. The Control-as-Requirement Fallacy](./S6.1.1.md): Treating a catalog item as a specification. The AC-3 example translated into an implementable requirement.
+- [6.1.2. The Control-as-Protection Fallacy](./S6.1.2.md): Reading the documented existence of a control as a property of the software, and the residual obligations inside the code.
+- [6.1.3. The Requirements Process as the Corrective](./S6.1.3.md): Allocation, specification, and adequacy. ASVS as a requirements library, and who owns each step.
+- [6.2. The "Shoveling Left" Phenomenon](./S6.2.0.md): Supplying impractical information to developers, and the Actionable Security Intelligence Principle as the corrective.
+- [6.2.1. Ineffective Vulnerability Reporting](./S6.2.1.md): Raw scanner output in the backlog and what to do instead: validate, find patterns, and give engineering direction.
+- [6.2.2. Pitfalls of Exploit-First Training](./S6.2.2.md): Why "learn the hack to stop the attack" does not equip developers for daily engineering work.
+- [6.3. Strategic Use of Security Output](./S6.3.0.md): Use scanning and testing output without bypassing the engineering workflows developers rely on.
 - [7. Roles and Responsibilities](./S7.0.0.md): How security teams, senior engineers, developing engineers, and product owners each participate.
-- [7.1. The Role of the Security Team](./S7.1.0.md): Guide engineers through a self-governed process and measure partnership effectiveness, not compliance.
+- [7.1. The Role of the Security Team](./S7.1.0.md): Set expectations early and let engineering processes carry them. Metrics measure partnership effectiveness, not development compliance.
+- [7.1.1. The Strategic Case for the Shift](./S7.1.1.md): Why security must move upstream when gatekeeping cannot scale with AI-assisted code volume.
+- [7.1.2. Capacity Relief Through Agentic AppSec](./S7.1.2.md): AI-assisted analysis, triage, and pattern detection free security expertise for upstream work.
+- [7.1.3. Transition, Not Switchover](./S7.1.3.md): Assurance continues while the participation role grows into freed capacity.
+- [7.1.4. Business-Leadership Alignment Is a Precondition](./S7.1.4.md): Leadership must fund the shift and accept assurance metrics as a downstream indicator.
+- [7.1.5. Staffing Implications](./S7.1.5.md): Upstream work calls for engineering literacy. Plan for hiring, development, and retention as roles change.
 - [7.2. Senior Software Engineers](./S7.2.0.md): The primary technical partners for adoption, whose judgment matters more as AI generates more code.
-- [7.3. Developing Software Engineers](./S7.3.0.md): Building judgment through SSEM, merge reviews, and pair programming.
-- [7.4. Product Owners and Managers](./S7.4.0.md): How FIASSE literacy changes backlog decisions, acceptance criteria, and vendor conversations.
-- [8. Organizational Adoption of FIASSE](./S8.0.0.md): A practical, non-rigid path for introducing FIASSE into an organization.
-- [9. Conclusion](./S9.0.0.md): The central shift and the starting point for adoption.
-- [10. References](./S10.0.0.md): Source material and further reading.
+- [7.3. Developing Software Engineers](./S7.3.0.md): Building judgment through SSEM, merge reviews, pair programming, and scrutiny of AI-generated code.
+- [7.4. Product Owners and Managers](./S7.4.0.md): How FIASSE literacy changes backlog decisions, acceptance criteria, scope cuts, vendor conversations, and incident response.
+- [8. Organizational Adoption of FIASSE](./S8.0.0.md): Seven steps for introducing FIASSE, including agentic AppSec tooling as capacity relief.
+- [8.1. Degraded-Mode Adoption](./S8.1.0.md): Adopting FIASSE when a prerequisite is thin or absent. A legitimate posture, not a failure to adopt.
+- [8.1.1. Compensate with Agentic Assistance](./S8.1.1.md): AI tooling reduces review load on a thin senior bench but does not replace engineering judgment.
+- [8.1.2. Invest in the Prerequisite First](./S8.1.2.md): Requirements-process work, engineering culture, and senior hiring as FIASSE-adjacent investments.
+- [8.1.3. Adopt Partially with Named Gaps](./S8.1.3.md): Adopt what the prerequisites support and name what is deferred.
+- [8.2. Indicators of Adoption Effectiveness](./S8.2.0.md): Indicators that distinguish the framework producing its claimed effect from adoption that is not working.
+- [8.2.1. Leading Indicators](./S8.2.1.md): Signals visible within one to two quarters of good-faith adoption.
+- [8.2.2. Lagging Indicators](./S8.2.2.md): Signals visible within one to two years: findings churn, fix durability, remediation turnaround, and vulnerability class distribution.
+- [8.2.3. Distinguishing Framework Failure from Adoption Failure](./S8.2.3.md): What to review when leading indicators do not move, and when lagging indicators do not follow.
+- [9. Conclusion](./S9.0.0.md): The central shift and the starting point for each role.
+- [10. References and Appendix A](./S10.0.0.md): Source material, and Appendix A: Measuring SSEM Attributes, including A.4 Scoring and Enhancement Suggestions.
+- [Code Application Index](./code-index.md): Separates the sections that apply directly to code from the process, role, and adoption sections. For agents writing, generating, or reviewing code.
 
 ## Optional
 - [Web Site](https://fiasse.org/): The human-facing site.

@@ -1,4 +1,4 @@
-# SSEM Evaluation Checklist (FIASSE v1.0.4)
+# SSEM Evaluation Checklist (FIASSE v1.3.0)
 
 Canonical 50-item checklist for SSEM scoring. Five items per sub-attribute, ten sub-attributes, three pillars. Item IDs are stable across runs and projects so review-to-review comparisons are meaningful.
 
@@ -40,7 +40,7 @@ When rendering this checklist into a report, use `[x]` for pass and `[ ]` for fa
 - [ ] **M-OB-2** — Decision-reason capture is present for allow / deny / redact outcomes.
 - [ ] **M-OB-3** — Metrics and traces expose latency, error rate, and saturation of critical paths.
 - [ ] **M-OB-4** — Health and readiness signals exist for each deployable unit.
-- [ ] **M-OB-5** — Error messages convey enough context for diagnosis without leaking sensitive data (Transparency Principle, §2.5).
+- [ ] **M-OB-5** — Error messages convey enough context for diagnosis without leaking sensitive data (Transparency Principle, §2.6).
 
 ---
 
@@ -84,15 +84,15 @@ When rendering this checklist into a report, use `[x]` for pass and `[ ]` for fa
 
 ### Integrity (R-IN)
 
-- [ ] **R-IN-1** — Inputs are canonicalized → sanitized → validated at every trust boundary (FIASSE §4.4.1).
-- [ ] **R-IN-2** — Request Surface Minimization is applied — only explicitly expected fields, headers, and parameters are consumed (§4.4.1.1).
-- [ ] **R-IN-3** — Derived Integrity is applied — server-owned state (identity, permissions, pricing, balances) is computed server-side, never accepted from the client (§4.4.1.2).
+- [ ] **R-IN-1** — Inputs are canonicalized → validated → sanitized at every trust boundary (FIASSE §4.4.1).
+- [ ] **R-IN-2** — The Canonical Parsing Principle is applied — input is parsed against an explicit per-operation schema into typed structures, parsing fails closed, and unknown fields are logged or rejected by deliberate policy (§4.4.1.1).
+- [ ] **R-IN-3** — The Isolated Integrity Principle is applied — integrity-critical state (identity, permissions, pricing, balances, object state) is established server-side and cannot be set or biased by the client (§4.4.1.2).
 - [ ] **R-IN-4** — Data persistence uses parameterized queries exclusively; output encoding is applied at rendering boundaries.
 - [ ] **R-IN-5** — Tamper detection (checksums, signatures, integrity monitoring) is in place where data integrity is load-bearing.
 
 ### Resilience (R-RE)
 
-- [ ] **R-RE-1** — Exception handling is specific — no bare catch-all that swallows errors; error semantics are predictable.
+- [ ] **R-RE-1** — Exception handling is specific — no bare catch-all that swallows errors; failure is graceful and secure, with generic external messages and diagnostics kept internal (§4.4).
 - [ ] **R-RE-2** — Resource disposal patterns prevent leaks (try-with-resources, context managers, IDisposable, defer).
 - [ ] **R-RE-3** — Graceful degradation is designed for non-critical dependencies (circuit breakers, fallbacks, retries with backoff).
 - [ ] **R-RE-4** — Out-of-bounds and adversarial input is anticipated and handled rather than allowed to crash or corrupt state.

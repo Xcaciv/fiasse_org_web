@@ -6,7 +6,9 @@ Relentlessly Practical. Relentlessly Securable.
 
 FIASSE (pronounced /feiz/, like "the phases of the moon") is a framework for Securable Software Engineering. It provides practical guidance for the engineers who build applications and for the security teams who work with them.
 
-[Read the Doc (latest)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md)
+[Read the Doc (latest)](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md) · [v1.3.0 release](https://github.com/OWASP/FIASSE/blob/v1.3.0/docs/securable_framework.md)
+
+This site reflects FIASSE v1.3.0.
 
 > Note: FIASSE is not an assurance framework. This is a new project and some concepts may seem odd. Your LLM may not get it either. Share your honest feedback; we want you both to understand.
 
@@ -109,7 +111,7 @@ Set security expectations through the software engineering practices teams alrea
 3. **Security Requirements** — Features that handle sensitive data or perform delicate operations require explicit security requirements specifying what the feature must do and how. ASVS is a useful reference for what to require.
 4. **Security Features** — Specific capabilities whose purpose is security: Defendable Authentication, encryption at rest, authorization checks, audit logging. Security features are built; they are how engineering attention is invested. Specify them with the same rigor as any other feature.
 
-Incomplete requirements are the dominant root cause of security gaps in application code. Where security expectations are absent from the requirements developers work from, the resulting implementation is not deficient by error. It is deficient by design. Some vulnerability classes sit outside this case regardless: injection flaws, supply-chain compromise, cryptographic weaknesses, and truly novel flaws. FIASSE addresses these residuals through Resilience, Dependency Stewardship, and Observability.
+Incomplete requirements are a major source of security gaps in application code. Vulnerabilities commonly trace to a security expectation that was never specified, or to one that was specified but implemented inconsistently across a change. When requirements omit a security expectation, developers cannot be expected to infer what the feature must do. The resulting gap belongs in the requirements process, not with developers for failing to guess. Some vulnerability classes sit outside requirements regardless: injection, supply-chain compromise, evolving cryptographic weaknesses, and novel flaws. FIASSE addresses these residuals through Boundary Control and Canonical Input Handling for injection, Dependency Stewardship for third-party code, and Resilience and Observability for evolving and novel threats.
 
 ### Implementation
 
@@ -132,10 +134,10 @@ Strengthen software engineering discipline. Security posture follows from it.
 #### Process
 
 1. **Software Engineering process extensions** — Alignment of security assurance and governance process with existing empirical software engineering processes.
-2. **Securable Tenet Support** — Support the Securable Mindset in development activities like Merge Reviews and Dependency Management.
+2. **Securable Tenet Support** — Support the Securable Mindset in development activities like Merge Reviews and Dependency Stewardship.
 3. **Dependency Stewardship** — Treat third-party dependencies as an ongoing engineering responsibility: selection, monitoring, update cadence, and removal, rather than a one-time choice.
 4. **Strategic Remediation** — Higher quality security assurance data allows for systemic remediation and empirical process change.
-5. **The Securability Report** — Every merge produces an informational report combining automated scanning with reviewer assessment in SSEM vocabulary. It is generated unconditionally and, by default, blocks nothing. It works as a guardrail, not a gate. A team may elect to gate designated finding classes as a policy decision, provided an override path exists. Exercising the override is not a failure of the mechanism. It is the mechanism completing, with the business retaining authority to accept vulnerable code and the override recording who accepted what, and why. The resulting audit trail of findings, gating decisions, and overrides, all timestamped and attributable, is what proof-based compliance consumes, mapping directly onto obligations like the EU Cyber Resilience Act and NIST SP 800-218. What the organization manages is security posture over time, not the pass rate of individual merges. A recurring override on the same finding class is a signal pointing upstream to a requirements or securability gap, not a compliance failure to enforce harder at the merge.
+5. **The Securability Report** — Every merge produces an informational report combining automated scanning with reviewer assessment in SSEM vocabulary. It is generated unconditionally and, by default, blocks nothing. It works as a guardrail, not a gate. A team may elect to gate designated finding classes as a policy decision, provided an override path exists. Exercising the override is not a failure of the mechanism. It is the mechanism completing, with the business retaining authority to accept vulnerable code and the override recording who accepted what, and why. The resulting audit trail of findings, gating decisions, and overrides, all timestamped and attributable, is produced by ordinary work. It can support SBOM attestations by documenting that teams evaluated security expectations on each change and recorded acceptance decisions. What the organization manages is security posture over time, not the pass rate of individual merges. A recurring override on the same finding class is a signal pointing upstream to a requirements or securability gap, not a compliance failure to enforce harder at the merge.
 
 ### Assurance
 
@@ -152,7 +154,7 @@ Assurance activities are still important when using the FIASSE approach. Investm
 
 ## Process: Five Layers
 
-Modern development cycles outrun review-based AppSec. FIASSE integrates security at five development layers. Each layer feeds the next and informs the ones before it. The first layer is the one most often skipped, and the one with the most consequence.
+Modern development cycles outrun review-based AppSec. FIASSE integrates security at five development layers. Each layer feeds the next and informs the ones before it. The first three layers are governed by FIASSE. Validation and production operation are governed by assurance and operations practice, and their findings return upstream as empirical intelligence (FIASSE §5.4). The first layer is the one most often skipped, and the one with the most consequence.
 
 ### Layer 1: Product Requirements
 
@@ -196,7 +198,7 @@ Modern development cycles outrun review-based AppSec. FIASSE integrates security
 
 1. The deployment pipeline runs the software for testing.
 2. Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.
-3. When a deviation is detected, a targeted remediation tied to the original requirement is submitted.
+3. When a deviation is detected, the flaw is redrawn as a requirement before it enters the backlog, and a targeted remediation tied to that requirement is submitted.
 4. Remediations are routed back through Layer 3 or through architecture, not patched ad hoc.
 5. Validated deployments proceed. The requirement-to-evidence trail stays intact through release.
 
@@ -213,6 +215,14 @@ Modern development cycles outrun review-based AppSec. FIASSE integrates security
 5. Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria. Remediation becomes part of the same workflow.
 
 *Agentic note:* an agentic workflow would correlate anomalies and incident activity with code and architecture, using business context to find the fix quickly and feed operational observations back into the product.
+
+### Findings as Empirical Intelligence
+
+Assurance findings and operational incidents are the empirical record of the first three layers' performance. FIASSE reads them as indicators of upstream health. Raw findings become intelligence once traced to a cause and redrawn for the layer that could have prevented them (FIASSE §5.4.6).
+
+- Recurring unspecified expectations point to requirements participation.
+- Inconsistent implementation points to securable coding practice.
+- Defects that were detectable at merge but missed point to merge review and, where applicable, build practice.
 
 ### Where Security Outcomes Are Decided
 
@@ -480,7 +490,7 @@ How the system works should be perceptible so engineers and stakeholders can see
 
 - Transparency means exposing clear, contextualized signals about system behavior (logs, metrics, traces, decision reasons) so people can detect misuse, misconfiguration, and drift early.
 - Instead of hiding complexity behind black boxes, the system surfaces enough structured information to reason about integrity, authorization, and failure modes.
-- This attribute is not entirely exposed to end users, to preserve confidentiality.
+- Transparency operates within the bound set by Confidentiality: visibility is extended only to authorized parties.
 
 *In practice:*
 
@@ -489,7 +499,8 @@ How the system works should be perceptible so engineers and stakeholders can see
 
 ### Engineering Principles
 
-#### The Boundary Control Principle
+#### [The Boundary Control Principle](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#43-the-boundary-control-principle)
+
 
 *Control* in this principle refers to its software-engineering sense: the regulated handling of data and execution at trust boundaries. It does not refer to *security controls* in the risk-and-assurance sense.
 
@@ -501,7 +512,8 @@ Flexibility within a system's interior is an engineering asset to be preserved; 
 - Locate control precisely at those boundaries; preserve interior flexibility for maintainability.
 - Think of trust boundaries as the hard shell of a turtle: flexible interior, controlled perimeter.
 
-#### The Principle of Least Astonishment
+#### [The Principle of Least Astonishment](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#27-the-principle-of-least-astonishment)
+
 
 A system should behave the way a reasonable user, operator, or developer expects. Surprise is a source of defects, including security defects, because behavior that diverges from expectation is not being reviewed or defended.
 
@@ -511,13 +523,14 @@ A system should behave the way a reasonable user, operator, or developer expects
 - Flag and document any deviation from expected behavior, especially at trust boundaries.
 - Treat unexpected state as a signal worth investigating, not a condition to silently work around.
 
-#### Resiliently Add Computing Value
+#### [Resiliently Add Computing Value](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#22-resiliently-add-computing-value)
+
 
 The primary directive of software engineering: deliver useful capability continuously (*add*), in a way that leaves the system able to withstand the change, stress, and attack that follows (*resiliently*). Value added without resilience is capability the business will lose later, with interest. Resilience pursued without adding value is security as an end in itself.
 
-#### Strategic Use of Security Output
+#### [The Actionable Security Intelligence Principle](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#62-the-shoveling-left-phenomenon)
 
-Security output becomes valuable only once it is translated into prioritized, engineering-grounded direction calibrated to the developer's context. Raw tool output, exploit-centric narratives, and unfiltered vulnerability lists are information, not yet intelligence.
+Security teams collaborate with development teams on systemic flaw reductions by producing findings, guidance, and training in a form developers can act on within their normal engineering workflow. Security output becomes valuable only once it is translated into prioritized, engineering-grounded direction calibrated to the developer's context. Raw tool output, exploit-centric narratives, and unfiltered vulnerability lists are information, not yet intelligence. [Strategic Use of Security Output](https://github.com/OWASP/FIASSE/blob/main/docs/securable_framework.md#63-strategic-use-of-security-output) applies the same principle to scanner results, penetration test findings, and monitoring signals.
 
 *In practice:*
 
@@ -566,7 +579,7 @@ FIASSE only works when responsibilities are distributed across the roles that sh
 **Security Team** — Engage early and often. Shape requirements, design, and architecture rather than arriving at the end with a finding list. This is a strategic shift, not the norm today. It depends on business-leadership alignment as a precondition and on agentic tooling for capacity relief. It is a transition, not a switchover. Assurance work continues while participation is grown into.
 
 - State security objectives in SSEM-grounded acceptance criteria developers can act on.
-- Apply the Strategic Use of Security Output principle: deliver engineering-grounded direction, not raw tool output.
+- Apply the Actionable Security Intelligence Principle: deliver engineering-grounded direction, not raw tool output.
 - Measure the partnership through implementation completeness, not vulnerability counts.
 
 **Senior Software Engineers** — Carry SSEM vocabulary and securable design patterns into merge reviews, architecture decisions, and mentorship, including review of AI-generated code and the prompt-engineering standards that shape it.
@@ -591,14 +604,14 @@ FIASSE only works when responsibilities are distributed across the roles that sh
 
 These patterns undermine AppSec credibility and cause developer disengagement. Each has a corrective discipline.
 
-**The Control-as-Requirement Fallacy** — Treating a catalog control (NIST 800-53, ISO 27001 Annex A, PCI DSS) as a specification the programmer should already know to build. A control like "Enforce approved authorizations" (AC-3) is deliberately implementation-agnostic; it cannot be verified against a codebase as written. Translate it into a requirement: *every request to a document endpoint verifies the caller's permission server-side, and unauthorized requests return 403 and are logged*. Now development has something to implement, and a passing test against those criteria is the audit evidence.
+**The Control-as-Requirement Fallacy** — Treating a catalog control (NIST 800-53, ISO 27001 Annex A, PCI DSS) as a specification the programmer should already know to build. A control like "Enforce approved authorizations" (AC-3) is deliberately implementation-agnostic; it cannot be verified against a codebase as written. Translate it into a requirement: *every request to a document endpoint verifies the caller's permission server-side, and unauthorized requests return 403 and are logged with the caller's identity*. Now development has something to implement, and a passing test against those criteria is the audit evidence.
 *Corrective:* The requirements process. Allocate which layer satisfies each control, specify the code's share as observable behavior with acceptance criteria, and treat the catalog as a floor, never a ceiling.
 
 **The Control-as-Protection Fallacy** — Reading the documented existence of a control as a property of the software, when many controls are properly satisfied outside the application (platform, network, process). A correctly-external control still leaves residual obligations inside the code that go unspecified because "the control is handled." For example, the code must accept identity only from the trusted boundary and fail closed when the upstream protection is absent.
 *Corrective:* Specify the code's residual share of every relevant control explicitly, implement it, and verify it.
 
 **"Shoveling Left"** — Supplying impractical information to developers and leaving the burden on them to make sense of it. Manifests in how vulnerabilities are reported, how training is conducted, and how test results are delivered.
-*Corrective:* Translate raw information into prioritized, engineering-grounded direction calibrated to the developer's context before handing it over.
+*Corrective:* The Actionable Security Intelligence Principle. Translate raw information into prioritized, engineering-grounded direction calibrated to the developer's context before handing it over.
 
 **Ineffective Vulnerability Reporting** — Long finding lists with CVSS scores but no engineering direction. Developers are expected to prioritize, triage, and remediate without the security context.
 *Corrective:* Report root cause, class of flaw, and suggested engineering change. Tie findings to requirements and acceptance criteria so remediation becomes ordinary engineering work.

@@ -1,3 +1,5 @@
+> Status (2026-10-19): superseded. The site was realigned to the FIASSE v1.3.0 release; see AGENTS.md for the current alignment and terminology decisions.
+
 # Plan: Update fiasse.org content to the new securable_framework.md
 
 Date: 2026-08-02

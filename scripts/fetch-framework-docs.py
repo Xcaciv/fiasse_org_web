@@ -7,7 +7,7 @@ Usage:
     python scripts/fetch-framework-docs.py [TAG] [OUTPUT_DIR]
 
 Defaults:
-    TAG         v1.0.4
+        TAG         v1.3.0
     OUTPUT_DIR  ./docs/framework
 
 Uses only the Python 3 standard library.
@@ -29,9 +29,9 @@ REPO = "OWASP/FIASSE"
 SUBDIR = "docs/framework"
 
 # Default release tag and output path. If the user runs the script without
-# arguments, it downloads the framework docs for v1.0.4 into ./docs/framework
+# arguments, it downloads the framework docs for v1.3.0 into ./docs/framework
 # relative to the current working directory.
-DEFAULT_TAG = "v1.0.4"
+DEFAULT_TAG = "v1.3.0"
 DEFAULT_OUTPUT = Path("docs/framework")
 
 

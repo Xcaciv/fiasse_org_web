@@ -1411,10 +1411,10 @@
                     <div class="proc-side">
                         <div class="proc-tabs" role="tablist" aria-label="Process layers">
                             <button class="proc-tab active" id="layer-1" role="tab" aria-selected="true" aria-controls="layer-1-detail" aria-label="Layer 1: Product Requirements" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-1')">L1</button>
-                            <button class="proc-tab" id="layer-2" role="tab" aria-selected="false" aria-controls="layer-2-detail" aria-label="Layer 2: Agent-Embedded Guardrails" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-2')">L2</button>
-                            <button class="proc-tab" id="layer-3" role="tab" aria-selected="false" aria-controls="layer-3-detail" aria-label="Layer 3: Intelligent Code Control" style="--c: var(--accent-quaternary);" onclick="selectProcLayer('layer-3')">L3</button>
-                            <button class="proc-tab" id="layer-4" role="tab" aria-selected="false" aria-controls="layer-4-detail" aria-label="Layer 4: Intelligent Remediation" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-4')">L4</button>
-                            <button class="proc-tab" id="layer-5" role="tab" aria-selected="false" aria-controls="layer-5-detail" aria-label="Layer 5: Production Monitoring and Incident Response" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-5')">L5</button>
+                            <button class="proc-tab" id="layer-2" role="tab" aria-selected="false" aria-controls="layer-2-detail" aria-label="Layer 2: Builder and Agent-Embedded" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-2')">L2</button>
+                            <button class="proc-tab" id="layer-3" role="tab" aria-selected="false" aria-controls="layer-3-detail" aria-label="Layer 3: Intelligent Code Control" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-3')">L3</button>
+                            <button class="proc-tab" id="layer-4" role="tab" aria-selected="false" aria-controls="layer-4-detail" aria-label="Layer 4: Remediation Intelligent" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-4')">L4</button>
+                            <button class="proc-tab" id="layer-5" role="tab" aria-selected="false" aria-controls="layer-5-detail" aria-label="Layer 5: Production Intelligence" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-5')">L5</button>
                         </div>
 
                     <!-- Detail panels -->
@@ -1437,9 +1437,9 @@
                         <div class="proc-detail-panel" id="layer-2-detail" role="tabpanel" aria-labelledby="layer-2">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L2</span>
-                                <span class="proc-detail-meta">While Building · Completeness &amp; Securability against verifiable requirements · Prevention</span>
+                                <span class="proc-detail-meta">Creation Time · Completeness &amp; Securability against verifiable requirements · Prevention</span>
                             </div>
-                            <h2 style="color: var(--text-base);">Agent-Embedded Guardrails</h2>
+                            <h2 style="color: var(--text-base);">Builder and Agent-Embedded</h2>
                             <div class="proc-steps">
                                 <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></div>
                                 <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>An SSEM-aligned programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></div>
@@ -1452,7 +1452,7 @@
                         <div class="proc-detail-panel" id="layer-3-detail" role="tabpanel" aria-labelledby="layer-3">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L3</span>
-                                <span class="proc-detail-meta">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration</span>
+                                <span class="proc-detail-meta">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Prevention</span>
                             </div>
                             <h2 style="color: var(--text-base);">Intelligent Code Control</h2>
                             <div class="proc-steps">
@@ -1467,9 +1467,9 @@
                         <div class="proc-detail-panel" id="layer-4-detail" role="tabpanel" aria-labelledby="layer-4">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L4</span>
-                                <span class="proc-detail-meta">Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation</span>
+                                <span class="proc-detail-meta">Pre-Production · Runtime business-logic validation at the trust-boundary layer · Correction</span>
                             </div>
-                            <h2 style="color: var(--text-base);">Intelligent Remediation</h2>
+                            <h2 style="color: var(--text-base);">Remediation Intelligent</h2>
                             <div class="proc-steps">
                                 <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>The deployment pipeline runs the software for testing.</p></div>
                                 <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.</p></div>
@@ -1482,9 +1482,9 @@
                         <div class="proc-detail-panel" id="layer-5-detail" role="tabpanel" aria-labelledby="layer-5">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L5</span>
-                                <span class="proc-detail-meta">Runtime · Anomaly detection, containment, and mitigation · Remediation</span>
+                                <span class="proc-detail-meta">Post-Deployment · Anomaly detection, containment, and mitigation · Correction</span>
                             </div>
-                            <h2 style="color: var(--text-base);">Production Monitoring &amp; Incident Response</h2>
+                            <h2 style="color: var(--text-base);">Production Intelligence</h2>
                             <div class="proc-steps">
                                 <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>Production telemetry, logs, and traces are collected as structured observability. This raises the chance of detection and informs the rest of the process.</p></div>
                                 <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>Anomaly detection watches for behavior that diverges from the norms the requirements define. The same baseline of "normal" classifies activity during an incident.</p></div>
@@ -2063,7 +2063,7 @@
             tenets:       { tabs: ['tenet-1', 'tenet-2', 'tenet-3', 'tenet-4', 'tenet-5', 'tenet-6', 'tenet-7', 'tenet-8'], default: null },
             process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5',
                                     'stage-requirements', 'stage-design', 'stage-implementation', 'stage-testing', 'stage-deployment', 'stage-maintenance',
-                                    'phase-prevention', 'phase-integration', 'phase-remediation'], default: 'layer-1' },
+                                    'phase-prevention', 'phase-correction'], default: 'layer-1' },
             adoption:     { tabs: ['plan', 'roles', 'anti-patterns'], default: 'plan' },
             resources:    { tabs: null, default: null },
             contributing: { tabs: null, default: null }
@@ -2166,24 +2166,22 @@
         // SDLC stages sit at the core. FIASSE layers and phases wrap them as
         // outer rings. Angles are degrees clockwise from twelve o'clock.
         const PROC_PHASES = {
-            prevention:  { id: 'phase-prevention',  label: 'Prevention',  color: 'var(--accent-tertiary)',   a0: -30, a1: 120,
-                           blurb: 'Layers 1 and 2 are governed by FIASSE. The first layer is the one most often skipped, and the one with the most consequence.' },
-            integration: { id: 'phase-integration', label: 'Integration', color: 'var(--accent-quaternary)', a0: 120, a1: 150,
-                           blurb: 'Layer 3 is governed by FIASSE. Merge review checks each change against its acceptance criteria and produces audit-grade evidence as a byproduct.' },
-            remediation: { id: 'phase-remediation', label: 'Remediation', color: 'var(--accent-secondary)',  a0: 150, a1: 330,
-                           blurb: 'Validation and production operation are governed by assurance and operations practice. Their findings return upstream as empirical intelligence.' }
+            prevention: { id: 'phase-prevention', label: 'Prevention', color: 'var(--accent-tertiary)',  a0: -30, a1: 150,
+                          blurb: 'The first three layers are governed by FIASSE. The first layer is the one most often skipped, and the one with the most consequence.' },
+            correction: { id: 'phase-correction', label: 'Correction', color: 'var(--accent-secondary)', a0: 150, a1: 330,
+                          blurb: 'Validation and production operation are governed by assurance and operations practice. Their findings return upstream as empirical intelligence.' }
         };
         const PROC_LAYERS = [
             { id: 'layer-1', code: 'L1', title: 'Product Requirements', lines: ['Product Requirements'], time: 'Pre-Programming', phase: 'prevention', a0: -30, a1: 90, next: ['layer-2'], back: [],
               meta: 'Pre-Programming · FIASSE + ASVS injected at requirements · Prevention' },
-            { id: 'layer-2', code: 'L2', title: 'Agent-Embedded Guardrails', lines: ['Agent-Embedded', 'Guardrails'], time: 'While Building', phase: 'prevention', a0: 90, a1: 120, next: ['layer-3'], back: [],
-              meta: 'While Building · Completeness & Securability against verifiable requirements · Prevention' },
-            { id: 'layer-3', code: 'L3', title: 'Intelligent Code Control', lines: ['Intelligent', 'Code Control'], time: 'Merge Time', phase: 'integration', a0: 120, a1: 150, next: ['layer-4'], back: [],
-              meta: 'Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration' },
-            { id: 'layer-4', code: 'L4', title: 'Intelligent Remediation', lines: ['Intelligent Remediation'], time: 'Pre-Deployment', phase: 'remediation', a0: 150, a1: 230, next: ['layer-5'], back: ['layer-3'],
-              meta: 'Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation' },
-            { id: 'layer-5', code: 'L5', title: 'Production Monitoring & Incident Response', lines: ['Production Monitoring & Incident Response'], time: 'Runtime', phase: 'remediation', a0: 230, a1: 330, next: [], back: ['layer-1', 'layer-2'],
-              meta: 'Runtime · Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers · Remediation' }
+            { id: 'layer-2', code: 'L2', title: 'Builder and Agent-Embedded', lines: ['Builder and', 'Agent-Embedded'], time: 'Creation Time', phase: 'prevention', a0: 90, a1: 120, next: ['layer-3'], back: [],
+              meta: 'Creation Time · Completeness & Securability against verifiable requirements · Prevention' },
+            { id: 'layer-3', code: 'L3', title: 'Intelligent Code Control', lines: ['Intelligent', 'Code Control'], time: 'Merge Time', phase: 'prevention', a0: 120, a1: 150, next: ['layer-4'], back: [],
+              meta: 'Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Prevention' },
+            { id: 'layer-4', code: 'L4', title: 'Remediation Intelligent', lines: ['Remediation Intelligent'], time: 'Pre-Production', phase: 'correction', a0: 150, a1: 230, next: ['layer-5'], back: ['layer-3'],
+              meta: 'Pre-Production · Runtime business-logic validation at the trust-boundary layer · Correction' },
+            { id: 'layer-5', code: 'L5', title: 'Production Intelligence', lines: ['Production Intelligence'], time: 'Post-Deployment', phase: 'correction', a0: 230, a1: 330, next: [], back: ['layer-1', 'layer-2'],
+              meta: 'Post-Deployment · Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers · Correction' }
         ];
         const PROC_STAGES = [
             { id: 'stage-requirements',   title: 'Requirements Analysis',     lines: ['Requirements', 'Analysis'],     desc: 'Understand needs and define scope.',  layers: ['layer-1'] },
@@ -2339,7 +2337,7 @@
                 set('proc-hub-eyebrow', 'FIASSE Phase');
                 code.textContent = procCodes(sel.layers);
                 set('proc-hub-name', sel.item.label);
-                set('proc-hub-meta', sel.layers.length === 1 ? 'One layer' : `${sel.layers.length} layers`);
+                set('proc-hub-meta', `${sel.layers.length} layers`);
             }
             code.classList.toggle('sm', code.textContent.length > 2);
         }

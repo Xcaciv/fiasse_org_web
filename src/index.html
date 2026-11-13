@@ -704,31 +704,81 @@
         .tenet-body-inner { overflow: hidden; }
         .tenet-body p { margin: 0 1.2rem 1.2rem calc(1.2rem + 0.9rem); padding-left: 1rem; border-left: 1px solid var(--border-accent-soft); font-size: 0.88rem; color: var(--text-body); line-height: 1.65; }
 
-        /* Process master-detail */
-        .proc-grid { display: grid; grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); gap: 2rem; align-items: start; }
-        .proc-list { display: flex; flex-direction: column; gap: 0.85rem; }
-        .proc-item { display: flex; gap: 0.85rem; align-items: flex-start; text-align: left; background: var(--bg-elev); border: 1px solid var(--border-accent-soft); padding: 0.95rem 1.05rem; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
-        .proc-item:hover { border-color: var(--border-accent); }
-        .proc-item.active { border-color: var(--accent-tertiary); background: color-mix(in srgb, var(--accent-tertiary) 7%, transparent); box-shadow: 0 0 22px -12px var(--glow-tertiary); }
-        .proc-item .l-badge { font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem; padding-top: 0.1rem; }
-        .proc-item-title { font-family: var(--font-heading); font-weight: 600; font-size: 0.92rem; color: var(--text-base); margin-bottom: 0.3rem; }
-        .proc-item-meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); line-height: 1.55; }
-        .proc-detail { background: var(--bg-elev); border: 1px solid var(--accent-tertiary); padding: 1.8rem 2rem; box-shadow: 0 0 38px -22px var(--glow-tertiary); }
+        /* Process wheel: SDLC stages at the core, FIASSE layers and phases as outer rings */
+        .proc-stage { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2rem; align-items: start; --proc-c: var(--accent-tertiary); }
+        .proc-wheel-wrap { position: sticky; top: calc(var(--sticky-nav-offset) + 0.5rem); }
+        .proc-wheel { position: relative; width: 100%; max-width: 46rem; margin: 0 auto; aspect-ratio: 1 / 1; container-type: inline-size; }
+        .proc-wheel svg { display: block; width: 100%; height: 100%; overflow: visible; }
+        .pw-node { cursor: pointer; outline: none; transition: opacity 0.2s ease; -webkit-tap-highlight-color: transparent; }
+        .pw-node .pw-shape { fill: color-mix(in srgb, var(--c) 9%, var(--bg-elev-solid)); stroke: color-mix(in srgb, var(--c) 70%, transparent); stroke-width: 3; stroke-linejoin: round; transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease; }
+        .pw-node text { fill: var(--text-base); pointer-events: none; user-select: none; transition: fill 0.2s ease; }
+        .pw-node:hover .pw-shape, .pw-node:focus-visible .pw-shape { fill: color-mix(in srgb, var(--c) 22%, var(--bg-elev-solid)); stroke: var(--c); }
+        .pw-node:focus-visible .pw-shape { stroke-width: 7; }
+        .pw-node.is-on .pw-shape { fill: color-mix(in srgb, var(--c) 30%, var(--bg-elev-solid)); stroke: var(--c); stroke-width: 4; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--c) 55%, transparent)); }
+        .pw-node.is-rel .pw-shape { fill: color-mix(in srgb, var(--c) 20%, var(--bg-elev-solid)); stroke: var(--c); }
+        .pw-node.is-next .pw-shape, .pw-node.is-back .pw-shape { stroke: var(--c); stroke-width: 4; }
+        .pw-node.is-back .pw-shape { stroke-dasharray: 14 10; }
+        .proc-wheel.has-sel .pw-node:not(.is-on):not(.is-rel):not(.is-next):not(.is-back):not(:hover):not(:focus-visible) { opacity: 0.5; }
+        .pw-stage { --c: var(--accent); }
+        .pw-stage-title { font-family: var(--font-heading); font-weight: 700; font-size: 34px; letter-spacing: 0.5px; }
+        .pw-level-code { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 2px; }
+        .pw-node .pw-level-code { fill: var(--c); }
+        .pw-level-name { font-family: var(--font-heading); font-weight: 600; font-size: 32px; }
+        .pw-level-name.sm { font-size: 28px; }
+        .pw-level-time { font-family: var(--font-mono); font-weight: 600; font-size: 21px; letter-spacing: 2px; text-transform: uppercase; }
+        .pw-node .pw-level-time { fill: var(--text-body); }
+        .pw-phase-label { font-family: var(--font-mono); font-weight: 700; font-size: 21px; letter-spacing: 6px; text-transform: uppercase; }
+        .pw-node .pw-phase-label { fill: var(--c); }
+        .pw-phase .pw-shape { fill: color-mix(in srgb, var(--c) 16%, var(--bg-elev-solid)); stroke-width: 2; }
+        .pw-hub { fill: var(--bg-elev-solid); stroke: var(--border-accent); stroke-width: 2; }
+        .pw-hub-ring { fill: none; stroke: var(--proc-c); stroke-width: 2; stroke-dasharray: 3 12; opacity: 0.7; transition: stroke 0.2s ease; }
+        .proc-hub { position: absolute; left: 50%; top: 50%; width: 33%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.1cqw; pointer-events: none; }
+        .proc-hub-eyebrow { font-family: var(--font-mono); font-size: max(0.55rem, 1.55cqw); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+        .proc-hub-code { font-family: var(--font-display); font-weight: 700; font-size: 8.4cqw; line-height: 1; color: var(--proc-hub-c, var(--proc-c)); text-shadow: 0 0 18px color-mix(in srgb, var(--proc-hub-c, var(--proc-c)) 45%, transparent); }
+        .proc-hub-code.sm { font-size: 5.4cqw; }
+        .proc-hub-name { font-family: var(--font-heading); font-weight: 600; font-size: max(0.72rem, 2.7cqw); line-height: 1.2; color: var(--text-base); }
+        .proc-hub-meta { font-family: var(--font-mono); font-size: max(0.55rem, 1.6cqw); letter-spacing: 0.1em; text-transform: uppercase; color: var(--proc-hub-c, var(--proc-c)); line-height: 1.5; }
+        .proc-hint { margin-top: 0.9rem; text-align: center; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; color: var(--text-muted); }
+        .proc-hint .k { display: inline-block; width: 1.4rem; height: 0; vertical-align: middle; margin: 0 0.35rem 0 0.9rem; border-top: 2px solid var(--text-muted); }
+        .proc-hint .k.dashed { border-top-style: dashed; }
+        .proc-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; margin-bottom: 0.9rem; }
+        .proc-tab { --c: var(--accent-tertiary); font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; padding: 0.55rem 0; color: var(--c); background: var(--bg-elev); border: 1px solid color-mix(in srgb, var(--c) 30%, transparent); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+        .proc-tab:hover { border-color: var(--c); }
+        .proc-tab.active { border-color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); box-shadow: 0 0 22px -12px var(--c); }
+        .proc-item { display: flex; gap: 0.85rem; align-items: flex-start; text-align: left; width: 100%; background: var(--bg-base); border: 1px solid var(--border-accent-soft); padding: 0.95rem 1.05rem; cursor: pointer; transition: border-color 0.15s ease; }
+        .proc-item:hover { border-color: var(--c, var(--border-accent)); }
+        .proc-item .l-badge { font-family: var(--font-mono); font-weight: 700; font-size: 0.78rem; padding-top: 0.1rem; color: var(--c); }
+        .proc-item-title { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 0.92rem; color: var(--text-base); margin-bottom: 0.3rem; }
+        .proc-item-meta { display: block; font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); line-height: 1.55; }
+        .proc-ctx-lede { color: var(--text-body); font-size: 0.94rem; line-height: 1.65; margin-bottom: 1.4rem; }
+        .proc-ctx-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.7rem; }
+        .proc-ctx-list { display: flex; flex-direction: column; gap: 0.7rem; }
+        .proc-detail { background: var(--bg-elev); border: 1px solid var(--proc-c); padding: 1.8rem 2rem; box-shadow: 0 0 38px -22px var(--proc-c); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
         .proc-detail-panel { display: none; }
         .proc-detail-panel.active { display: block; }
         .proc-detail-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.6rem; }
-        .proc-detail-l { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--accent-tertiary); }
-        .proc-detail-meta { flex: 1; border: 1px solid var(--accent-tertiary); color: var(--accent-tertiary); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; }
+        .proc-detail-l { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--proc-c); white-space: nowrap; }
+        .proc-detail-meta { flex: 1; border: 1px solid var(--proc-c); color: var(--proc-c); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; }
         .proc-detail h2 { font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 1.4rem; }
         .proc-steps { display: flex; flex-direction: column; }
         .proc-step { position: relative; display: flex; gap: 1rem; padding-bottom: 1.35rem; }
-        .proc-step-num { flex-shrink: 0; width: 1.7rem; height: 1.7rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; border: 1px solid var(--accent-tertiary); color: var(--accent-tertiary); background: var(--bg-base); z-index: 1; }
+        .proc-detail-panel.active .proc-step { animation: proc-step-in 0.35s ease both; animation-delay: calc(var(--i, 0) * 60ms); }
+        @keyframes proc-step-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .proc-detail-panel.active .proc-step { animation: none; } }
+        .proc-step-num { flex-shrink: 0; width: 1.7rem; height: 1.7rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; border: 1px solid var(--proc-c); color: var(--proc-c); background: var(--bg-base); z-index: 1; }
         .proc-step::before { content: ''; position: absolute; left: 0.85rem; top: 1.7rem; bottom: 0; width: 1px; background: var(--border-accent-soft); }
         .proc-step:last-child::before { display: none; }
         .proc-step p { color: var(--text-body); font-size: 0.94rem; line-height: 1.6; padding-top: 0.15rem; }
-        .agentic-note { margin-top: 0.8rem; padding-top: 1.1rem; border-top: 1px dashed var(--border-accent-soft); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: var(--accent-tertiary); }
+        .agentic-note { margin-top: 0.8rem; padding-top: 1.1rem; border-top: 1px dashed var(--border-accent-soft); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: var(--proc-c, var(--accent-tertiary)); }
         .agentic-note .an-label { color: var(--text-muted); letter-spacing: 0.14em; margin-right: 0.5rem; }
         .agentic-note code { color: var(--accent); }
+        .proc-flow { margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.55rem; }
+        .proc-flow:empty { display: none; }
+        .proc-flow-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; }
+        .proc-flow-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); min-width: 7.2rem; }
+        .proc-chip { --c: var(--accent); font-family: var(--font-mono); font-size: 0.72rem; padding: 0.28rem 0.65rem; color: var(--c); background: transparent; border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+        .proc-chip:hover { border-color: var(--c); background: color-mix(in srgb, var(--c) 10%, transparent); }
+        .proc-chip.dashed { border-style: dashed; }
 
         /* Setting Expectations cards */
         .exp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
@@ -829,7 +879,8 @@
         /* Responsive collapses */
         @media (max-width: 1024px) {
             .hero-grid, .mission-grid, .contrib-grid { grid-template-columns: 1fr; }
-            .proc-grid { grid-template-columns: 1fr; }
+            .proc-stage { grid-template-columns: 1fr; }
+            .proc-wheel-wrap { position: static; }
             .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
             .trio-grid, .degraded-cols { grid-template-columns: 1fr; }
         }
@@ -1335,130 +1386,118 @@
 
         <!-- Process -->
         <section id="page-process" class="page-section py-16 px-4">
-            <div class="container mx-auto max-w-6xl">
+            <div class="container mx-auto max-w-7xl">
                 <div class="eyebrow-row"><span class="slashes">//</span><span class="eyebrow-label">Integrated Process</span></div>
                 <h1 class="text-4xl md:text-5xl font-bold title-left" style="color: var(--text-base);">Five Layers</h1>
                 <p class="lede">
                     Modern development cycles outrun review-based AppSec. FIASSE integrates security at five development layers. Each layer feeds the next and informs the ones before it. The first three layers are governed by FIASSE. Validation and production operation are governed by assurance and operations practice, and their findings return upstream as empirical intelligence. The first layer is the one most often skipped, and the one with the most consequence.
                 </p>
 
-                <div class="proc-grid mt-10">
-                    <!-- Layer list -->
-                    <div class="proc-list" role="tablist" aria-label="Process layers">
-                        <button class="proc-item active" id="layer-1" role="tab" aria-selected="true" onclick="selectProcLayer('layer-1')">
-                            <span class="l-badge" style="color: var(--accent-tertiary);">L1</span>
-                            <span>
-                                <span class="proc-item-title block">Product Requirements</span>
-                                <span class="proc-item-meta block">Pre-Programming · FIASSE + ASVS injected at requirements · Prevention</span>
-                            </span>
-                        </button>
-                        <button class="proc-item" id="layer-2" role="tab" aria-selected="false" onclick="selectProcLayer('layer-2')">
-                            <span class="l-badge" style="color: var(--accent-tertiary);">L2</span>
-                            <span>
-                                <span class="proc-item-title block">Agent-Embedded Guardrails</span>
-                                <span class="proc-item-meta block">While Building · Completeness &amp; Securability against verifiable requirements · Prevention</span>
-                            </span>
-                        </button>
-                        <button class="proc-item" id="layer-3" role="tab" aria-selected="false" onclick="selectProcLayer('layer-3')">
-                            <span class="l-badge" style="color: var(--accent-quaternary);">L3</span>
-                            <span>
-                                <span class="proc-item-title block">Intelligent Code Control</span>
-                                <span class="proc-item-meta block">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration</span>
-                            </span>
-                        </button>
-                        <button class="proc-item" id="layer-4" role="tab" aria-selected="false" onclick="selectProcLayer('layer-4')">
-                            <span class="l-badge" style="color: var(--accent-secondary);">L4</span>
-                            <span>
-                                <span class="proc-item-title block">Intelligent Remediation</span>
-                                <span class="proc-item-meta block">Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation</span>
-                            </span>
-                        </button>
-                        <button class="proc-item" id="layer-5" role="tab" aria-selected="false" onclick="selectProcLayer('layer-5')">
-                            <span class="l-badge" style="color: var(--accent-secondary);">L5</span>
-                            <span>
-                                <span class="proc-item-title block">Production Monitoring &amp; Incident Response</span>
-                                <span class="proc-item-meta block">Runtime · Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers · Remediation</span>
-                            </span>
-                        </button>
+                <div class="proc-stage mt-10" id="proc-stage">
+                    <!-- Wheel: SDLC stages at the core, FIASSE layers and phases as outer rings. Drawn by buildProcWheel(). -->
+                    <div class="proc-wheel-wrap">
+                        <div class="proc-wheel" id="proc-wheel">
+                            <svg id="proc-wheel-svg" viewBox="0 0 1600 1600" role="group" aria-label="FIASSE layers and phases mapped onto the software development life cycle. Select a layer, a stage, or a phase to see its detail."></svg>
+                            <div class="proc-hub" aria-hidden="true">
+                                <span class="proc-hub-eyebrow" id="proc-hub-eyebrow">FIASSE Layer</span>
+                                <span class="proc-hub-code" id="proc-hub-code">L1</span>
+                                <span class="proc-hub-name" id="proc-hub-name">Product Requirements</span>
+                                <span class="proc-hub-meta" id="proc-hub-meta">Pre-Programming · Prevention</span>
+                            </div>
+                        </div>
+                        <p class="proc-hint">Select a layer, a stage, or a phase.<span class="k"></span>hands off to<span class="k dashed"></span>returns to</p>
                     </div>
 
+                    <div class="proc-side">
+                        <div class="proc-tabs" role="tablist" aria-label="Process layers">
+                            <button class="proc-tab active" id="layer-1" role="tab" aria-selected="true" aria-controls="layer-1-detail" aria-label="Layer 1: Product Requirements" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-1')">L1</button>
+                            <button class="proc-tab" id="layer-2" role="tab" aria-selected="false" aria-controls="layer-2-detail" aria-label="Layer 2: Agent-Embedded Guardrails" style="--c: var(--accent-tertiary);" onclick="selectProcLayer('layer-2')">L2</button>
+                            <button class="proc-tab" id="layer-3" role="tab" aria-selected="false" aria-controls="layer-3-detail" aria-label="Layer 3: Intelligent Code Control" style="--c: var(--accent-quaternary);" onclick="selectProcLayer('layer-3')">L3</button>
+                            <button class="proc-tab" id="layer-4" role="tab" aria-selected="false" aria-controls="layer-4-detail" aria-label="Layer 4: Intelligent Remediation" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-4')">L4</button>
+                            <button class="proc-tab" id="layer-5" role="tab" aria-selected="false" aria-controls="layer-5-detail" aria-label="Layer 5: Production Monitoring and Incident Response" style="--c: var(--accent-secondary);" onclick="selectProcLayer('layer-5')">L5</button>
+                        </div>
+
                     <!-- Detail panels -->
-                    <div class="proc-detail">
-                        <div class="proc-detail-panel active" id="layer-1-detail" role="tabpanel">
+                    <div class="proc-detail" id="proc-detail" aria-live="polite">
+                        <div class="proc-detail-panel active" id="layer-1-detail" role="tabpanel" aria-labelledby="layer-1">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L1</span>
                                 <span class="proc-detail-meta">Pre-Programming · FIASSE + ASVS injected at requirements · Prevention</span>
                             </div>
                             <h2 style="color: var(--text-base);">Product Requirements</h2>
                             <div class="proc-steps">
-                                <div class="proc-step"><span class="proc-step-num">1</span><p>Product management and security collaborate to draft a feature description in the team's standard backlog tool, or in a PRD file.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">2</span><p>Architects collaborate with security to create new architecture or align the feature in existing architecture. This is documented via amendment, links, or artifacts.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">3</span><p>Participation ensures Security Features, Threat Scenarios, and Security Acceptance Criteria are present. A separate security review is an extra step, not a substitute.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">4</span><p>The business requirements, architecture, and security expectations are captured as a point-in-time artifact.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">5</span><p>The artifact is conveyed into Layer 2, where code calibrated to those requirements is created.</p></div>
+                                <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>Product management and security collaborate to draft a feature description in the team's standard backlog tool, or in a PRD file.</p></div>
+                                <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>Architects collaborate with security to create new architecture or align the feature in existing architecture. This is documented via amendment, links, or artifacts.</p></div>
+                                <div class="proc-step" style="--i: 2;"><span class="proc-step-num">3</span><p>Participation ensures Security Features, Threat Scenarios, and Security Acceptance Criteria are present. A separate security review is an extra step, not a substitute.</p></div>
+                                <div class="proc-step" style="--i: 3;"><span class="proc-step-num">4</span><p>The business requirements, architecture, and security expectations are captured as a point-in-time artifact.</p></div>
+                                <div class="proc-step" style="--i: 4;"><span class="proc-step-num">5</span><p>The artifact is conveyed into Layer 2, where code calibrated to those requirements is created.</p></div>
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>prd-securability-enhancement</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-2-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-2-detail" role="tabpanel" aria-labelledby="layer-2">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L2</span>
                                 <span class="proc-detail-meta">While Building · Completeness &amp; Securability against verifiable requirements · Prevention</span>
                             </div>
                             <h2 style="color: var(--text-base);">Agent-Embedded Guardrails</h2>
                             <div class="proc-steps">
-                                <div class="proc-step"><span class="proc-step-num">1</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">2</span><p>An SSEM-aligned programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">3</span><p>Code is written or generated against the specifications. Completeness is checked continuously against the verifiable requirements, by the programmer and their tooling or by the agent.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">4</span><p>The change is built for securability using the SSEM attributes: Maintainability, Trustworthiness, and Reliability.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">5</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></div>
+                                <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>The refined requirements from Layer 1 arrive in the programmer's context, carrying clear expectations.</p></div>
+                                <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>An SSEM-aligned programmer drafts specifications and tests calibrated to those requirements and architecture before code is generated.</p></div>
+                                <div class="proc-step" style="--i: 2;"><span class="proc-step-num">3</span><p>Code is written or generated against the specifications. Completeness is checked continuously against the verifiable requirements, by the programmer and their tooling or by the agent.</p></div>
+                                <div class="proc-step" style="--i: 3;"><span class="proc-step-num">4</span><p>The change is built for securability using the SSEM attributes: Maintainability, Trustworthiness, and Reliability.</p></div>
+                                <div class="proc-step" style="--i: 4;"><span class="proc-step-num">5</span><p>The completed work moves toward merge with its requirements and evidence attached.</p></div>
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>securability-engineering</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-3-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-3-detail" role="tabpanel" aria-labelledby="layer-3">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L3</span>
                                 <span class="proc-detail-meta">Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration</span>
                             </div>
                             <h2 style="color: var(--text-base);">Intelligent Code Control</h2>
                             <div class="proc-steps">
-                                <div class="proc-step"><span class="proc-step-num">1</span><p>A pull request or merge request is opened. Codified artifacts are already present.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">2</span><p>The merge is scanned and reviewed, and an SBOM is created. Each change is checked against the acceptance criteria.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">3</span><p>The reviewer asks for fixes for any issues found. The exchange produces audit-grade evidence as a byproduct.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">4</span><p>The owner of the pull request ensures all issues raised are addressed, and the reviewer approves the changes for merge.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">5</span><p>On merge, the evidence trail is preserved so downstream layers and auditors can rely on it.</p></div>
+                                <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>A pull request or merge request is opened. Codified artifacts are already present.</p></div>
+                                <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>The merge is scanned and reviewed, and an SBOM is created. Each change is checked against the acceptance criteria.</p></div>
+                                <div class="proc-step" style="--i: 2;"><span class="proc-step-num">3</span><p>The reviewer asks for fixes for any issues found. The exchange produces audit-grade evidence as a byproduct.</p></div>
+                                <div class="proc-step" style="--i: 3;"><span class="proc-step-num">4</span><p>The owner of the pull request ensures all issues raised are addressed, and the reviewer approves the changes for merge.</p></div>
+                                <div class="proc-step" style="--i: 4;"><span class="proc-step-num">5</span><p>On merge, the evidence trail is preserved so downstream layers and auditors can rely on it.</p></div>
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would use skills like the <code>securability-engineering-review</code> skill from the Securability Engineering Claude plugin.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-4-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-4-detail" role="tabpanel" aria-labelledby="layer-4">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L4</span>
                                 <span class="proc-detail-meta">Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation</span>
                             </div>
                             <h2 style="color: var(--text-base);">Intelligent Remediation</h2>
                             <div class="proc-steps">
-                                <div class="proc-step"><span class="proc-step-num">1</span><p>The deployment pipeline runs the software for testing.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">2</span><p>Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">3</span><p>When a deviation is detected, the flaw is redrawn as a requirement before it enters the backlog, and a targeted remediation tied to that requirement is submitted.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">4</span><p>Remediations are routed back through Layer 3 or through architecture, not patched ad hoc.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">5</span><p>Validated deployments proceed. The requirement-to-evidence trail stays intact through release.</p></div>
+                                <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>The deployment pipeline runs the software for testing.</p></div>
+                                <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>Business-logic and trust-boundary checks run against the deployed build, exercising the Security Acceptance Criteria in a runtime context.</p></div>
+                                <div class="proc-step" style="--i: 2;"><span class="proc-step-num">3</span><p>When a deviation is detected, the flaw is redrawn as a requirement before it enters the backlog, and a targeted remediation tied to that requirement is submitted.</p></div>
+                                <div class="proc-step" style="--i: 3;"><span class="proc-step-num">4</span><p>Remediations are routed back through Layer 3 or through architecture, not patched ad hoc.</p></div>
+                                <div class="proc-step" style="--i: 4;"><span class="proc-step-num">5</span><p>Validated deployments proceed. The requirement-to-evidence trail stays intact through release.</p></div>
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow could perform this process on minor deviations, escalating more complex or sensitive issues.</p>
                         </div>
-                        <div class="proc-detail-panel" id="layer-5-detail" role="tabpanel">
+                        <div class="proc-detail-panel" id="layer-5-detail" role="tabpanel" aria-labelledby="layer-5">
                             <div class="proc-detail-head">
                                 <span class="proc-detail-l">L5</span>
                                 <span class="proc-detail-meta">Runtime · Anomaly detection, containment, and mitigation · Remediation</span>
                             </div>
                             <h2 style="color: var(--text-base);">Production Monitoring &amp; Incident Response</h2>
                             <div class="proc-steps">
-                                <div class="proc-step"><span class="proc-step-num">1</span><p>Production telemetry, logs, and traces are collected as structured observability. This raises the chance of detection and informs the rest of the process.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">2</span><p>Anomaly detection watches for behavior that diverges from the norms the requirements define. The same baseline of "normal" classifies activity during an incident.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">3</span><p>Signals are correlated to the acceptance criteria they relate to, not left as raw alerts. When an incident is declared, containment and mitigation happen with external security tooling in near real time.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">4</span><p>Undesirable behavior is documented, compared to requirements, and mapped to code while mitigation buys time for full remediation through the standard process.</p></div>
-                                <div class="proc-step"><span class="proc-step-num">5</span><p>Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria. Remediation becomes part of the same workflow.</p></div>
+                                <div class="proc-step" style="--i: 0;"><span class="proc-step-num">1</span><p>Production telemetry, logs, and traces are collected as structured observability. This raises the chance of detection and informs the rest of the process.</p></div>
+                                <div class="proc-step" style="--i: 1;"><span class="proc-step-num">2</span><p>Anomaly detection watches for behavior that diverges from the norms the requirements define. The same baseline of "normal" classifies activity during an incident.</p></div>
+                                <div class="proc-step" style="--i: 2;"><span class="proc-step-num">3</span><p>Signals are correlated to the acceptance criteria they relate to, not left as raw alerts. When an incident is declared, containment and mitigation happen with external security tooling in near real time.</p></div>
+                                <div class="proc-step" style="--i: 3;"><span class="proc-step-num">4</span><p>Undesirable behavior is documented, compared to requirements, and mapped to code while mitigation buys time for full remediation through the standard process.</p></div>
+                                <div class="proc-step" style="--i: 4;"><span class="proc-step-num">5</span><p>Confirmed anomalies and incident lessons feed back into Layers 1 and 2 as new or refined requirements, threat scenarios, and acceptance criteria. Remediation becomes part of the same workflow.</p></div>
                             </div>
                             <p class="agentic-note"><span class="an-label">AGENTIC NOTE ·</span>An agentic workflow would correlate anomalies and incident activity with code and architecture, using business context to find the fix quickly and feed operational observations back into the product.</p>
                         </div>
+                        <!-- Stage and phase context, rendered by renderProcContext() -->
+                        <div class="proc-detail-panel" id="proc-context-detail"></div>
+                    </div>
+                        <div class="proc-flow" id="proc-flow"></div>
                     </div>
                 </div>
 
@@ -2022,7 +2061,9 @@
             ssem:         { tabs: ['ssem-maintainability', 'ssem-trustworthiness', 'ssem-reliability'], default: null },
             corevalues:   { tabs: null, default: null },
             tenets:       { tabs: ['tenet-1', 'tenet-2', 'tenet-3', 'tenet-4', 'tenet-5', 'tenet-6', 'tenet-7', 'tenet-8'], default: null },
-            process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5'], default: 'layer-1' },
+            process:      { tabs: ['layer-1', 'layer-2', 'layer-3', 'layer-4', 'layer-5',
+                                    'stage-requirements', 'stage-design', 'stage-implementation', 'stage-testing', 'stage-deployment', 'stage-maintenance',
+                                    'phase-prevention', 'phase-integration', 'phase-remediation'], default: 'layer-1' },
             adoption:     { tabs: ['plan', 'roles', 'anti-patterns'], default: 'plan' },
             resources:    { tabs: null, default: null },
             contributing: { tabs: null, default: null }
@@ -2121,21 +2162,327 @@
             window.scrollTo(0, 0);
         }
 
-        // Process master-detail: select a layer in the list, show its panel.
-        function selectProcLayer(id, updateUrl = true) {
-            const layerId = isValidTab('process', id) ? id : PAGES.process.default;
+        // ── Process wheel ───────────────────────────────────────────────
+        // SDLC stages sit at the core. FIASSE layers and phases wrap them as
+        // outer rings. Angles are degrees clockwise from twelve o'clock.
+        const PROC_PHASES = {
+            prevention:  { id: 'phase-prevention',  label: 'Prevention',  color: 'var(--accent-tertiary)',   a0: -30, a1: 120,
+                           blurb: 'Layers 1 and 2 are governed by FIASSE. The first layer is the one most often skipped, and the one with the most consequence.' },
+            integration: { id: 'phase-integration', label: 'Integration', color: 'var(--accent-quaternary)', a0: 120, a1: 150,
+                           blurb: 'Layer 3 is governed by FIASSE. Merge review checks each change against its acceptance criteria and produces audit-grade evidence as a byproduct.' },
+            remediation: { id: 'phase-remediation', label: 'Remediation', color: 'var(--accent-secondary)',  a0: 150, a1: 330,
+                           blurb: 'Validation and production operation are governed by assurance and operations practice. Their findings return upstream as empirical intelligence.' }
+        };
+        const PROC_LAYERS = [
+            { id: 'layer-1', code: 'L1', title: 'Product Requirements', lines: ['Product Requirements'], time: 'Pre-Programming', phase: 'prevention', a0: -30, a1: 90, next: ['layer-2'], back: [],
+              meta: 'Pre-Programming · FIASSE + ASVS injected at requirements · Prevention' },
+            { id: 'layer-2', code: 'L2', title: 'Agent-Embedded Guardrails', lines: ['Agent-Embedded', 'Guardrails'], time: 'While Building', phase: 'prevention', a0: 90, a1: 120, next: ['layer-3'], back: [],
+              meta: 'While Building · Completeness & Securability against verifiable requirements · Prevention' },
+            { id: 'layer-3', code: 'L3', title: 'Intelligent Code Control', lines: ['Intelligent', 'Code Control'], time: 'Merge Time', phase: 'integration', a0: 120, a1: 150, next: ['layer-4'], back: [],
+              meta: 'Merge Time · Triage, fix, review-ready PRs with audit-grade evidence as a byproduct · Integration' },
+            { id: 'layer-4', code: 'L4', title: 'Intelligent Remediation', lines: ['Intelligent Remediation'], time: 'Pre-Deployment', phase: 'remediation', a0: 150, a1: 230, next: ['layer-5'], back: ['layer-3'],
+              meta: 'Pre-Deployment · Runtime business-logic validation at the trust-boundary layer · Remediation' },
+            { id: 'layer-5', code: 'L5', title: 'Production Monitoring & Incident Response', lines: ['Production Monitoring & Incident Response'], time: 'Runtime', phase: 'remediation', a0: 230, a1: 330, next: [], back: ['layer-1', 'layer-2'],
+              meta: 'Runtime · Anomaly detection, containment, and mitigation, with lessons fed back to earlier layers · Remediation' }
+        ];
+        const PROC_STAGES = [
+            { id: 'stage-requirements',   title: 'Requirements Analysis',     lines: ['Requirements', 'Analysis'],     desc: 'Understand needs and define scope.',  layers: ['layer-1'] },
+            { id: 'stage-design',         title: 'System Design',             lines: ['System Design'],                desc: 'Plan the solution and architecture.', layers: ['layer-1'] },
+            { id: 'stage-implementation', title: 'Implementation',            lines: ['Implementation'],               desc: 'Build and develop the software.',     layers: ['layer-2', 'layer-3'] },
+            { id: 'stage-testing',        title: 'Testing',                   lines: ['Testing'],                      desc: 'Verify quality and fix defects.',     layers: ['layer-4'] },
+            { id: 'stage-deployment',     title: 'Deployment',                lines: ['Deployment'],                   desc: 'Release to users.',                   layers: ['layer-4', 'layer-5'] },
+            { id: 'stage-maintenance',    title: 'Maintenance & Improvement', lines: ['Maintenance &', 'Improvement'], desc: 'Monitor, support and enhance.',       layers: ['layer-5'] }
+        ];
+        PROC_STAGES.forEach((s, i) => { s.a0 = -30 + i * 60; s.a1 = s.a0 + 60; });
 
-            document.querySelectorAll('.proc-item').forEach(item => {
-                const active = item.id === layerId;
-                item.classList.toggle('active', active);
-                item.setAttribute('aria-selected', active ? 'true' : 'false');
+        const procLayer = id => PROC_LAYERS.find(l => l.id === id);
+        const procStage = id => PROC_STAGES.find(s => s.id === id);
+        const procPhase = id => Object.values(PROC_PHASES).find(p => p.id === id);
+        const procPhaseLayers = phase => PROC_LAYERS.filter(l => PROC_PHASES[l.phase] === phase);
+        const procCodes = layers => layers.map(l => l.code).join(' + ');
+        let procCurrent = 'layer-1';
+
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        const PW_C = 800;
+        function pwPt(r, deg) {
+            const a = deg * Math.PI / 180;
+            return (PW_C + r * Math.sin(a)).toFixed(2) + ',' + (PW_C - r * Math.cos(a)).toFixed(2);
+        }
+        function pwEl(name, attrs, parent) {
+            const el = document.createElementNS(SVG_NS, name);
+            Object.keys(attrs || {}).forEach(k => el.setAttribute(k, attrs[k]));
+            if (parent) parent.appendChild(el);
+            return el;
+        }
+        // Annular sector between radii r0..r1 and angles a0..a1.
+        function pwSector(r0, r1, a0, a1) {
+            const big = (a1 - a0) > 180 ? 1 : 0;
+            return `M${pwPt(r1, a0)} A${r1},${r1} 0 ${big} 1 ${pwPt(r1, a1)} L${pwPt(r0, a1)} A${r0},${r0} 0 ${big} 0 ${pwPt(r0, a0)} Z`;
+        }
+        // Sector with a clockwise-pointing chevron on each radial edge.
+        function pwChevron(r0, r1, a0, a1, tip) {
+            const rm = (r0 + r1) / 2;
+            return `M${pwPt(r1, a0)} A${r1},${r1} 0 0 1 ${pwPt(r1, a1)} L${pwPt(rm, a1 + tip)} L${pwPt(r0, a1)} A${r0},${r0} 0 0 0 ${pwPt(r0, a0)} L${pwPt(rm, a0 + tip)} Z`;
+        }
+        // Text set on an arc. Arcs on the lower half run counter-clockwise so the text stays upright.
+        let pwPathSeq = 0;
+        function pwArcText(defs, group, text, cls, r, a0, a1, flip, fontSize) {
+            const id = 'pw-arc-' + (pwPathSeq++);
+            const big = (a1 - a0) > 180 ? 1 : 0;
+            const d = flip
+                ? `M${pwPt(r, a1)} A${r},${r} 0 ${big} 0 ${pwPt(r, a0)}`
+                : `M${pwPt(r, a0)} A${r},${r} 0 ${big} 1 ${pwPt(r, a1)}`;
+            pwEl('path', { id: id, d: d }, defs);
+            const t = pwEl('text', { class: cls, dy: (fontSize * 0.35).toFixed(1), 'text-anchor': 'middle' }, group);
+            const tp = pwEl('textPath', { href: '#' + id, startOffset: '50%' }, t);
+            tp.textContent = text;
+        }
+        function pwNode(parent, cls, item, label, color) {
+            const g = pwEl('g', { class: 'pw-node ' + cls, tabindex: '0', role: 'button', 'aria-label': label, 'data-proc': item.id }, parent);
+            if (color) g.style.setProperty('--c', color);
+            g.addEventListener('click', () => selectProcLayer(item.id, true, true));
+            g.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectProcLayer(item.id, true, true); }
             });
+            g.addEventListener('mouseenter', () => renderProcHub(item.id));
+            g.addEventListener('mouseleave', () => renderProcHub(procCurrent));
+            g.addEventListener('focus', () => renderProcHub(item.id));
+            g.addEventListener('blur', () => renderProcHub(procCurrent));
+            return g;
+        }
+
+        function buildProcWheel() {
+            const svg = document.getElementById('proc-wheel-svg');
+            if (!svg || svg.childNodes.length) return;
+            const defs = pwEl('defs', {}, svg);
+            const GAP = 1.1;
+            const flipped = (a0, a1) => { const m = (a0 + a1) / 2; return m > 90 && m < 270; };
+
+            // Outer ring: FIASSE phases
+            Object.values(PROC_PHASES).forEach(p => {
+                const g = pwNode(svg, 'pw-phase', p, `Phase: ${p.label}, ${procPhaseLayers(p).map(l => l.code).join(' and ')}`, p.color);
+                pwEl('path', { class: 'pw-shape', d: pwSector(743, 779, p.a0 + GAP, p.a1 - GAP) }, g);
+                const span = p.a1 - p.a0;
+                const spots = span > 120 ? [p.a0 + span * 0.25, p.a0 + span * 0.75] : [p.a0 + span / 2];
+                spots.forEach(mid => pwArcText(defs, g, p.label, 'pw-phase-label', 761, mid - 16, mid + 16, flipped(mid, mid), 21));
+            });
+
+            // Middle ring: FIASSE layers
+            PROC_LAYERS.forEach(l => {
+                const g = pwNode(svg, 'pw-level', l, `Layer ${l.code.slice(1)}: ${l.title}. ${l.time}.`, PROC_PHASES[l.phase].color);
+                const a0 = l.a0 + GAP, a1 = l.a1 - GAP, flip = flipped(l.a0, l.a1);
+                pwEl('path', { class: 'pw-shape', d: pwSector(527, 725, a0, a1) }, g);
+                pwArcText(defs, g, l.code, 'pw-level-code', 684, a0, a1, flip, 40);
+                if (l.lines.length === 1) {
+                    pwArcText(defs, g, l.lines[0], 'pw-level-name', 618, a0, a1, flip, 32);
+                } else {
+                    const radii = flip ? [600, 636] : [636, 600];
+                    l.lines.forEach((line, i) => pwArcText(defs, g, line, 'pw-level-name sm', radii[i], a0, a1, flip, 28));
+                }
+                pwArcText(defs, g, l.time, 'pw-level-time', 555, a0, a1, flip, 21);
+            });
+
+            // Inner ring: SDLC stages
+            PROC_STAGES.forEach(s => {
+                const g = pwNode(svg, 'pw-stage', s, `SDLC stage: ${s.title}. ${s.desc}`);
+                pwEl('path', { class: 'pw-shape', d: pwChevron(332, 507, s.a0, s.a1, 8) }, g);
+                const flip = flipped(s.a0, s.a1);
+                const a0 = s.a0 + 4, a1 = s.a1 + 4;
+                if (s.lines.length === 1) {
+                    pwArcText(defs, g, s.lines[0], 'pw-stage-title', 419, a0, a1, flip, 34);
+                } else {
+                    const radii = flip ? [398, 440] : [440, 398];
+                    s.lines.forEach((line, i) => pwArcText(defs, g, line, 'pw-stage-title', radii[i], a0, a1, flip, 34));
+                }
+            });
+
+            pwEl('circle', { class: 'pw-hub', cx: PW_C, cy: PW_C, r: 306 }, svg);
+            pwEl('circle', { class: 'pw-hub-ring', cx: PW_C, cy: PW_C, r: 286 }, svg);
+        }
+
+        // Resolve any selectable id to what it lights up on the wheel.
+        function procResolve(id) {
+            const layer = procLayer(id);
+            if (layer) {
+                const phase = PROC_PHASES[layer.phase];
+                return { kind: 'layer', item: layer, color: phase.color, on: [id], next: layer.next, back: layer.back,
+                         rel: PROC_STAGES.filter(s => s.layers.includes(id)).map(s => s.id).concat(phase.id) };
+            }
+            const stage = procStage(id);
+            if (stage) {
+                return { kind: 'stage', item: stage, color: 'var(--accent)', on: [id], next: [], back: [], rel: stage.layers.slice(),
+                         layers: stage.layers.map(procLayer) };
+            }
+            const phase = procPhase(id) || PROC_PHASES.prevention;
+            const layers = procPhaseLayers(phase);
+            return { kind: 'phase', item: phase, color: phase.color, on: [phase.id], next: [], back: [], rel: layers.map(l => l.id), layers: layers };
+        }
+
+        function renderProcHub(id) {
+            const sel = procResolve(id);
+            const set = (elId, text) => { const el = document.getElementById(elId); if (el) el.textContent = text; };
+            const code = document.getElementById('proc-hub-code');
+            const hub = code && code.parentElement;
+            if (!hub) return;
+            hub.style.setProperty('--proc-hub-c', sel.color);
+            if (sel.kind === 'layer') {
+                set('proc-hub-eyebrow', 'FIASSE Layer');
+                code.textContent = sel.item.code;
+                set('proc-hub-name', sel.item.title);
+                set('proc-hub-meta', `${sel.item.time} · ${PROC_PHASES[sel.item.phase].label}`);
+            } else if (sel.kind === 'stage') {
+                set('proc-hub-eyebrow', 'SDLC Stage');
+                code.textContent = procCodes(sel.layers);
+                set('proc-hub-name', sel.item.title);
+                set('proc-hub-meta', sel.item.desc);
+            } else {
+                set('proc-hub-eyebrow', 'FIASSE Phase');
+                code.textContent = procCodes(sel.layers);
+                set('proc-hub-name', sel.item.label);
+                set('proc-hub-meta', sel.layers.length === 1 ? 'One layer' : `${sel.layers.length} layers`);
+            }
+            code.classList.toggle('sm', code.textContent.length > 2);
+        }
+
+        function procLayerButton(layer) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'proc-item';
+            btn.style.setProperty('--c', PROC_PHASES[layer.phase].color);
+            btn.addEventListener('click', () => selectProcLayer(layer.id));
+            const badge = document.createElement('span');
+            badge.className = 'l-badge';
+            badge.textContent = layer.code;
+            const body = document.createElement('span');
+            const title = document.createElement('span');
+            title.className = 'proc-item-title';
+            title.textContent = layer.title;
+            const meta = document.createElement('span');
+            meta.className = 'proc-item-meta';
+            meta.textContent = layer.meta;
+            body.append(title, meta);
+            btn.append(badge, body);
+            return btn;
+        }
+
+        // Stage and phase selections share one generated panel listing the layers they involve.
+        function renderProcContext(sel) {
+            const panel = document.getElementById('proc-context-detail');
+            if (!panel) return;
+            panel.replaceChildren();
+            const head = document.createElement('div');
+            head.className = 'proc-detail-head';
+            const code = document.createElement('span');
+            code.className = 'proc-detail-l';
+            code.textContent = procCodes(sel.layers);
+            const meta = document.createElement('span');
+            meta.className = 'proc-detail-meta';
+            meta.textContent = sel.kind === 'stage'
+                ? 'SDLC Stage · ' + [...new Set(sel.layers.map(l => PROC_PHASES[l.phase].label))].join(' + ')
+                : 'FIASSE Phase · ' + sel.layers.map(l => l.time).join(' · ');
+            head.append(code, meta);
+            const h2 = document.createElement('h2');
+            h2.style.color = 'var(--text-base)';
+            h2.textContent = sel.kind === 'stage' ? sel.item.title : sel.item.label;
+            const lede = document.createElement('p');
+            lede.className = 'proc-ctx-lede';
+            lede.textContent = sel.kind === 'stage' ? sel.item.desc : sel.item.blurb;
+            const label = document.createElement('p');
+            label.className = 'proc-ctx-label';
+            label.textContent = sel.kind === 'stage' ? 'FIASSE layers active in this stage' : 'Layers in this phase';
+            const list = document.createElement('div');
+            list.className = 'proc-ctx-list';
+            sel.layers.forEach(l => list.appendChild(procLayerButton(l)));
+            panel.append(head, h2, lede, label, list);
+        }
+
+        function procChip(text, targetId, color, dashed) {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'proc-chip' + (dashed ? ' dashed' : '');
+            if (color) chip.style.setProperty('--c', color);
+            chip.textContent = text;
+            chip.addEventListener('click', () => selectProcLayer(targetId));
+            return chip;
+        }
+
+        // Under a layer panel: where the layer sits in the SDLC and where its output goes.
+        function renderProcFlow(sel) {
+            const flow = document.getElementById('proc-flow');
+            if (!flow) return;
+            flow.replaceChildren();
+            if (sel.kind !== 'layer') return;
+            const row = (labelText, chips) => {
+                if (!chips.length) return;
+                const r = document.createElement('div');
+                r.className = 'proc-flow-row';
+                const l = document.createElement('span');
+                l.className = 'proc-flow-label';
+                l.textContent = labelText;
+                r.appendChild(l);
+                chips.forEach(c => r.appendChild(c));
+                flow.appendChild(r);
+            };
+            const layerChip = (id, dashed) => {
+                const l = procLayer(id);
+                return procChip(`${l.code} ${l.title}`, id, PROC_PHASES[l.phase].color, dashed);
+            };
+            row('SDLC stages', PROC_STAGES.filter(s => s.layers.includes(sel.item.id)).map(s => procChip(s.title, s.id)));
+            row('Hands off to', sel.next.map(id => layerChip(id, false)));
+            row('Returns to', sel.back.map(id => layerChip(id, true)));
+        }
+
+        // Process wheel selection: a layer, an SDLC stage, or a phase.
+        // Layers show their static panel. Stages and phases show the generated context panel.
+        function selectProcLayer(id, updateUrl = true, fromWheel = false) {
+            const selId = isValidTab('process', id) ? id : PAGES.process.default;
+            const sel = procResolve(selId);
+            procCurrent = selId;
+            buildProcWheel();
+
+            const stage = document.getElementById('proc-stage');
+            if (stage) stage.style.setProperty('--proc-c', sel.color);
+            const wheel = document.getElementById('proc-wheel');
+            if (wheel) wheel.classList.add('has-sel');
+
+            document.querySelectorAll('#proc-wheel-svg .pw-node').forEach(node => {
+                const nid = node.getAttribute('data-proc');
+                const on = sel.on.includes(nid);
+                node.classList.toggle('is-on', on);
+                node.classList.toggle('is-rel', sel.rel.includes(nid));
+                node.classList.toggle('is-next', sel.next.includes(nid));
+                node.classList.toggle('is-back', sel.back.includes(nid));
+                node.setAttribute('aria-pressed', on ? 'true' : 'false');
+                // Stages take the colour of the layer that lights them up.
+                if (node.classList.contains('pw-stage')) {
+                    if (sel.kind === 'layer' && sel.rel.includes(nid)) node.style.setProperty('--c', sel.color);
+                    else node.style.removeProperty('--c');
+                }
+            });
+
+            document.querySelectorAll('.proc-tab').forEach(tab => {
+                const active = tab.id === selId || (sel.kind !== 'layer' && sel.rel.includes(tab.id));
+                tab.classList.toggle('active', active);
+                tab.setAttribute('aria-selected', tab.id === selId ? 'true' : 'false');
+            });
+
+            const panelId = sel.kind === 'layer' ? `${selId}-detail` : 'proc-context-detail';
+            if (sel.kind !== 'layer') renderProcContext(sel);
             document.querySelectorAll('.proc-detail-panel').forEach(panel => {
-                panel.classList.toggle('active', panel.id === `${layerId}-detail`);
+                panel.classList.toggle('active', panel.id === panelId);
             });
+            renderProcFlow(sel);
+            renderProcHub(selId);
 
             if (updateUrl) {
-                updateHash('process', layerId);
+                updateHash('process', selId);
+            }
+
+            // Stacked layout: the panel sits below the wheel, so bring it into view.
+            if (fromWheel && window.matchMedia('(max-width: 1024px)').matches) {
+                const detail = document.getElementById('proc-detail');
+                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (detail) detail.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
             }
         }
 

@@ -50,3 +50,10 @@ This file is the working memory for the repository. Keep it aligned with [readme
 - Dependency guidance is a single section, "Dependency Stewardship" (section 4.5). There is no separate "Dependency Management" section.
 - The input handling order in the framework is canonicalization, validation, sanitization.
 - Attribute definitions cite ISO/IEC 25010, ISO/IEC 27000, and ISO/IEC TS 5723. Do not cite RFC 4949 for SSEM definitions.
+
+## Process Terminology (site direction)
+
+- The Process page organizes the five layers into two phases: Prevention (L1 to L3) and Correction (L4 to L5). "Integration" and "Remediation" are retired as phase names.
+- Layer names on the Process page: L1 Product Requirements, L2 Builder and Agent-Embedded, L3 Intelligent Code Control, L4 Remediation Intelligent, L5 Production Intelligence.
+- Layer time labels: Pre-Programming, Creation Time, Merge Time, Pre-Production, Post-Deployment.
+- `src/index.md`, `src/llms-full.txt`, and the `/docs/` mirror still carry the v1.3.0 layer names until the framework release that adopts this organization.

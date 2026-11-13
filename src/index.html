@@ -710,15 +710,16 @@
         .proc-wheel { position: relative; width: 100%; max-width: 46rem; margin: 0 auto; aspect-ratio: 1 / 1; container-type: inline-size; }
         .proc-wheel svg { display: block; width: 100%; height: 100%; overflow: visible; }
         .pw-node { cursor: pointer; outline: none; transition: opacity 0.2s ease; -webkit-tap-highlight-color: transparent; }
-        .pw-node .pw-shape { fill: color-mix(in srgb, var(--c) 9%, var(--bg-elev-solid)); stroke: color-mix(in srgb, var(--c) 70%, transparent); stroke-width: 3; stroke-linejoin: round; transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease; }
+        .pw-node .pw-shape { fill: color-mix(in srgb, var(--c) 9%, var(--bg-elev-solid)); stroke: color-mix(in srgb, var(--c) 70%, transparent); stroke-width: 3; stroke-linejoin: round; transition: fill 0.2s ease, stroke 0.2s ease, filter 0.2s ease, opacity 0.2s ease; }
         .pw-node text { fill: var(--text-base); pointer-events: none; user-select: none; transition: fill 0.2s ease; }
         .pw-node:hover .pw-shape, .pw-node:focus-visible .pw-shape { fill: color-mix(in srgb, var(--c) 22%, var(--bg-elev-solid)); stroke: var(--c); }
-        .pw-node:focus-visible .pw-shape { stroke-width: 7; }
         .pw-node.is-on .pw-shape { fill: color-mix(in srgb, var(--c) 30%, var(--bg-elev-solid)); stroke: var(--c); stroke-width: 4; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--c) 55%, transparent)); }
         .pw-node.is-rel .pw-shape { fill: color-mix(in srgb, var(--c) 20%, var(--bg-elev-solid)); stroke: var(--c); }
         .pw-node.is-next .pw-shape, .pw-node.is-back .pw-shape { stroke: var(--c); stroke-width: 4; }
         .pw-node.is-back .pw-shape { stroke-dasharray: 14 10; }
-        .proc-wheel.has-sel .pw-node:not(.is-on):not(.is-rel):not(.is-next):not(.is-back):not(:hover):not(:focus-visible) { opacity: 0.5; }
+        /* Keyboard focus outranks every selection state */
+        .proc-wheel .pw-node:focus-visible .pw-shape { stroke: var(--text-base); stroke-width: 8; stroke-dasharray: none; }
+        .proc-wheel.has-sel .pw-node:not(.is-on):not(.is-rel):not(.is-next):not(.is-back):not(:hover):not(:focus-visible) .pw-shape { opacity: 0.45; }
         .pw-stage { --c: var(--accent); }
         .pw-stage-title { font-family: var(--font-heading); font-weight: 700; font-size: 34px; letter-spacing: 0.5px; }
         .pw-level-code { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: 2px; }
@@ -756,10 +757,12 @@
         .proc-detail { background: var(--bg-elev); border: 1px solid var(--proc-c); padding: 1.8rem 2rem; box-shadow: 0 0 38px -22px var(--proc-c); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
         .proc-detail-panel { display: none; }
         .proc-detail-panel.active { display: block; }
-        .proc-detail-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.6rem; }
+        .proc-detail-head { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.6rem 1rem; margin-bottom: 0.6rem; }
         .proc-detail-l { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--proc-c); white-space: nowrap; }
-        .proc-detail-meta { flex: 1; border: 1px solid var(--proc-c); color: var(--proc-c); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; }
+        .proc-detail-meta { flex: 1; border: 1px solid var(--proc-c); color: var(--proc-c); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.45rem 0.7rem; line-height: 1.5; min-width: min(100%, 11rem); }
         .proc-detail h2 { font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 1.4rem; }
+        .proc-detail h2:focus { outline: none; }
+        .proc-detail h2:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
         .proc-steps { display: flex; flex-direction: column; }
         .proc-step { position: relative; display: flex; gap: 1rem; padding-bottom: 1.35rem; }
         .proc-detail-panel.active .proc-step { animation: proc-step-in 0.35s ease both; animation-delay: calc(var(--i, 0) * 60ms); }
@@ -2438,6 +2441,11 @@
             procCurrent = selId;
             buildProcWheel();
 
+            // Generated layer buttons and flow chips are removed or hidden by this render.
+            // If one of them holds focus, hand focus to the new panel's heading afterwards.
+            const focused = document.activeElement;
+            const refocus = !!(focused && focused.closest && focused.closest('#proc-context-detail, #proc-flow'));
+
             const stage = document.getElementById('proc-stage');
             if (stage) stage.style.setProperty('--proc-c', sel.color);
             const wheel = document.getElementById('proc-wheel');
@@ -2471,6 +2479,14 @@
             });
             renderProcFlow(sel);
             renderProcHub(selId);
+
+            if (refocus) {
+                const heading = document.querySelector(`#${panelId} h2`);
+                if (heading) {
+                    heading.setAttribute('tabindex', '-1');
+                    heading.focus({ preventScroll: true });
+                }
+            }
 
             if (updateUrl) {
                 updateHash('process', selId);
